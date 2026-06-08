@@ -19,7 +19,13 @@ export default function Footer() {
           </a>
           <p className="footer-tagline">The accountant and the accounting software, fused into one.</p>
           <div className="footer-socials">
-            <a href="#" className="footer-social-link" aria-label="LinkedIn">
+            <a
+              href="https://www.linkedin.com/company/atio-labs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-social-link"
+              aria-label="LinkedIn"
+            >
               <svg
                 viewBox="0 0 24 24"
                 strokeWidth="2"
@@ -57,14 +63,14 @@ export default function Footer() {
               <a href="#conversational-audit">Conversational BRS</a>
             </li>
             <li>
-              <a href="mailto:hello@atiolabs.com">Contact</a>
+              <a href="mailto:atiolabs.tech@gmail.com">Contact</a>
             </li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
         <span className="footer-bottom-text">&copy; 2026 Atio Labs. All rights reserved.</span>
-        <span className="footer-bottom-text">hello@atiolabs.com</span>
+        <span className="footer-bottom-text">atiolabs.tech@gmail.com</span>
       </div>
     </footer>
   );
