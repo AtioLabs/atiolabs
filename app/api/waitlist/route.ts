@@ -45,17 +45,36 @@ export async function POST(request: Request) {
     }
 
     const timestamp = new Date().toISOString();
+    let stored = false;
 
-    // Primary store: Google Sheet. Local file is kept as a backup below.
+    // Primary store: Google Sheet.
     try {
       await appendToGoogleSheet(email, timestamp);
+      stored = true;
     } catch (err) {
       console.error("Error writing to Google Sheet:", err);
     }
 
-    // Backup store: local waitlist.json
-    waitlist.push({ email, timestamp });
-    fs.writeFileSync(filePath, JSON.stringify(waitlist, null, 2), "utf-8");
+    // Backup store: local waitlist.json. This only works on a writable
+    // filesystem (e.g. local dev). On serverless hosts like Vercel the
+    // filesystem is read-only, so this is expected to fail there — guard it
+    // so it can never crash the request.
+    try {
+      waitlist.push({ email, timestamp });
+      fs.writeFileSync(filePath, JSON.stringify(waitlist, null, 2), "utf-8");
+      stored = true;
+    } catch (err) {
+      console.error("Could not write local waitlist.json (expected on serverless):", err);
+    }
+
+    // If neither store succeeded, the signup would be silently lost — surface
+    // a real error instead of a false success.
+    if (!stored) {
+      return NextResponse.json(
+        { error: "Server error. Please try again later." },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
