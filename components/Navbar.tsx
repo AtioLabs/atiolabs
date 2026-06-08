@@ -37,6 +37,13 @@ export default function Navbar() {
           <a href="#conversational-audit" onClick={() => setIsMobileOpen(false)}>
             Conversational BRS
           </a>
+          <a
+            href="#finale"
+            className="nav-cta-mobile btn btn-primary"
+            onClick={() => setIsMobileOpen(false)}
+          >
+            Join the Waitlist
+          </a>
         </div>
         <button
           className="mobile-menu-btn"

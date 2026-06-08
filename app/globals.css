@@ -216,6 +216,8 @@ nav.scrolled { padding: 12px 0; background: rgba(250, 249, 246, 0.85); border-bo
     background: rgba(255, 255, 255, 0.6); align-items: center; justify-content: center; cursor: pointer;
 }
 .mobile-menu-btn svg { width: 18px; height: 18px; stroke: var(--ocean-dark); fill: none; }
+/* CTA that only appears inside the mobile dropdown menu */
+.nav-cta-mobile { display: none; }
 
 /* Scrollbars inside panels */
 .simulator-panel-left::-webkit-scrollbar,
@@ -463,12 +465,15 @@ footer { background: var(--ocean-dark); padding: 0; position: relative; z-index:
     .hero { padding: 140px 0 40px; }
     .nav-links { display: none; }
     .mobile-menu-btn { display: flex; }
+    /* Standalone header CTA is moved into the dropdown menu on mobile */
+    .nav-container > .btn-primary { display: none; }
     .nav-links.mobile-open {
         display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
         background: rgba(250, 249, 246, 0.95); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
         border-bottom: 1px solid rgba(226, 232, 240, 0.8); padding: 16px 24px; gap: 16px;
         border-radius: 0; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
     }
+    .nav-links.mobile-open .nav-cta-mobile { display: inline-flex; margin-top: 4px; }
     .waitlist-container { border-radius: 20px; padding: 12px; }
     .waitlist-form { flex-direction: column; }
     .waitlist-form .waitlist-input { padding: 12px 20px; text-align: center; }
