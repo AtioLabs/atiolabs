@@ -37,7 +37,7 @@ export default function Footer() {
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </a>
-            <a href="#" className="footer-social-link" aria-label="X / Twitter">
+            <a href="https://x.com/atiolabsai?s=11" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="X / Twitter">
               <svg
                 viewBox="0 0 24 24"
                 strokeWidth="2"
