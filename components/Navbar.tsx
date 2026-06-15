@@ -23,9 +23,22 @@ export default function Navbar() {
     <nav id="navbar" className={isScrolled ? "scrolled" : ""}>
       <div className="container nav-container">
         <a href="#" className="logo-container">
-          <span className="logo-company-name">ATIO LABS</span>
-          <span className="logo-separator">|</span>
-          <span className="navbar-logo-text">River</span>
+          <span className="logo-mark-tile" aria-hidden="true">
+            <svg className="logo-mark" viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="riverGrad" x1="2" y1="6" x2="30" y2="26" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#106EBE" />
+                  <stop offset="1" stopColor="#0FFCBE" />
+                </linearGradient>
+              </defs>
+              <path d="M3 11c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGrad)" />
+              <path d="M3 17c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGrad)" opacity="0.7" />
+              <path d="M3 23c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGrad)" opacity="0.45" />
+            </svg>
+          </span>
+          <span className="logo-kicker">ATIO LABS</span>
+          <span className="logo-divider" aria-hidden="true" />
+          <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
           <a href="#problem" onClick={() => setIsMobileOpen(false)}>
@@ -42,7 +55,13 @@ export default function Navbar() {
             className="nav-cta-mobile btn btn-primary"
             onClick={() => setIsMobileOpen(false)}
           >
-            Join the Waitlist
+            <span>Join the Waitlist</span>
+            <span className="btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17L17 7" />
+                <path d="M9 7h8v8" />
+              </svg>
+            </span>
           </a>
         </div>
         <button
@@ -57,8 +76,14 @@ export default function Navbar() {
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-        <a href="#finale" className="btn btn-primary" style={{ padding: "10px 20px", fontSize: "0.85rem" }}>
-          Join Waitlist
+        <a href="#finale" className="btn btn-primary nav-cta-desktop" style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem" }}>
+          <span>Join Waitlist</span>
+          <span className="btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17L17 7" />
+              <path d="M9 7h8v8" />
+            </svg>
+          </span>
         </a>
       </div>
     </nav>

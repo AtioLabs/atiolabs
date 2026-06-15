@@ -90,7 +90,13 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
             required
           />
           <button type="submit" className="btn btn-primary" disabled={status === "loading"}>
-            {status === "loading" ? "Joining..." : "Join the Waitlist"}
+            <span>{status === "loading" ? "Joining..." : "Join Waitlist"}</span>
+            <span className="btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17L17 7" />
+                <path d="M9 7h8v8" />
+              </svg>
+            </span>
           </button>
         </form>
       </div>

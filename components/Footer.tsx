@@ -3,19 +3,23 @@ export default function Footer() {
     <footer>
       <div className="footer-grid" style={{ gridTemplateColumns: "1.5fr 1fr" }}>
         <div className="footer-brand-col">
-          <a href="#" className="footer-brand-logo">
-            <span className="logo-company-name" style={{ fontWeight: 700, letterSpacing: "0.05em" }}>
-              ATIO LABS
+          <a href="#" className="logo-container footer-brand-logo">
+            <span className="logo-mark-tile" aria-hidden="true">
+              <svg className="logo-mark" viewBox="0 0 32 32" fill="none">
+                <defs>
+                  <linearGradient id="riverGradFooter" x1="2" y1="6" x2="30" y2="26" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#2585D1" />
+                    <stop offset="1" stopColor="#0FFCBE" />
+                  </linearGradient>
+                </defs>
+                <path d="M3 11c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGradFooter)" />
+                <path d="M3 17c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGradFooter)" opacity="0.7" />
+                <path d="M3 23c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGradFooter)" opacity="0.45" />
+              </svg>
             </span>
-            <span
-              className="logo-separator"
-              style={{ margin: "0 10px", fontWeight: 300, fontSize: "1.1rem" }}
-            >
-              |
-            </span>
-            <span className="navbar-logo-text" style={{ fontWeight: 600 }}>
-              River
-            </span>
+            <span className="logo-kicker">ATIO LABS</span>
+            <span className="logo-divider" aria-hidden="true" />
+            <span className="logo-river">River</span>
           </a>
           <p className="footer-tagline">The accountant and the accounting software, fused into one.</p>
           <div className="footer-socials">

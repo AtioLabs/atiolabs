@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 
 // Body / UI text
@@ -20,6 +20,13 @@ const bricolage = Bricolage_Grotesque({
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+// Uppercase labels / eyebrows / badges
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-label",
   display: "swap",
 });
 
@@ -50,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${bricolage.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${jakarta.variable} ${bricolage.variable} ${geistMono.variable} ${manrope.variable}`}>
       <body>{children}</body>
     </html>
   );
