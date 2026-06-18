@@ -36,7 +36,8 @@ export const metadata: Metadata = {
   keywords: ["River", "Atio Labs", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],
   authors: [{ name: "Atio Labs" }],
   icons: {
-    icon: "/favicon.svg",
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "River | AI-Native Bank Reconciliation by Atio Labs",
