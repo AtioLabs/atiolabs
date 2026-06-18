@@ -24,17 +24,8 @@ export default function Navbar() {
       <div className="container nav-container">
         <a href="#" className="logo-container">
           <span className="logo-mark-tile" aria-hidden="true">
-            <svg className="logo-mark" viewBox="0 0 32 32" fill="none">
-              <defs>
-                <linearGradient id="riverGrad" x1="2" y1="6" x2="30" y2="26" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#106EBE" />
-                  <stop offset="1" stopColor="#0FFCBE" />
-                </linearGradient>
-              </defs>
-              <path d="M3 11c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGrad)" />
-              <path d="M3 17c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGrad)" opacity="0.7" />
-              <path d="M3 23c4-4 7 4 11 0s7-4 11 0" stroke="url(#riverGrad)" opacity="0.45" />
-            </svg>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="logo-mark-img" src="/atio-mark.png" alt="" width={32} height={32} />
           </span>
           <span className="logo-kicker">ATIO LABS</span>
           <span className="logo-divider" aria-hidden="true" />
