@@ -79,18 +79,26 @@ body {
     padding: 6px; background: #f8f6f0;
 }
 .legacy-table {
-    width: 100%; border-collapse: collapse; font-size: 0.58rem;
-    border: 1px solid #c0bca8;
+    width: 100%; border-collapse: collapse; font-size: 0.5rem;
+    border: 1px solid #c0bca8; table-layout: fixed;
 }
 .legacy-table th {
     background: linear-gradient(180deg, #e8e4d8 0%, #d4d0c4 100%);
-    border: 1px solid #b8b4a4; padding: 3px 6px; text-align: left;
+    border: 1px solid #b8b4a4; padding: 3px 4px; text-align: left;
     font-weight: 700; color: #333; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
 }
 .legacy-table td {
-    border: 1px solid #d0ccc0; padding: 3px 6px; color: #444;
+    border: 1px solid #d0ccc0; padding: 3px 4px; color: #444;
     font-family: 'Courier New', monospace; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
 }
+.legacy-table th:nth-child(1), .legacy-table td:nth-child(1) { width: 15%; }
+.legacy-table th:nth-child(2), .legacy-table td:nth-child(2) { width: 26%; }
+.legacy-table th:nth-child(3), .legacy-table td:nth-child(3) { width: 17%; }
+.legacy-table th:nth-child(4), .legacy-table td:nth-child(4) { width: 15%; }
+.legacy-table th:nth-child(5), .legacy-table td:nth-child(5) { width: 13%; }
+.legacy-table th:nth-child(6), .legacy-table td:nth-child(6) { width: 14%; }
 .legacy-table tr:nth-child(even) { background: #f0ece4; }
 .legacy-table tr:nth-child(odd) { background: #f8f6f0; }
 .legacy-table .cell-error { background: #fee; color: #c00; font-weight: 700; }
@@ -396,6 +404,7 @@ nav.scrolled .nav-container { padding-top: 8px; padding-bottom: 8px; background:
 .comparison-badge { align-self: flex-start; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 8px; border-radius: 100px; }
 .comparison-badge.badge-red { background: rgba(220, 38, 38, 0.08); color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.12); }
 .comparison-badge.badge-blue { background: rgba(16, 110, 190, 0.08); color: var(--brand-blue); border: 1px solid rgba(16, 110, 190, 0.12); }
+.comparison-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
 .comparison-sub { font-size: 0.8rem; font-weight: 600; color: var(--ocean-dark); }
 .comparison-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
