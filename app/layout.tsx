@@ -32,7 +32,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: "River | AI-Native Bank Reconciliation by Atio Labs",
-  description: "Atio Labs presents River. Drop your bank statements and books in. Get a perfect Bank Reconciliation Statement and updated ledgers out. No dashboards. Just answers.",
+  description: "River ingests your bank statements and ledgers, auto-matches every transaction it's sure about, and flags only the exceptions that need you. A perfect reconciliation statement out the other side — in minutes, not days.",
   keywords: ["River", "Atio Labs", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],
   authors: [{ name: "Atio Labs" }],
   icons: {
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "River | AI-Native Bank Reconciliation by Atio Labs",
-    description: "Drop your bank statements and books in. Get a perfect Bank Reconciliation Statement and updated ledgers out. No dashboards. Just answers.",
+    description: "River ingests your bank statements and ledgers, auto-matches every transaction it's sure about, and flags only the exceptions that need you. A perfect reconciliation statement out the other side — in minutes, not days.",
     url: "https://atiolabs.com/river",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "River | AI-Native Bank Reconciliation by Atio Labs",
-    description: "The accountant and the accounting software, fused into one.",
+    title: "River | Get your last three days of the month back",
+    description: "River ingests your bank statements and ledgers, auto-matches transactions, and flags only the exceptions that need you.",
   },
 };
 

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow API and Next.js internal build folders
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/

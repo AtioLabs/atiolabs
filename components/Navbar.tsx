@@ -46,7 +46,7 @@ export default function Navbar() {
             className="nav-cta-mobile btn btn-primary"
             onClick={() => setIsMobileOpen(false)}
           >
-            <span>Join the Waitlist</span>
+            <span>Join the waitlist</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />
@@ -68,7 +68,7 @@ export default function Navbar() {
           </svg>
         </button>
         <a href="#finale" className="btn btn-primary nav-cta-desktop" style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem" }}>
-          <span>Join Waitlist</span>
+          <span>Join the waitlist</span>
           <span className="btn-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17L17 7" />
