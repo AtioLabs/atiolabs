@@ -76,7 +76,7 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
       : {};
 
   return (
-    <div className="waitlist-container-parent">
+    <div className="waitlist-container-parent" style={{ flexDirection: "column", alignItems: "center" }}>
       <div className="waitlist-container" style={containerStyle}>
         <form onSubmit={handleSubmit} className="waitlist-form">
           <input
@@ -90,7 +90,7 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
             required
           />
           <button type="submit" className="btn btn-primary" disabled={status === "loading"}>
-            <span>{status === "loading" ? "Joining..." : "Join Waitlist"}</span>
+            <span>{status === "loading" ? "Joining..." : "Join the waitlist"}</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />
@@ -100,6 +100,19 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
           </button>
         </form>
       </div>
+      
+      <p style={{
+        marginTop: "16px",
+        fontSize: "0.85rem",
+        color: variant === "finale" ? "rgba(255, 255, 255, 0.6)" : "var(--ocean-muted)",
+        textAlign: "center",
+        fontWeight: 400,
+        maxWidth: "460px",
+        lineHeight: "1.4"
+      }}>
+        Matches what it's sure about. Flags every exception. You stay the final signer.
+      </p>
+
       {status === "error" && (
         <div style={{ color: variant === "finale" ? "#fecaca" : "#dc2626", fontSize: "0.85rem", marginTop: "8px", textAlign: "center", width: "100%" }}>
           {errorMessage}
