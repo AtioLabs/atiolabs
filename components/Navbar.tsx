@@ -32,14 +32,17 @@ export default function Navbar() {
           <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
-          <a href="#problem" onClick={() => setIsMobileOpen(false)}>
-            Philosophy
+          <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
+            How it Works
           </a>
-          <a href="#review-queue" onClick={() => setIsMobileOpen(false)}>
-            Review Queue
+          <a href="#control" onClick={() => setIsMobileOpen(false)}>
+            Control
           </a>
-          <a href="#conversational-audit" onClick={() => setIsMobileOpen(false)}>
-            Conversational BRS
+          <a href="#where-starts" onClick={() => setIsMobileOpen(false)}>
+            Reconciliation
+          </a>
+          <a href="#where-its-going" onClick={() => setIsMobileOpen(false)}>
+            Vision
           </a>
           <a
             href="#finale"

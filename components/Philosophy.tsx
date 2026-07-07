@@ -4,19 +4,17 @@ export default function Philosophy() {
       <div className="container">
         <div className="problem-split-grid">
           <div className="philosophy-text framer-reveal">
-            <span className="label">Philosophy</span>
+            <span className="label">Why River</span>
             <h2 style={{ marginTop: "12px", marginBottom: "24px" }}>
-              Software should do the work.
+              Your software should work for you.
               <br />
-              Not create more of it.
+              Not the other way around.
             </h2>
             <p>
-              Traditional accounting tools are passive. You do the heavy lifting: mapping columns,
-              cross-checking line items, and hunting for errors.
+              Most accounting tools just give you spreadsheets and expect you to do the rest — mapping columns, checking entries, hunting for mismatches.
             </p>
             <p>
-              River flips the model. As an AI-native system, it reads your ledgers and bank
-              statements directly to reconcile them automatically.
+              River does the actual work. It reads your ledgers and bank statements, matches transactions, and builds your reconciliation statement.
             </p>
           </div>
           {/* Interface Comparison replacing squished bar charts */}
@@ -37,7 +35,7 @@ export default function Philosophy() {
                     borderBottom: "1px solid #c8c4b8",
                   }}
                 >
-                  <span className="comparison-badge badge-red">Legacy Software</span>
+                  <span className="comparison-badge badge-red">Without River</span>
                   <span style={{ fontSize: "0.6rem", color: "#888" }}>Bookkeeping Module</span>
                 </div>
                 <div className="legacy-dashboard">
@@ -118,7 +116,7 @@ export default function Philosophy() {
               {/* Right: River Way */}
               <div className="comparison-column river-way">
                 <div className="comparison-header">
-                  <span className="comparison-badge badge-blue">The River Way</span>
+                  <span className="comparison-badge badge-blue">With River</span>
                   <span className="comparison-sub">100% Automated</span>
                 </div>
                 <div className="comparison-body">

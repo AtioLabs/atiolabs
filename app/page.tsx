@@ -5,10 +5,9 @@ import BackgroundFlows from "@/components/BackgroundFlows";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
-import Philosophy from "@/components/Philosophy";
-import ReviewQueue from "@/components/ReviewQueue";
-import ConversationalAuditor from "@/components/ConversationalAuditor";
-import BuiltByAtioLabs from "@/components/BuiltByAtioLabs";
+import YouStayInControl from "@/components/YouStayInControl";
+import WhereRiverStarts from "@/components/WhereRiverStarts";
+import WhereItsGoing from "@/components/WhereItsGoing";
 import OceanFinale from "@/components/OceanFinale";
 import Footer from "@/components/Footer";
 
@@ -33,6 +32,13 @@ export default function Home() {
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
+      document.querySelectorAll(".framer-reveal").forEach((el) => {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+
     // Entrance Reveals via Intersection Observer
     const observer = new IntersectionObserver(
       (entries, obs) => {
@@ -43,7 +49,7 @@ export default function Home() {
           }
         });
       },
-      { root: null, rootMargin: "0px 0px -50px 0px", threshold: 0.1 }
+      { root: null, rootMargin: "0px 0px -10px 0px", threshold: 0.02 }
     );
 
     document.querySelectorAll(".framer-reveal").forEach((el) => observer.observe(el));
@@ -53,7 +59,7 @@ export default function Home() {
       document.querySelectorAll(".hero .framer-reveal").forEach((el) => {
         el.classList.add("is-visible");
       });
-    }, 100);
+    }, 50);
 
     return () => {
       observer.disconnect();
@@ -68,10 +74,9 @@ export default function Home() {
       <main>
         <Hero isJoined={isJoined} onJoin={handleJoin} />
         <HowItWorks />
-        <Philosophy />
-        <ReviewQueue />
-        <ConversationalAuditor />
-        <BuiltByAtioLabs />
+        <YouStayInControl />
+        <WhereRiverStarts />
+        <WhereItsGoing />
         <OceanFinale isJoined={isJoined} onJoin={handleJoin} />
       </main>
       <Footer />

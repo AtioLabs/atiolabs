@@ -44,6 +44,9 @@ export default function Footer() {
               </svg>
             </a>
           </div>
+          <p style={{ fontSize: "0.8rem", color: "rgba(255, 255, 255, 0.4)", marginTop: "24px", lineHeight: "1.4", fontFamily: "var(--sans-font)" }}>
+            Built by Atio Labs · Our aspiration is to make running a business as easy as building one.
+          </p>
         </div>
         <div>
           <div className="footer-col-title">Product</div>
@@ -52,10 +55,13 @@ export default function Footer() {
               <a href="#how-it-works">How it Works</a>
             </li>
             <li>
-              <a href="#review-queue">Smart Review Queue</a>
+              <a href="#control">Control</a>
             </li>
             <li>
-              <a href="#conversational-audit">Conversational BRS</a>
+              <a href="#where-starts">Reconciliation</a>
+            </li>
+            <li>
+              <a href="#where-its-going">Vision</a>
             </li>
             <li>
               <a href="mailto:atiolabs.tech@gmail.com">Contact</a>

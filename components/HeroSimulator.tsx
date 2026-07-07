@@ -11,6 +11,7 @@ interface ChatMessage {
 }
 
 export default function HeroSimulator() {
+  const [scenario, setScenario] = useState<"github" | "adobe">("github");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [pdfLoaded, setPdfLoaded] = useState(false);
   const [xlsLoaded, setXlsLoaded] = useState(false);
@@ -43,96 +44,135 @@ export default function HeroSimulator() {
     ]);
   };
 
-  const runSimulator = () => {
+  const runSimulator = (targetScenario = scenario) => {
     clearSimTimeouts();
 
-    // Reset states
+    // Reset states dynamically based on selected scenario
     setMessages([]);
     setPdfLoaded(false);
     setXlsLoaded(false);
     setBrsVisible(false);
-    setBrsLedgerVal("₹14,13,200.00");
-    setBrsLedgerClass("brs-value");
-    setBrsDiffVal("₹11,800.00");
-    setBrsDiffClass("brs-value highlight-warning");
+    setShowActions(false);
+
+    if (targetScenario === "github") {
+      setBrsLedgerVal("₹14,13,200.00");
+      setBrsLedgerClass("brs-value");
+      setBrsDiffVal("₹11,800.00");
+      setBrsDiffClass("brs-value highlight-warning");
+    } else {
+      setBrsLedgerVal("₹14,25,000.00");
+      setBrsLedgerClass("brs-value");
+      setBrsDiffVal("₹24,500.00");
+      setBrsDiffClass("brs-value highlight-warning");
+    }
     setBrsStatusText("Pending Resolution");
     setBrsStatusClass("brs-badge warning");
-    setShowActions(false);
 
-    // Sequence
-    addMsg("river", "Drop your bank statements and books in...");
-
+    // Step 1: Files load + reading message
     const t1 = setTimeout(() => {
       setPdfLoaded(true);
-    }, 1000);
-    simTimeoutIds.current.push(t1);
-
-    const t2 = setTimeout(() => {
-      setXlsLoaded(true);
-    }, 1800);
-    simTimeoutIds.current.push(t2);
-
-    const t3 = setTimeout(() => {
-      setBrsVisible(true);
-      addMsg(
-        "river",
-        "Reading ledger & bank statements directly... Comparing transaction lists."
-      );
-    }, 2600);
-    simTimeoutIds.current.push(t3);
-
-    const t4 = setTimeout(() => {
-      addMsg(
-        "river",
-        '<strong><span style="display:inline-flex; align-items:center; gap:4px; color:#d97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Discrepancy Found (June 15):</span></strong><br>Bank Statement has ₹11,800 charge from <code>BILL.COM *GITHUB</code>. General Ledger has no matching entry.'
-      );
-    }, 4200);
-    simTimeoutIds.current.push(t4);
-
-    const t5 = setTimeout(() => {
-      addMsg("river", "Is this ₹11,800 charge a Software Subscription expense?");
-      setShowActions(true);
-    }, 6000);
-    simTimeoutIds.current.push(t5);
-  };
-
-  const handleResolveSim = (isSoftware: boolean) => {
-    clearSimTimeouts();
-    setShowActions(false);
-
-    addMsg("user", isSoftware ? "Yes, Software Expense" : "Categorize Manually");
-
-    const t1 = setTimeout(() => {
-      addMsg(
-        "river",
-        "Got it. Creating General Ledger entry under Software Expenses (GitHub Subscription), matching statement, and generating BRS."
-      );
     }, 800);
     simTimeoutIds.current.push(t1);
 
     const t2 = setTimeout(() => {
-      setBrsLedgerVal("₹14,25,000.00");
-      setBrsLedgerClass("brs-value highlight-success");
-      setBrsDiffVal("₹0.00");
-      setBrsDiffClass("brs-value highlight-success");
-      setBrsStatusText("✓ Reconciled");
-      setBrsStatusClass("brs-badge success");
-
+      setXlsLoaded(true);
+      setBrsVisible(true);
       addMsg(
         "river",
-        '<strong><span style="color:#059669;">June BRS generated successfully.</span></strong> All accounts are fully matched.'
+        `Reading your bank statement and ledger...`
       );
-    }, 2200);
+    }, 1500);
     simTimeoutIds.current.push(t2);
 
-    // Restart simulator loop after showing success
-    const t3 = setTimeout(runSimulator, 10000);
+    // Step 2: Discrepancy found + action prompt
+    const t3 = setTimeout(() => {
+      if (targetScenario === "github") {
+        addMsg(
+          "river",
+          '<strong><span style="display:inline-flex; align-items:center; gap:4px; color:#d97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> 1 discrepancy found:</span></strong><br>₹11,800 charge from <code>BILL.COM *GITHUB</code>. No ledger entry. Categorize as Software Expense?'
+        );
+      } else {
+        addMsg(
+          "river",
+          '<strong><span style="display:inline-flex; align-items:center; gap:4px; color:#d97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> 1 discrepancy found:</span></strong><br>Two identical charges of ₹24,500 from <code>ADOBE SYSTEMS</code> on June 18. Did they charge you twice?'
+        );
+      }
+      setShowActions(true);
+    }, 3500);
     simTimeoutIds.current.push(t3);
   };
 
+  const handleResolveSim = (isAffirmative: boolean) => {
+    clearSimTimeouts();
+    setShowActions(false);
+
+    if (scenario === "github") {
+      addMsg("user", isAffirmative ? "Yes, Software Expense" : "Categorize Manually");
+
+      const t1 = setTimeout(() => {
+        setBrsLedgerVal("₹14,25,000.00");
+        setBrsLedgerClass("brs-value highlight-success");
+        setBrsDiffVal("₹0.00");
+        setBrsDiffClass("brs-value highlight-success");
+        setBrsStatusText("✓ Reconciled");
+        setBrsStatusClass("brs-badge success");
+
+        addMsg(
+          "river",
+          '<strong><span style="color:#059669;">Done. June BRS generated</span></strong>. All accounts matched.'
+        );
+      }, 1200);
+      simTimeoutIds.current.push(t1);
+    } else {
+      addMsg("user", isAffirmative ? "Flag as Duplicate" : "Approve Both");
+
+      const t1 = setTimeout(() => {
+        setBrsLedgerVal("₹14,25,000.00");
+        setBrsLedgerClass("brs-value highlight-success");
+        setBrsDiffVal("₹0.00");
+        setBrsDiffClass("brs-value highlight-success");
+        setBrsStatusText("✓ Reconciled");
+        setBrsStatusClass("brs-badge success");
+
+        addMsg(
+          "river",
+          '<strong><span style="color:#059669;">Flagged. Duplicate charge marked.</span></strong> dispute email drafted to Adobe support.'
+        );
+      }, 1200);
+      simTimeoutIds.current.push(t1);
+    }
+  };
+
+  const selectScenario = (target: "github" | "adobe") => {
+    setScenario(target);
+    runSimulator(target);
+  };
+
   useEffect(() => {
-    runSimulator();
-    return () => clearSimTimeouts();
+    if (typeof window === "undefined") return;
+
+    // Trigger simulator when it enters the viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runSimulator();
+          } else {
+            clearSimTimeouts();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    if (reconcilerRef.current) {
+      observer.observe(reconcilerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      clearSimTimeouts();
+    };
   }, []);
 
   // Auto-scroll chat thread to bottom on message updates
@@ -145,7 +185,7 @@ export default function HeroSimulator() {
     }
   }, [messages, showActions]);
 
-  // GSAP 3D Rotation Animation on Scroll
+  // GSAP 3D Rotation Animation on Scroll (Triggered locally by the section)
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -159,8 +199,8 @@ export default function HeroSimulator() {
             rotateX: 0,
             ease: "none",
             scrollTrigger: {
-              trigger: ".hero",
-              start: "center 45%",
+              trigger: "#where-starts",
+              start: "top bottom",
               end: "bottom top",
               scrub: 1,
             },
@@ -174,6 +214,21 @@ export default function HeroSimulator() {
 
   return (
     <div className="hero-perspective-container">
+      <div className="simulator-tabs" style={{ display: "flex", gap: "8px", marginBottom: "18px", justifyContent: "center" }}>
+        <button 
+          onClick={() => selectScenario("github")} 
+          className={`tab-btn ${scenario === "github" ? "active" : ""}`}
+        >
+          Scenario 1: Missing Receipt
+        </button>
+        <button 
+          onClick={() => selectScenario("adobe")} 
+          className={`tab-btn ${scenario === "adobe" ? "active" : ""}`}
+        >
+          Scenario 2: Double Billing
+        </button>
+      </div>
+
       <div className="simulator-window" id="reconciler-simulator" ref={reconcilerRef}>
         <div className="simulator-header">
           <div className="mac-dots">
@@ -206,7 +261,9 @@ export default function HeroSimulator() {
                   <polyline points="14 2 14 8 20 8" />
                 </svg>
                 <div className="file-info">
-                  <span className="file-name">HDFC_Statement_June.pdf</span>
+                  <span className="file-name">
+                    {scenario === "github" ? "HDFC_Statement_June.pdf" : "SBI_Statement_June.pdf"}
+                  </span>
                   <span className="file-status" id="sim-status-pdf">
                     {pdfLoaded ? "Ready" : "Pending upload"}
                   </span>
@@ -311,10 +368,10 @@ export default function HeroSimulator() {
                   <div className="msg-bubble">
                     <div className="chat-actions" id="sim-actions">
                       <button className="chat-btn" onClick={() => handleResolveSim(true)}>
-                        Yes, Software Expense
+                        {scenario === "github" ? "Yes, Software Expense" : "Flag as Duplicate"}
                       </button>
                       <button className="chat-btn secondary" onClick={() => handleResolveSim(false)}>
-                        Categorize Manually
+                        {scenario === "github" ? "Categorize Manually" : "Approve Both"}
                       </button>
                     </div>
                   </div>

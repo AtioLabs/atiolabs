@@ -104,13 +104,15 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
       <p style={{
         marginTop: "16px",
         fontSize: "0.85rem",
-        color: variant === "finale" ? "rgba(255, 255, 255, 0.6)" : "var(--ocean-muted)",
+        color: "var(--text-muted)",
         textAlign: "center",
         fontWeight: 400,
         maxWidth: "460px",
         lineHeight: "1.4"
       }}>
-        Matches what it's sure about. Flags every exception. You stay the final signer.
+        {variant === "hero" 
+          ? "Be first when River opens" 
+          : "Takes a few seconds"}
       </p>
 
       {status === "error" && (

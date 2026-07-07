@@ -122,18 +122,15 @@ export default function ReviewQueue() {
         <div className="queue-content framer-reveal delay-1">
           <span className="label">Smart Review Queue</span>
           <h2 style={{ marginTop: "12px", marginBottom: "24px" }}>
-            An intelligent accountant
+            Teach it once.
             <br />
-            that learns from day one.
+            It remembers forever.
           </h2>
           <p>
-            Bookkeeping is a headache, so we built an engine to take bookkeeping and reconciliation
-            off your plate. When River encounters a discrepancy, it doesn’t just throw an error.
-            It routes the item to a smart review queue.
+            When River finds a mismatch, it doesn’t just flag it. It asks you a simple question — and remembers your answer for every future reconciliation.
           </p>
           <p>
-            River asks you a simple question, remembers your answer, and applies that business
-            logic to your books forever. You teach it once, and it scales with you.
+            No more repeating the same fixes every month.
           </p>
         </div>
       </div>

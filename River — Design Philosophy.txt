@@ -1,0 +1,55 @@
+River — Design Philosophy
+The one sentence
+River should feel like the calm, inevitable future of accounting — not a utility that reconciles bank statements. Every visual and verbal choice either widens the ambition or shrinks it. When in doubt, choose the version that a company worth a billion dollars would ship, and the version that a single-feature BRS tool never would.
+First principle: confidence through restraint
+Cheap software shouts — gradients, five colors, stock 3D blobs, a feature crammed into every inch. Valuable software is quiet. Scarcity is the flex: one accent, one idea per screen, oceans of space. If a section feels a little too empty, it's probably right.
+Positioning the design must carry
+River is an engine, not a feature. Reconciliation is the first thing it does, shown once, as concrete proof — never as the definition. The layout stages this: a broad category promise up top, a general mechanism, then "here's the first thing it does," then "here's everything it's becoming."
+Typography — borrowed credibility of print
+
+Display: a high-contrast editorial serif — candidates: Fraunces (low SOFT/WONK axis only), GT Sectra, or Canela. Fraunces carries real warmth even at restrained settings — it can tip toward "boutique/craft brand" rather than "serious institution" if not dialed in carefully. Before locking the typeface, render all three at actual headline size (100px+) side by side and pressure-test against the Ramp/Mercury feel specifically. Don't commit from reputation alone.
+Body/UI: a clean grotesk (Inter).
+Headlines are designed, not typed: tight negative tracking, restrained line-height.
+Numbers are the brand: IBM Plex Mono, tabular numerals, everywhere a figure appears. Never in body font.
+
+Color — one owned accent, held back, no dark theme
+
+Canvas: warm off-white / cream (#FBFAF6), never pure white.
+Text: near-black on cream, high contrast.
+Accent: deep ink indigo, used 3–4 times total on the page.
+The vision-beat section (5) does NOT use a dark/black surface — no dark band, no dark theme, anywhere on the site. Instead, the "cinematic shift" comes from a deeper stone/clay tone within the same warm palette (e.g., a muted terracotta or deep sand, still light, still part of the cream family) paired with a scale change — larger type, more vertical space, maybe the one moment the indigo accent gets used more boldly. The shift should read as "the page just took a breath and got serious," not "the lights went off." This is a deliberate palette-and-scale device, not a lighting device.
+
+Space & rhythm
+
+One idea per section, separated by real vertical space — editorial spread, not dashboard.
+One oversized visual moment (the demo), not scattered small icons.
+
+Mobile discipline (this is where restraint gets tested)
+Desktop whitespace is horizontal and vertical; mobile only has vertical, and most first-touch traffic (waitlist links shared on social, forwarded by investors) will be mobile. Rules for translating restraint down:
+
+Display serif drops in size fast and gets more letter-spacing discipline, not less — oversized serif type at mobile widths breaks line-length comfort quickly and starts looking cramped rather than confident.
+Vertical rhythm between sections shrinks, but never disappears — a minimum breathing gap is non-negotiable even when screen height is scarce; cutting whitespace first is the easiest way to accidentally slide back into "dashboard" territory.
+The demo (section 4) needs its own mobile-specific treatment — a wide inputs → River → outcomes panel that works on desktop will likely need to become a simplified vertical stack or a single "hero frame" on mobile, not a shrunk version of the desktop layout.
+Test the whole page on mobile before calling the design done — restraint principles that work on a 1440px canvas can quietly become "empty and broken" on a 375px one if untested.
+
+Visuals — no illustration, one hero moment
+
+No stock illustration, no "AI brain," no floating data blobs.
+The demo is the hero visual: a polished, honest render of inputs → River → outcomes, shown large in section 4, in minimal window chrome. Represents the product truthfully with sample data — never implies a shipped feature that doesn't exist.
+Subtle grain/texture over the cream.
+
+Motion — intent, not decoration
+Slow, editorial reveals — content fades up once as it enters. No looping, no parallax gimmicks. Respects reduced-motion preferences.
+Voice
+Plain enough for a non-accountant, confident enough for an investor. Short declarative lines. No jargon in headlines. State the vision boldly and honestly — never fake proof, logos, or stats while pre-launch.
+The anti-patterns
+
+Bright SaaS-blue as the primary color.
+Pure-white background + soft-gray body text.
+Any dark/black surface used as a "mode" or "theme" — including a literal dark band. (new — closes the contradiction)
+Feature grids of little icons; "everything we do" crammed above the fold.
+Reconciliation framed as the whole product instead of the first proof point.
+Stock 3D illustration or abstract data-flow art.
+Sans-serif-everything headlines.
+Numbers set in the body font instead of engineered mono.
+Restraint principles left untested on mobile — "it works on desktop" is not done. (new)

@@ -60,7 +60,7 @@ export default function ConversationalAuditor() {
     {
       id: "welcome",
       sender: "river",
-      text: "Hi, I'm River. I replaced the complex dashboard with a conversation. When you need financial clarity, you don't need to generate a 20-page report. You just ask.",
+      text: "Hi, I'm River. Ask me anything about your books.",
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -153,15 +153,12 @@ export default function ConversationalAuditor() {
     <section id="conversational-audit" className="chat-section section" ref={sectionRef}>
       <div className="container chat-section-grid">
         <div className="chat-content framer-reveal">
-          <span className="label">Conversational Audit</span>
+          <span className="label">Ask, don't search</span>
           <h2 style={{ marginTop: "12px", marginBottom: "24px" }}>
-            Stop navigating.
-            <br />
-            Start asking.
+            Your books, in plain English.
           </h2>
           <p>
-            We replaced the complex dashboard with a conversation. When you need financial
-            clarity, you don't need to generate a 20-page report. You just ask.
+            No more digging through reports. Just ask River a question — like “Which cheques haven’t cleared?” — and get a straight answer.
           </p>
         </div>
         <div className="chat-visual-wrapper framer-reveal delay-1">
