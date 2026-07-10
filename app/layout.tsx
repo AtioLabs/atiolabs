@@ -1,35 +1,24 @@
 import type { Metadata } from "next";
-import { Fraunces, Newsreader, Cormorant_Garamond, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-const inter = Inter({
+// Body / UI text
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+// Display / large headings
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+// Capitalised label / mono text
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -62,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${newsreader.variable} ${cormorant.variable} ${inter.variable} ${ibmPlexMono.variable}`}>
+    <html lang="en" className={`${jakarta.variable} ${bricolage.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );

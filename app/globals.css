@@ -1,7 +1,7 @@
 :root {
     /* STRICT 3-FONT SYSTEM */
     --sans-font: var(--font-sans), sans-serif;
-    --display-font: var(--font-fraunces), serif;
+    --display-font: var(--font-display), sans-serif;
     --mono-font: var(--font-mono), monospace;
 
     /* BRAND COLOR PALETTE */
