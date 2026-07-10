@@ -24,6 +24,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://atiolabs.com"),
   title: "River by Atio Labs | The accountant and the accounting software, fused into one",
   description: "Drop your bank statements and books. River reads, matches, and reconciles — you only review what it can't. AI-native bank reconciliation.",
   keywords: ["River", "Atio Labs", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],
@@ -35,13 +36,22 @@ export const metadata: Metadata = {
   openGraph: {
     title: "River by Atio Labs | The accountant and the accounting software, fused into one",
     description: "Drop your bank statements and books. River reads, matches, and reconciles — you only review what it can't.",
-    url: "https://atiolabs.com/river",
+    url: "https://atiolabs.com",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "River — Run the business instead of the books",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "River by Atio Labs | The accountant and the accounting software, fused into one",
     description: "Drop your bank statements and books. River reads, matches, and reconciles — you only review what it can't.",
+    images: ["/og-image.jpg"],
   },
 };
 
