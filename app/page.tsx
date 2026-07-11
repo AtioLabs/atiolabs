@@ -69,6 +69,32 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "River",
+            "url": "https://atiolabs.com",
+            "logo": "https://atiolabs.com/apple-touch-icon.png",
+            "applicationCategory": "AccountingApplication",
+            "operatingSystem": "All",
+            "description": "AI-native bank reconciliation that fuses your accountant and your accounting software.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Atio Labs",
+              "url": "https://atiolabs.com"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/PreOrder"
+            }
+          })
+        }}
+      />
       <BackgroundFlows />
       <Navbar />
       <main>
