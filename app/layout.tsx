@@ -25,6 +25,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://atiolabs.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "River by Atio Labs | The accountant and the accounting software, fused into one",
   description: "Drop your bank statements and books. River reads, matches, and reconciles — you only review what it can't. AI-native bank reconciliation.",
   keywords: ["River", "Atio Labs", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],

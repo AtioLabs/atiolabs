@@ -214,14 +214,18 @@ export default function HeroSimulator() {
 
   return (
     <div className="hero-perspective-container">
-      <div className="simulator-tabs" style={{ display: "flex", gap: "8px", marginBottom: "18px", justifyContent: "center" }}>
+      <div className="simulator-tabs" role="tablist" style={{ display: "flex", gap: "8px", marginBottom: "18px", justifyContent: "center" }}>
         <button 
+          role="tab"
+          aria-selected={scenario === "github"}
           onClick={() => selectScenario("github")} 
           className={`tab-btn ${scenario === "github" ? "active" : ""}`}
         >
           Scenario 1: Missing Receipt
         </button>
         <button 
+          role="tab"
+          aria-selected={scenario === "adobe"}
           onClick={() => selectScenario("adobe")} 
           className={`tab-btn ${scenario === "adobe" ? "active" : ""}`}
         >
@@ -367,10 +371,18 @@ export default function HeroSimulator() {
                   <div className="msg-avatar">R</div>
                   <div className="msg-bubble">
                     <div className="chat-actions" id="sim-actions">
-                      <button className="chat-btn" onClick={() => handleResolveSim(true)}>
+                      <button 
+                        className="chat-btn" 
+                        onClick={() => handleResolveSim(true)}
+                        aria-label={scenario === "github" ? "Accept GitHub as software expense" : "Flag Adobe charge as duplicate"}
+                      >
                         {scenario === "github" ? "Yes, Software Expense" : "Flag as Duplicate"}
                       </button>
-                      <button className="chat-btn secondary" onClick={() => handleResolveSim(false)}>
+                      <button 
+                        className="chat-btn secondary" 
+                        onClick={() => handleResolveSim(false)}
+                        aria-label={scenario === "github" ? "Categorize GitHub transaction manually" : "Approve both Adobe charges"}
+                      >
                         {scenario === "github" ? "Categorize Manually" : "Approve Both"}
                       </button>
                     </div>

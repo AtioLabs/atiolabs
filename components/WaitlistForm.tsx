@@ -81,6 +81,9 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
         <form onSubmit={handleSubmit} className="waitlist-form">
           <input
             type="email"
+            name="email"
+            autoComplete="email"
+            aria-label="Business email address"
             placeholder="Enter your business email"
             className="waitlist-input"
             style={inputStyle}
@@ -89,7 +92,12 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
             disabled={status === "loading"}
             required
           />
-          <button type="submit" className="btn btn-primary" disabled={status === "loading"}>
+          <button 
+            type="submit" 
+            className="btn btn-primary" 
+            disabled={status === "loading"}
+            aria-label="Submit waitlist form"
+          >
             <span>{status === "loading" ? "Joining..." : "Join the waitlist"}</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
