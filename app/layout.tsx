@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: "River by Atio Labs | The accountant and the accounting software, fused into one",
-  description: "Drop your bank statements and books. River reads, matches, and reconciles — you only review what it can't. AI-native bank reconciliation.",
+  description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't. AI-native bank reconciliation.",
   keywords: ["River", "Atio Labs", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],
   authors: [{ name: "Atio Labs" }],
   icons: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "River by Atio Labs | The accountant and the accounting software, fused into one",
-    description: "Drop your bank statements and books. River reads, matches, and reconciles — you only review what it can't.",
+    description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't.",
     url: "https://atiolabs.com",
     type: "website",
     images: [
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "River — Run the business instead of the books",
+        alt: "River — Run the business instead of the bank ledger",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "River by Atio Labs | The accountant and the accounting software, fused into one",
-    description: "Drop your bank statements and books. River reads, matches, and reconciles — you only review what it can't.",
+    description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't.",
     images: ["/og-image.jpg"],
   },
 };

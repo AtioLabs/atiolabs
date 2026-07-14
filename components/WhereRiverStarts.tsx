@@ -12,7 +12,7 @@ export default function WhereRiverStarts() {
           First up: your bank reconciliation
         </h2>
         <p className="reveal-item" style={{ "--delay": "160ms", maxWidth: "640px", margin: "0 auto 48px", fontSize: "1.1rem" } as React.CSSProperties}>
-          River's first job is the one nobody wants to do by hand. Drop in your statements and books, get a clean reconciliation back, with every exception flagged.
+          River's first job is the one nobody wants to do by hand. Drop in your statements and bank ledgers, get a clean reconciliation back, with every exception flagged.
         </p>
         
         <div className="simulator-reveal" style={{ "--delay": "240ms", maxWidth: "960px", margin: "0 auto" } as React.CSSProperties}>

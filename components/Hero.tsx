@@ -15,7 +15,7 @@ export default function Hero({ isJoined, onJoin }: HeroProps) {
           fused into one
         </h1>
         <p className="subtext reveal-item" style={{ "--delay": "80ms", fontSize: "1.28rem", maxWidth: "700px", margin: "0 auto 36px" } as React.CSSProperties}>
-          River reads your bank statements and ledgers, handles the reconciliation, and flags only what needs your eye, so you can run the business instead of the books
+          River reads your bank statements and ledgers, handles the reconciliation, and flags only what needs your eye, so you can run the business instead of the bank ledger
         </p>
 
         <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px" } as React.CSSProperties}>

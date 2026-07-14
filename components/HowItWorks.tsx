@@ -15,7 +15,7 @@ export default function HowItWorks() {
           <div className="how-step reveal-item" style={{ "--delay": "180ms" } as React.CSSProperties}>
             <div className="how-step-number">02</div>
             <h3>River reads and matches</h3>
-            <p>It lines up every transaction against your books and drafts the reconciliation.</p>
+            <p>It lines up every transaction against your bank ledger and drafts the reconciliation.</p>
             <div className="how-connector" />
           </div>
           <div className="how-step reveal-item" style={{ "--delay": "260ms" } as React.CSSProperties}>

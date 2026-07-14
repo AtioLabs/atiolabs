@@ -5,7 +5,7 @@ AI-native bank reconciliation that fuses your accountant and your accounting sof
 ## Value Proposition
 - **Fuses Software and Service:** River is not a tool you learn, nor an accountant you hire. It handles the back-office matching work automatically and flags only what needs your eye.
 - **Reconciliation Engine:** Automatically matches bank statements (PDFs) and general ledgers (spreadsheets), drafts the Bank Reconciliation Statement (BRS), and categorizes transactions.
-- **Focus on Business, Not Bookkeeping:** River automates the back-office overhead so leaders can focus on building the business instead of managing the books.
+- **Focus on Business, Not Bookkeeping:** River automates the back-office overhead so leaders can focus on building the business instead of managing the bank ledger.
 
 ## Key Product Features
 - **Audit Console Simulator:** A conversational audit feed showing file ingestion, automated transaction matching, discrepancy alerts (e.g. missing receipts, duplicate billing), and user sign-offs.
