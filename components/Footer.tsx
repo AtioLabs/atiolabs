@@ -15,7 +15,7 @@ export default function Footer() {
           <p className="footer-tagline">The accountant and the accounting software, fused into one.</p>
           <div className="footer-socials">
             <a
-              href="https://www.linkedin.com/company/asynarch/"
+              href="https://www.linkedin.com/company/asynarch"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-social-link"
@@ -32,7 +32,7 @@ export default function Footer() {
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </a>
-            <a href="https://x.com/AsynarchHQ" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="X / Twitter">
+            <a href="https://x.com/asynarch?s=11" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="X / Twitter">
               <svg
                 viewBox="0 0 24 24"
                 strokeWidth="2"
