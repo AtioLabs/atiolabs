@@ -18,6 +18,9 @@ export default function WhereRiverStarts() {
         <div className="simulator-reveal" style={{ "--delay": "240ms", maxWidth: "960px", margin: "0 auto" } as React.CSSProperties}>
           <HeroSimulator />
         </div>
+        <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", opacity: 0.55, marginTop: "20px", fontStyle: "italic", letterSpacing: "0.01em" }}>
+          This is a conceptual simulation for demonstration purposes and does not represent the final product experience.
+        </p>
       </div>
     </section>
   );
