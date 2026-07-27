@@ -24,22 +24,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://atiolabs.com"),
+  metadataBase: new URL("https://asynarch.com"),
   alternates: {
     canonical: "/",
   },
-  title: "River by Atio Labs | The accountant and the accounting software, fused into one",
+  title: "River by Asynarch | The accountant and the accounting software, fused into one",
   description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't. AI-native bank reconciliation.",
-  keywords: ["River", "Atio Labs", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],
-  authors: [{ name: "Atio Labs" }],
+  keywords: ["River", "Asynarch", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],
+  authors: [{ name: "Asynarch" }],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "River by Atio Labs | The accountant and the accounting software, fused into one",
+    title: "River by Asynarch | The accountant and the accounting software, fused into one",
     description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't.",
-    url: "https://atiolabs.com",
+    url: "https://asynarch.com",
     type: "website",
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "River by Atio Labs | The accountant and the accounting software, fused into one",
+    title: "River by Asynarch | The accountant and the accounting software, fused into one",
     description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't.",
     images: ["/og-image.jpg"],
   },

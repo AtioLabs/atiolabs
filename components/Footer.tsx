@@ -8,14 +8,14 @@ export default function Footer() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img className="logo-mark-img" src="/atio-mark.png" alt="" width={32} height={32} />
             </span>
-            <span className="logo-kicker">ATIO LABS</span>
+            <span className="logo-kicker">ASYNARCH</span>
             <span className="logo-divider" aria-hidden="true" />
             <span className="logo-river">River</span>
           </a>
           <p className="footer-tagline">The accountant and the accounting software, fused into one.</p>
           <div className="footer-socials">
             <a
-              href="https://www.linkedin.com/company/atio-labs/"
+              href="https://www.linkedin.com/company/asynarch/"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-social-link"
@@ -32,7 +32,7 @@ export default function Footer() {
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </a>
-            <a href="https://x.com/atiolabsai?s=11" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="X / Twitter">
+            <a href="https://x.com/AsynarchHQ" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="X / Twitter">
               <svg
                 viewBox="0 0 24 24"
                 strokeWidth="2"
@@ -45,7 +45,7 @@ export default function Footer() {
             </a>
           </div>
           <p style={{ fontSize: "0.8rem", color: "rgba(255, 255, 255, 0.4)", marginTop: "24px", lineHeight: "1.4", fontFamily: "var(--sans-font)" }}>
-            Built by Atio Labs · Our aspiration is to make running a business as easy as building one.
+            Built by Asynarch · Our aspiration is to make running a business as easy as building one.
           </p>
         </div>
         <div>
@@ -70,8 +70,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span className="footer-bottom-text">&copy; 2026 Atio Labs. All rights reserved.</span>
-        <span className="footer-bottom-text">atiolabs.tech@gmail.com</span>
+        <span className="footer-bottom-text">&copy; 2026 Asynarch. All rights reserved.</span>
+        <span className="footer-bottom-text">asynarch.com</span>
       </div>
     </footer>
   );

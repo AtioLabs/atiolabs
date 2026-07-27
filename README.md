@@ -1,8 +1,8 @@
 # River — AI-Native Bank Reconciliation
 
-River is an AI-native bank reconciliation engine that fuses your accountant and your accounting software. Built by Atio Labs.
+River is an AI-native bank reconciliation engine that fuses your accountant and your accounting software. Built by Asynarch.
 
-Website: [https://atiolabs.com](https://atiolabs.com)
+Website: [https://asynarch.com](https://asynarch.com)
 
 ---
 

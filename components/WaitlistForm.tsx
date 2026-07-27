@@ -53,7 +53,7 @@ export default function WaitlistForm({ variant = "hero", isJoined, onJoin }: Wai
             You're on the list!
           </div>
           <div style={{ fontSize: "0.85rem", color: "#15803d", fontWeight: 400, marginTop: "2px" }}>
-            We've saved your spot for Atio Labs' River. We will contact you soon.
+            We've saved your spot for Asynarch's River. We will contact you soon.
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-# River by Atio Labs
+# River by Asynarch
 
 AI-native bank reconciliation that fuses your accountant and your accounting software.
 
@@ -13,6 +13,6 @@ AI-native bank reconciliation that fuses your accountant and your accounting sof
 - **Automation Vision:** Moving beyond reconciliation to automate the entire back-office (matching, reconciling, chasing, closing).
 
 ## Metadata
-- Website: https://atiolabs.com
-- Creator: Atio Labs
+- Website: https://asynarch.com
+- Creator: Asynarch
 - Access: Waitlist registration active on site.

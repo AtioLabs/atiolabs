@@ -76,15 +76,15 @@ export default function Home() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "River",
-            "url": "https://atiolabs.com",
-            "logo": "https://atiolabs.com/apple-touch-icon.png",
+            "url": "https://asynarch.com",
+            "logo": "https://asynarch.com/apple-touch-icon.png",
             "applicationCategory": "AccountingApplication",
             "operatingSystem": "All",
             "description": "AI-native bank reconciliation that fuses your accountant and your accounting software.",
             "publisher": {
               "@type": "Organization",
-              "name": "Atio Labs",
-              "url": "https://atiolabs.com"
+              "name": "Asynarch",
+              "url": "https://asynarch.com"
             },
             "offers": {
               "@type": "Offer",

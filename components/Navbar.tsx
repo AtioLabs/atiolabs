@@ -27,7 +27,7 @@ export default function Navbar() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="logo-mark-img" src="/atio-mark.png" alt="" width={32} height={32} />
           </span>
-          <span className="logo-kicker">ATIO LABS</span>
+          <span className="logo-kicker">ASYNARCH</span>
           <span className="logo-divider" aria-hidden="true" />
           <span className="logo-river">River</span>
         </a>
