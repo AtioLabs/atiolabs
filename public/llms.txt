@@ -1,16 +1,18 @@
 # River by Asynarch
 
-AI-native bank reconciliation that fuses your accountant and your accounting software.
+AI-native bank reconciliation that fuses your accountant and your accounting software into one seamless experience.
 
 ## Value Proposition
-- **Fuses Software and Service:** River is not a tool you learn, nor an accountant you hire. It handles the back-office matching work automatically and flags only what needs your eye.
-- **Reconciliation Engine:** Automatically matches bank statements (PDFs) and general ledgers (spreadsheets), drafts the Bank Reconciliation Statement (BRS), and categorizes transactions.
-- **Focus on Business, Not Bookkeeping:** River automates the back-office overhead so leaders can focus on building the business instead of managing the bank ledger.
+- **Dual Operating Modes:** Operates directly from Bank Statements alone (as your direct running book) or matches Bank Statements + Bank Ledgers automatically.
+- **Conversational Intelligence:** Ask direct questions about your finances in plain English to get immediate clarity on cash flow and trends.
+- **Transparent Honesty:** Presents exact options for ambiguous transactions with zero guesswork or silent assumptions.
+- **Proactive Forward-Looking Alerts:** Tracks uncleared cheques and pending standing instructions in advance before items require attention.
+- **Reclaiming Valuable Hours:** Replaces manual repetitive tasks with automated precision and complete peace of mind.
 
 ## Key Product Features
-- **Audit Console Simulator:** A conversational audit feed showing file ingestion, automated transaction matching, discrepancy alerts (e.g. missing receipts, duplicate billing), and user sign-offs.
-- **Final Signer Promise:** Only perfect matches go through automatically. Any anomaly is flagged for human review.
-- **Automation Vision:** Moving beyond reconciliation to automate the entire back-office (matching, reconciling, chasing, closing).
+- **Audit Console Simulator:** A conversational audit feed showing file ingestion, automated transaction matching, discrepancy alerts, and user sign-offs.
+- **Final Signer Promise:** You maintain complete visibility and control over all financial records.
+- **Automation Vision:** Reconciliation is where River starts, expanding into complete back-office financial automation.
 
 ## Metadata
 - Website: https://asynarch.com
