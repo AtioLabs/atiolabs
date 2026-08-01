@@ -45,11 +45,13 @@ export default function Navbar() {
             Vision
           </a>
           <a
-            href="#finale"
+            href="https://river.asynarch.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-cta-mobile btn btn-primary"
             onClick={() => setIsMobileOpen(false)}
           >
-            <span>Join the waitlist</span>
+            <span>Try River</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />
@@ -70,8 +72,14 @@ export default function Navbar() {
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-        <a href="#finale" className="btn btn-primary nav-cta-desktop" style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem" }}>
-          <span>Join the waitlist</span>
+        <a 
+          href="https://river.asynarch.com/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="btn btn-primary nav-cta-desktop" 
+          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem" }}
+        >
+          <span>Try River</span>
           <span className="btn-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17L17 7" />

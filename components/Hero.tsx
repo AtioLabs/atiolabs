@@ -18,8 +18,26 @@ export default function Hero({ isJoined, onJoin }: HeroProps) {
           River automates your financial record-keeping directly from your bank statements, giving you complete clarity, instant reconciliation, and total confidence in your numbers.
         </p>
 
-        <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px" } as React.CSSProperties}>
-          <WaitlistForm variant="hero" isJoined={isJoined} onJoin={onJoin} />
+        <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px", display: "flex", justifyContent: "center" } as React.CSSProperties}>
+          <a
+            href="https://river.asynarch.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+            style={{
+              padding: "16px 36px",
+              fontSize: "1.05rem",
+              letterSpacing: "0.03em"
+            }}
+          >
+            <span>Try River Today</span>
+            <span className="btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17L17 7" />
+                <path d="M9 7h8v8" />
+              </svg>
+            </span>
+          </a>
         </div>
 
         <a href="#how-it-works" className="reveal-item" style={{

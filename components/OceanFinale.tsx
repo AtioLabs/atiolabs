@@ -13,11 +13,29 @@ export default function OceanFinale({ isJoined, onJoin }: OceanFinaleProps) {
           Get your accounting off your <span style={{ color: "var(--brand-indigo)", borderBottom: "3px solid rgba(34, 28, 98, 0.3)", paddingBottom: "2px" }}>plate</span>
         </h2>
         <p className="reveal-item" style={{ "--delay": "100ms", marginTop: "16px", marginBottom: "40px" } as React.CSSProperties}>
-          River is opening soon. Be first to try it
+          Start simplifying your bank reconciliation today. Set up in minutes.
         </p>
 
-        <div className="reveal-item" style={{ "--delay": "200ms" } as React.CSSProperties}>
-          <WaitlistForm variant="finale" isJoined={isJoined} onJoin={onJoin} />
+        <div className="reveal-item" style={{ "--delay": "200ms", display: "flex", justifyContent: "center" } as React.CSSProperties}>
+          <a
+            href="https://river.asynarch.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+            style={{
+              padding: "16px 36px",
+              fontSize: "1.05rem",
+              letterSpacing: "0.03em"
+            }}
+          >
+            <span>Try River Today</span>
+            <span className="btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17L17 7" />
+                <path d="M9 7h8v8" />
+              </svg>
+            </span>
+          </a>
         </div>
       </div>
     </section>
