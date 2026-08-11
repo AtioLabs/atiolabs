@@ -36,7 +36,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           </button>
         </div>
 
-        <a href="#the-manual-entry-gone" className="reveal-item" style={{
+        <a href="#it-just-happens" className="reveal-item" style={{
           "--delay": "240ms",
           display: "inline-flex",
           alignItems: "center",

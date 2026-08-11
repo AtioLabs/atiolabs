@@ -2,7 +2,7 @@
 
 The cash book that writes itself. Upload your statement. See every payment recorded, in minutes.
 
-## The manual entry, gone
+## It just happens
 Right now, someone opens an entry, picks who it's for, and saves it. One payment at a time. Upload your statement instead, and it's done in minutes.
 
 ## How it works
@@ -10,7 +10,7 @@ Right now, someone opens an entry, picks who it's for, and saves it. One payment
 2. River writes down each payment. Who it's with, in plain words.
 3. Your cash book is ready. In minutes.
 
-## End your day with it done
+## Every evening
 Upload today's statement before you go home. In a few minutes, every payment from today is recorded and ready.
 
 ## It learns, once

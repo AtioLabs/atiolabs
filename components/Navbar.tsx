@@ -35,7 +35,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
-          <a href="#the-manual-entry-gone" onClick={() => setIsMobileOpen(false)}>
+          <a href="#it-just-happens" onClick={() => setIsMobileOpen(false)}>
             Overview
           </a>
           <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
