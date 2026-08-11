@@ -2,7 +2,11 @@
 
 import { useState, useEffect } from "react";
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenModal: () => void;
+}
+
+export default function Navbar({ onOpenModal }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -14,14 +18,13 @@ export default function Navbar() {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav id="navbar" className={isScrolled ? "scrolled" : ""}>
-      <div className="container nav-container">
+    <nav className={isScrolled ? "scrolled" : ""}>
+      <div className="nav-container">
         <a href="#" className="logo-container">
           <span className="logo-mark-tile" aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -32,33 +35,36 @@ export default function Navbar() {
           <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
-          <a href="#what-river-does" onClick={() => setIsMobileOpen(false)}>
-            What River does
+          <a href="#the-manual-entry-gone" onClick={() => setIsMobileOpen(false)}>
+            Overview
           </a>
           <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
             How it works
           </a>
+          <a href="#it-learns-once" onClick={() => setIsMobileOpen(false)}>
+            Intelligence
+          </a>
           <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)}>
-            Why this matters
+            Why it matters
           </a>
           <a href="#where-its-going" onClick={() => setIsMobileOpen(false)}>
             The horizon
           </a>
-          <a
-            href="https://river.asynarch.com/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             className="nav-cta-mobile btn btn-primary"
-            onClick={() => setIsMobileOpen(false)}
+            onClick={() => {
+              setIsMobileOpen(false);
+              onOpenModal();
+            }}
           >
-            <span>Try River</span>
+            <span>Upload statement</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />
                 <path d="M9 7h8v8" />
               </svg>
             </span>
-          </a>
+          </button>
         </div>
         <button
           className="mobile-menu-btn"
@@ -72,21 +78,19 @@ export default function Navbar() {
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-        <a 
-          href="https://river.asynarch.com/" 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <button
+          onClick={onOpenModal}
           className="btn btn-primary nav-cta-desktop" 
-          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem" }}
+          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem", cursor: "pointer" }}
         >
-          <span>Try River</span>
+          <span>Upload statement</span>
           <span className="btn-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17L17 7" />
               <path d="M9 7h8v8" />
             </svg>
           </span>
-        </a>
+        </button>
       </div>
     </nav>
   );

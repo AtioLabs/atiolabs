@@ -3,33 +3,18 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import WhatRiverDoes from "@/components/WhatRiverDoes";
+import TheManualEntryGone from "@/components/TheManualEntryGone";
 import HowItWorks from "@/components/HowItWorks";
+import EndYourDay from "@/components/EndYourDay";
 import ItLearnsOnce from "@/components/ItLearnsOnce";
 import WhyThisMatters from "@/components/WhyThisMatters";
 import WhereItsGoing from "@/components/WhereItsGoing";
 import OceanFinale from "@/components/OceanFinale";
 import Footer from "@/components/Footer";
+import EarlyAccessModal from "@/components/EarlyAccessModal";
 
 export default function Home() {
-  const [isJoined, setIsJoined] = useState(false);
-
-  // Initialize status from localStorage on mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const joined = localStorage.getItem("river_waitlist_joined") === "true";
-      if (joined) {
-        setIsJoined(true);
-      }
-    }
-  }, []);
-
-  const handleJoin = () => {
-    setIsJoined(true);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("river_waitlist_joined", "true");
-    }
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
@@ -99,7 +84,7 @@ export default function Home() {
               "logo": "https://asynarch.com/apple-touch-icon.png",
               "applicationCategory": "AccountingApplication",
               "operatingSystem": "All",
-              "description": "The cash book that writes itself. Upload your bank statement. Every payment gets recorded, organized by who it's with.",
+              "description": "The cash book that writes itself. Upload your statement. See every payment recorded, in minutes.",
               "publisher": {
                 "@type": "Organization",
                 "name": "Asynarch",
@@ -115,17 +100,21 @@ export default function Home() {
           ])
         }}
       />
-      <Navbar />
+      <Navbar onOpenModal={() => setIsModalOpen(true)} />
       <main>
-        <Hero isJoined={isJoined} onJoin={handleJoin} />
-        <WhatRiverDoes />
+        <Hero onOpenModal={() => setIsModalOpen(true)} />
+        <TheManualEntryGone />
         <HowItWorks />
+        <EndYourDay />
         <ItLearnsOnce />
         <WhyThisMatters />
         <WhereItsGoing />
-        <OceanFinale isJoined={isJoined} onJoin={handleJoin} />
+        <OceanFinale onOpenModal={() => setIsModalOpen(true)} />
       </main>
       <Footer />
+
+      {/* Option A Modal Popup */}
+      <EarlyAccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }

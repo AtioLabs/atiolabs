@@ -1,11 +1,10 @@
-import WaitlistForm from "./WaitlistForm";
+import React from "react";
 
 interface HeroProps {
-  isJoined: boolean;
-  onJoin: () => void;
+  onOpenModal: () => void;
 }
 
-export default function Hero({ isJoined, onJoin }: HeroProps) {
+export default function Hero({ onOpenModal }: HeroProps) {
   return (
     <section className="hero framer-reveal">
       <div className="container">
@@ -13,32 +12,31 @@ export default function Hero({ isJoined, onJoin }: HeroProps) {
           The cash book that writes itself
         </h1>
         <p className="subtext reveal-item" style={{ "--delay": "80ms", fontSize: "1.28rem", maxWidth: "740px", margin: "0 auto 36px" } as React.CSSProperties}>
-          Upload your bank statement. Every payment gets recorded, organized by who it's with. No accounts to set up, no software to configure.
+          Upload your statement. See every payment recorded, in minutes.
         </p>
 
         <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px", display: "flex", justifyContent: "center" } as React.CSSProperties}>
-          <a
-            href="https://river.asynarch.com/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onOpenModal}
             className="btn btn-primary"
             style={{
               padding: "16px 36px",
               fontSize: "1.05rem",
-              letterSpacing: "0.03em"
+              letterSpacing: "0.03em",
+              cursor: "pointer",
             }}
           >
-            <span>See your cash book</span>
+            <span>Upload your statement</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />
                 <path d="M9 7h8v8" />
               </svg>
             </span>
-          </a>
+          </button>
         </div>
 
-        <a href="#how-it-works" className="reveal-item" style={{
+        <a href="#the-manual-entry-gone" className="reveal-item" style={{
           "--delay": "240ms",
           display: "inline-flex",
           alignItems: "center",
@@ -59,4 +57,3 @@ export default function Hero({ isJoined, onJoin }: HeroProps) {
     </section>
   );
 }
-

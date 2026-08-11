@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function WhyThisMatters() {
+export default function TheManualEntryGone() {
   return (
-    <section id="why-this-matters" className="section framer-reveal" style={{ borderBottom: "1px solid var(--border-color)" }}>
+    <section id="the-manual-entry-gone" className="section framer-reveal" style={{ borderTop: "1px solid var(--border-color)", borderBottom: "1px solid var(--border-color)" }}>
       <div className="container" style={{ maxWidth: "860px", textAlign: "center" }}>
         <h2 className="reveal-item" style={{ "--delay": "0ms", fontSize: "clamp(2.2rem, 5.2vw, 3.4rem)", fontWeight: 500, marginBottom: "28px" } as React.CSSProperties}>
-          Why this matters
+          The manual entry, gone
         </h2>
         <p className="reveal-item" style={{ "--delay": "120ms", fontSize: "1.24rem", lineHeight: "1.7", color: "var(--text-muted)", margin: "0 auto" } as React.CSSProperties}>
-          A business isn't a set of accounts. It's people. The ones who pay you, and the ones you pay. River keeps your books that way, because that's how you already think about your business.
+          Right now, someone opens an entry, picks who it's for, and saves it. One payment at a time. Upload your statement instead, and it's done in minutes.
         </p>
       </div>
     </section>

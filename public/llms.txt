@@ -1,14 +1,25 @@
 # River by Asynarch
 
-The cash book that writes itself. Upload your bank statement. Every payment gets recorded, organized by who it's with. Nothing to set up, nothing to enter by hand.
+The cash book that writes itself. Upload your statement. See every payment recorded, in minutes.
 
-## What River does
-- **Automatic Cash Book:** Turns raw bank statements into finished cash books the moment you upload them.
-- **People-First Organization:** Records every payment in and out by who paid you and who you paid.
-- **It learns, once:** Remembers entity resolutions for ambiguous payments forever: you're never asked again.
-- **Why this matters:** Organizes books around the people you do business with, matching how business leaders naturally think.
+## The manual entry, gone
+Right now, someone opens an entry, picks who it's for, and saves it. One payment at a time. Upload your statement instead, and it's done in minutes.
 
-## The Horizon
+## How it works
+1. Upload your statement.
+2. River writes down each payment. Who it's with, in plain words.
+3. Your cash book is ready. In minutes.
+
+## End your day with it done
+Upload today's statement before you go home. In a few minutes, every payment from today is recorded and ready.
+
+## It learns, once
+Most payments, River understands right away. When one isn't obvious, it simply asks who the payment is with. Tell it once. River remembers, and never asks again.
+
+## Why this matters
+A business isn't a set of accounts. It's people. The ones who pay you, and the ones you pay. River keeps your books that way, because that's how you already think about your business.
+
+## The horizon
 This is the first page. River's next job is to know your business the way you do.
 
 ## Metadata
