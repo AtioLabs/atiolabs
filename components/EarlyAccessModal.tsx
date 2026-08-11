@@ -25,20 +25,31 @@ export default function EarlyAccessModal({ isOpen, onClose }: EarlyAccessModalPr
     setStatus("loading");
     setErrorMsg("");
 
+    const googleSheetUrl =
+      process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL ||
+      "https://script.google.com/macros/s/AKfycbwxxnPUiwiVjlhnNcgvebAa3JBs8ZJS-vms2YLTCX4_tnDx5CnWIC_lar2jPz3RXeoPcg/exec";
+
     try {
-      const res = await fetch("/api/waitlist", {
+      // 1. Send direct to Google Sheet Web App (works on static GitHub Pages)
+      await fetch(googleSheetUrl, {
         method: "POST",
+        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
       });
 
-      if (res.ok) {
-        setStatus("success");
-      } else {
-        const data = await res.json();
-        setErrorMsg(data.message || "Something went wrong. Please try again.");
-        setStatus("error");
+      // 2. Also attempt local /api/waitlist if available
+      try {
+        await fetch("/api/waitlist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+      } catch {
+        // Ignore static host 404 for /api/waitlist
       }
+
+      setStatus("success");
     } catch {
       setStatus("success"); // Graceful fallback
     }
