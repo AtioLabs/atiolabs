@@ -10,10 +10,10 @@ export default function OceanFinale({ isJoined, onJoin }: OceanFinaleProps) {
     <section id="finale" className="ocean-finale framer-reveal">
       <div className="container finale-content">
         <h2 className="reveal-item" style={{ "--delay": "0ms", fontSize: "clamp(2.6rem, 6.5vw, 4.8rem)", lineHeight: "1.15", fontWeight: 500 } as React.CSSProperties}>
-          Get your accounting off your <span style={{ color: "var(--brand-indigo)", borderBottom: "3px solid rgba(34, 28, 98, 0.3)", paddingBottom: "2px" }}>plate</span>
+          Ready to see your cash book?
         </h2>
         <p className="reveal-item" style={{ "--delay": "100ms", marginTop: "16px", marginBottom: "40px" } as React.CSSProperties}>
-          Start simplifying your bank reconciliation today. Set up in minutes.
+          Upload your bank statement and get started in seconds.
         </p>
 
         <div className="reveal-item" style={{ "--delay": "200ms", display: "flex", justifyContent: "center" } as React.CSSProperties}>
@@ -28,7 +28,7 @@ export default function OceanFinale({ isJoined, onJoin }: OceanFinaleProps) {
               letterSpacing: "0.03em"
             }}
           >
-            <span>Try River Today</span>
+            <span>Upload a statement</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />

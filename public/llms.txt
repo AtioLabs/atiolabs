@@ -1,20 +1,17 @@
 # River by Asynarch
 
-AI-native bank reconciliation that fuses your accountant and your accounting software into one seamless experience.
+The cash book that writes itself. Upload your bank statement. Every payment gets recorded, organized by who it's with. Nothing to set up, nothing to enter by hand.
 
-## Value Proposition
-- **Dual Operating Modes:** Operates directly from Bank Statements alone (as your direct running book) or matches Bank Statements + Bank Ledgers automatically.
-- **Conversational Intelligence:** Ask direct questions about your finances in plain English to get immediate clarity on cash flow and trends.
-- **Transparent Honesty:** Presents exact options for ambiguous transactions with zero guesswork or silent assumptions.
-- **Proactive Forward-Looking Alerts:** Tracks uncleared cheques and pending standing instructions in advance before items require attention.
-- **Reclaiming Valuable Hours:** Replaces manual repetitive tasks with automated precision and complete peace of mind.
+## What River does
+- **Automatic Cash Book:** Turns raw bank statements into finished cash books the moment you upload them.
+- **People-First Organization:** Records every payment in and out by who paid you and who you paid.
+- **It learns, once:** Remembers entity resolutions for ambiguous payments forever: you're never asked again.
+- **Why this matters:** Organizes books around the people you do business with, matching how business leaders naturally think.
 
-## Key Product Features
-- **Audit Console Simulator:** A conversational audit feed showing file ingestion, automated transaction matching, discrepancy alerts, and user sign-offs.
-- **Final Signer Promise:** You maintain complete visibility and control over all financial records.
-- **Automation Vision:** Reconciliation is where River starts, expanding into complete back-office financial automation.
+## The Horizon
+This is the first page. River's next job is to know your business the way you do.
 
 ## Metadata
 - Website: https://asynarch.com
 - Creator: Asynarch
-- Access: Waitlist registration active on site.
+- App URL: https://river.asynarch.com/

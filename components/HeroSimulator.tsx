@@ -4,29 +4,33 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-interface ChatMessage {
+interface CashBookEntry {
   id: string;
-  sender: "river" | "user";
-  text: string;
+  entity: string;
+  type: "in" | "out";
+  amount: string;
+  description: string;
+  status: "recorded" | "pending";
 }
 
 export default function HeroSimulator() {
-  const [scenario, setScenario] = useState<"github" | "adobe">("github");
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [pdfLoaded, setPdfLoaded] = useState(false);
-  const [xlsLoaded, setXlsLoaded] = useState(false);
-  const [brsVisible, setBrsVisible] = useState(false);
-  const [brsLedgerVal, setBrsLedgerVal] = useState("₹14,13,200.00");
-  const [brsLedgerClass, setBrsLedgerClass] = useState("brs-value");
-  const [brsDiffVal, setBrsDiffVal] = useState("₹11,800.00");
-  const [brsDiffClass, setBrsDiffClass] = useState("brs-value highlight-warning");
-  const [brsStatusText, setBrsStatusText] = useState("Pending Resolution");
-  const [brsStatusClass, setBrsStatusClass] = useState("brs-badge warning");
-  const [showActions, setShowActions] = useState(false);
+  const [statementLoaded, setStatementLoaded] = useState(false);
+  const [cashBookReady, setCashBookReady] = useState(false);
+  const [messages, setMessages] = useState<{ id: string; sender: "river" | "user"; text: string }[]>([]);
+  const [showLearningPrompt, setShowLearningPrompt] = useState(false);
+  const [learnedEntity, setLearnedEntity] = useState(false);
 
   const threadRef = useRef<HTMLDivElement>(null);
   const simTimeoutIds = useRef<NodeJS.Timeout[]>([]);
   const reconcilerRef = useRef<HTMLDivElement>(null);
+
+  const initialEntries: CashBookEntry[] = [
+    { id: "1", entity: "Stripe Billing", type: "in", amount: "+₹1,45,000", description: "Client Payments Inbound", status: "recorded" },
+    { id: "2", entity: "AWS Infrastructure", type: "out", amount: "-₹18,200", description: "Cloud Services Outbound", status: "recorded" },
+    { id: "3", entity: "Rahul Sharma", type: "in", amount: "+₹45,000", description: "Consulting Retainer", status: "recorded" },
+  ];
+
+  const [entries, setEntries] = useState<CashBookEntry[]>(initialEntries);
 
   const clearSimTimeouts = () => {
     simTimeoutIds.current.forEach((id) => clearTimeout(id));
@@ -44,114 +48,64 @@ export default function HeroSimulator() {
     ]);
   };
 
-  const runSimulator = (targetScenario = scenario) => {
+  const runSimulator = () => {
     clearSimTimeouts();
 
-    // Reset states dynamically based on selected scenario
     setMessages([]);
-    setPdfLoaded(false);
-    setXlsLoaded(false);
-    setBrsVisible(false);
-    setShowActions(false);
+    setStatementLoaded(false);
+    setCashBookReady(false);
+    setShowLearningPrompt(false);
+    setLearnedEntity(false);
+    setEntries(initialEntries);
 
-    if (targetScenario === "github") {
-      setBrsLedgerVal("₹14,13,200.00");
-      setBrsLedgerClass("brs-value");
-      setBrsDiffVal("₹11,800.00");
-      setBrsDiffClass("brs-value highlight-warning");
-    } else {
-      setBrsLedgerVal("₹14,25,000.00");
-      setBrsLedgerClass("brs-value");
-      setBrsDiffVal("₹24,500.00");
-      setBrsDiffClass("brs-value highlight-warning");
-    }
-    setBrsStatusText("Pending Resolution");
-    setBrsStatusClass("brs-badge warning");
-
-    // Step 1: Files load + reading message
     const t1 = setTimeout(() => {
-      setPdfLoaded(true);
-    }, 800);
+      setStatementLoaded(true);
+    }, 600);
     simTimeoutIds.current.push(t1);
 
     const t2 = setTimeout(() => {
-      setXlsLoaded(true);
-      setBrsVisible(true);
+      setCashBookReady(true);
       addMsg(
         "river",
-        `Reading your bank statement and ledger...`
+        `Reading your bank statement... Recorded 42 payments automatically in plain language.`
       );
-    }, 1500);
+    }, 1400);
     simTimeoutIds.current.push(t2);
 
-    // Step 2: Discrepancy found + action prompt
     const t3 = setTimeout(() => {
-      if (targetScenario === "github") {
-        addMsg(
-          "river",
-          '<strong><span style="display:inline-flex; align-items:center; gap:4px; color:#d97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> 1 discrepancy found:</span></strong><br>₹11,800 charge from <code>BILL.COM *GITHUB</code>. No ledger entry. Categorize as Software Expense?'
-        );
-      } else {
-        addMsg(
-          "river",
-          '<strong><span style="display:inline-flex; align-items:center; gap:4px; color:#d97706;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px; height:14px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> 1 discrepancy found:</span></strong><br>Two identical charges of ₹24,500 from <code>ADOBE SYSTEMS</code> on June 18. Did they charge you twice?'
-        );
-      }
-      setShowActions(true);
-    }, 3500);
+      addMsg(
+        "river",
+        `<strong>1 payment needs a quick confirmation:</strong><br>₹8,500 transferred to <code>UPI/8920/VendorX</code>. Who is this payment with?`
+      );
+      setShowLearningPrompt(true);
+    }, 3200);
     simTimeoutIds.current.push(t3);
   };
 
-  const handleResolveSim = (isAffirmative: boolean) => {
+  const handleLearnResolution = () => {
     clearSimTimeouts();
-    setShowActions(false);
+    setShowLearningPrompt(false);
+    setLearnedEntity(true);
 
-    if (scenario === "github") {
-      addMsg("user", isAffirmative ? "Yes, Software Expense" : "Categorize Manually");
+    addMsg("user", "Acme Corp - Office Supplies");
 
-      const t1 = setTimeout(() => {
-        setBrsLedgerVal("₹14,25,000.00");
-        setBrsLedgerClass("brs-value highlight-success");
-        setBrsDiffVal("₹0.00");
-        setBrsDiffClass("brs-value highlight-success");
-        setBrsStatusText("✓ Reconciled");
-        setBrsStatusClass("brs-badge success");
+    const t1 = setTimeout(() => {
+      setEntries((prev) => [
+        ...prev,
+        { id: "4", entity: "Acme Corp", type: "out", amount: "-₹8,500", description: "Office Supplies", status: "recorded" },
+      ]);
 
-        addMsg(
-          "river",
-          '<strong><span style="color:#059669;">Done. June BRS generated</span></strong>. All accounts matched.'
-        );
-      }, 1200);
-      simTimeoutIds.current.push(t1);
-    } else {
-      addMsg("user", isAffirmative ? "Flag as Duplicate" : "Approve Both");
-
-      const t1 = setTimeout(() => {
-        setBrsLedgerVal("₹14,25,000.00");
-        setBrsLedgerClass("brs-value highlight-success");
-        setBrsDiffVal("₹0.00");
-        setBrsDiffClass("brs-value highlight-success");
-        setBrsStatusText("✓ Reconciled");
-        setBrsStatusClass("brs-badge success");
-
-        addMsg(
-          "river",
-          '<strong><span style="color:#059669;">Flagged. Duplicate charge marked.</span></strong> dispute email drafted to Adobe support.'
-        );
-      }, 1200);
-      simTimeoutIds.current.push(t1);
-    }
-  };
-
-  const selectScenario = (target: "github" | "adobe") => {
-    setScenario(target);
-    runSimulator(target);
+      addMsg(
+        "river",
+        `<strong>Saved!</strong> Recorded under <code>Acme Corp</code>. River will remember Acme Corp for all future payments. Your cash book is ready and in balance with your bank.`
+      );
+    }, 1000);
+    simTimeoutIds.current.push(t1);
   };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Trigger simulator when it enters the viewport
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -175,7 +129,6 @@ export default function HeroSimulator() {
     };
   }, []);
 
-  // Auto-scroll chat thread to bottom on message updates
   useEffect(() => {
     if (threadRef.current) {
       threadRef.current.scrollTo({
@@ -183,9 +136,8 @@ export default function HeroSimulator() {
         behavior: "smooth",
       });
     }
-  }, [messages, showActions]);
+  }, [messages, showLearningPrompt]);
 
-  // GSAP 3D Rotation Animation on Scroll (Triggered locally by the section)
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -214,25 +166,6 @@ export default function HeroSimulator() {
 
   return (
     <div className="hero-perspective-container">
-      <div className="simulator-tabs" role="tablist" style={{ display: "flex", gap: "8px", marginBottom: "18px", justifyContent: "center" }}>
-        <button 
-          role="tab"
-          aria-selected={scenario === "github"}
-          onClick={() => selectScenario("github")} 
-          className={`tab-btn ${scenario === "github" ? "active" : ""}`}
-        >
-          Scenario 1: Missing Receipt
-        </button>
-        <button 
-          role="tab"
-          aria-selected={scenario === "adobe"}
-          onClick={() => selectScenario("adobe")} 
-          className={`tab-btn ${scenario === "adobe" ? "active" : ""}`}
-        >
-          Scenario 2: Double Billing
-        </button>
-      </div>
-
       <div className="simulator-window" id="reconciler-simulator" ref={reconcilerRef}>
         <div className="simulator-header">
           <div className="mac-dots">
@@ -240,150 +173,74 @@ export default function HeroSimulator() {
             <div className="mac-dot" />
             <div className="mac-dot" />
           </div>
-          <div className="simulator-title">River Audit Console</div>
+          <div className="simulator-title">River Cash Book Engine</div>
           <div className="simulator-status-dot">
             <span className="status-indicator" />
-            <span className="status-text">Active</span>
+            <span className="status-text">{cashBookReady ? "In Balance" : "Processing"}</span>
           </div>
         </div>
         <div className="simulator-body">
-          {/* Left Panel: Sources and BRS */}
+          {/* Left Panel: Bank Statement & Generated Cash Book Table */}
           <div className="simulator-panel-left">
-            <div className="panel-header">Source Documents</div>
-            <div className="ingest-box">
-              <div className={`ingest-item file-pdf ${pdfLoaded ? "loaded" : ""}`} id="sim-file-pdf">
-                <svg
-                  className="icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+            <div className="panel-header">Bank Statement Ingestion</div>
+            <div className="ingest-box" style={{ marginBottom: "20px" }}>
+              <div className={`ingest-item file-pdf ${statementLoaded ? "loaded" : ""}`}>
+                <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
                   <polyline points="14 2 14 8 20 8" />
                 </svg>
                 <div className="file-info">
-                  <span className="file-name">
-                    {scenario === "github" ? "HDFC_Statement_June.pdf" : "SBI_Statement_June.pdf"}
-                  </span>
-                  <span className="file-status" id="sim-status-pdf">
-                    {pdfLoaded ? "Ready" : "Pending upload"}
-                  </span>
+                  <span className="file-name">HDFC_Bank_Statement.pdf</span>
+                  <span className="file-status">{statementLoaded ? "Parsed 42 Payments" : "Uploading..."}</span>
                 </div>
-                <svg
-                  className="icon-check"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-              </div>
-              <div className={`ingest-item file-excel ${xlsLoaded ? "loaded" : ""}`} id="sim-file-xls">
-                <svg
-                  className="icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                  <line x1="3" y1="9" x2="21" y2="9" />
-                  <line x1="3" y1="15" x2="21" y2="15" />
-                  <line x1="9" y1="3" x2="9" y2="21" />
-                  <line x1="15" y1="3" x2="15" y2="21" />
-                </svg>
-                <div className="file-info">
-                  <span className="file-name">General_Ledger_June.xlsx</span>
-                  <span className="file-status" id="sim-status-xls">
-                    {xlsLoaded ? "Ready" : "Pending upload"}
-                  </span>
-                </div>
-                <svg
-                  className="icon-check"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+                <svg className="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
             </div>
-            {/* BRS Sheet */}
-            <div className={`brs-container ${brsVisible ? "visible" : ""}`} id="brs-output">
+
+            {/* Cash Book Live View */}
+            <div className={`brs-container ${cashBookReady ? "visible" : ""}`}>
               <div className="brs-header">
-                <span>Bank Reconciliation Statement</span>
-                <span className="brs-period">June 30, 2026</span>
+                <span>Generated Cash Book</span>
+                <span className="brs-period">Organized by People & Businesses</span>
               </div>
-              <div className="brs-sheet font-mono">
-                <div className="brs-row">
-                  <span>Balance per Bank (HDFC)</span>
-                  <span className="brs-value">₹14,50,000.00</span>
-                </div>
-                <div className="brs-row">
-                  <span>Less: Uncleared Cheques</span>
-                  <span className="brs-value negative">-₹25,000.00</span>
-                </div>
-                <div className="brs-row border-top">
-                  <span>Adjusted Bank Balance</span>
-                  <span className="brs-value">₹14,25,000.00</span>
-                </div>
-                <div className="brs-row" id="brs-ledger-row">
-                  <span>Balance per General Ledger</span>
-                  <span className={brsLedgerClass} id="brs-ledger-val">
-                    {brsLedgerVal}
-                  </span>
-                </div>
-                <div className="brs-row border-double">
-                  <span style={{ fontWeight: 500 }}>Reconciliation Difference</span>
-                  <span className={brsDiffClass} id="brs-diff-val">
-                    {brsDiffVal}
-                  </span>
-                </div>
+              <div className="brs-sheet font-mono" style={{ gap: "10px" }}>
+                {entries.map((item) => (
+                  <div key={item.id} className="brs-row" style={{ alignItems: "center" }}>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <span style={{ fontWeight: 600, color: "var(--text-primary)" }}>{item.entity}</span>
+                      <span style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>{item.description}</span>
+                    </div>
+                    <span className={`brs-value ${item.type === "in" ? "highlight-success" : ""}`} style={{ fontWeight: 600 }}>
+                      {item.amount}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <div className={brsStatusClass} id="brs-status-badge">
-                {brsStatusText}
+              <div className={`brs-badge ${learnedEntity ? "success" : "warning"}`} style={{ marginTop: "14px" }}>
+                {learnedEntity ? "✓ Cash Book Finished & Balanced" : "Organizing Transactions..."}
               </div>
             </div>
           </div>
-          {/* Right Panel: Conversation Feed */}
+
+          {/* Right Panel: River Learning Feed */}
           <div className="simulator-panel-right">
-            <div className="panel-header">Reconciliation Feed</div>
-            <div className="chat-thread" id="sim-chat-thread" ref={threadRef}>
+            <div className="panel-header">River Learning Feed</div>
+            <div className="chat-thread" ref={threadRef}>
               {messages.map((msg) => (
                 <div key={msg.id} className={`chat-msg ${msg.sender}-msg`}>
                   <div className="msg-avatar">{msg.sender === "river" ? "R" : "U"}</div>
                   <div className="msg-bubble" dangerouslySetInnerHTML={{ __html: msg.text }} />
                 </div>
               ))}
-              {showActions && (
+              {showLearningPrompt && (
                 <div className="chat-msg river-msg">
                   <div className="msg-avatar">R</div>
                   <div className="msg-bubble">
-                    <div className="chat-actions" id="sim-actions">
-                      <button 
-                        className="chat-btn" 
-                        onClick={() => handleResolveSim(true)}
-                        aria-label={scenario === "github" ? "Accept GitHub as software expense" : "Flag Adobe charge as duplicate"}
-                      >
-                        {scenario === "github" ? "Yes, Software Expense" : "Flag as Duplicate"}
-                      </button>
-                      <button 
-                        className="chat-btn secondary" 
-                        onClick={() => handleResolveSim(false)}
-                        aria-label={scenario === "github" ? "Categorize GitHub transaction manually" : "Approve both Adobe charges"}
-                      >
-                        {scenario === "github" ? "Categorize Manually" : "Approve Both"}
+                    <div className="chat-actions">
+                      <button className="chat-btn" onClick={handleLearnResolution}>
+                        Acme Corp - Office Supplies
                       </button>
                     </div>
                   </div>

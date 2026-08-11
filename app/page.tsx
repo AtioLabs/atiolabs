@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BackgroundFlows from "@/components/BackgroundFlows";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import WhatRiverDoes from "@/components/WhatRiverDoes";
 import HowItWorks from "@/components/HowItWorks";
-import YouStayInControl from "@/components/YouStayInControl";
-import WhereRiverStarts from "@/components/WhereRiverStarts";
+import ItLearnsOnce from "@/components/ItLearnsOnce";
+import WhyThisMatters from "@/components/WhyThisMatters";
 import WhereItsGoing from "@/components/WhereItsGoing";
 import OceanFinale from "@/components/OceanFinale";
 import Footer from "@/components/Footer";
@@ -72,36 +72,56 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "River",
-            "url": "https://asynarch.com",
-            "logo": "https://asynarch.com/apple-touch-icon.png",
-            "applicationCategory": "AccountingApplication",
-            "operatingSystem": "All",
-            "description": "AI-native bank reconciliation that fuses your accountant and your accounting software.",
-            "publisher": {
-              "@type": "Organization",
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
               "name": "Asynarch",
+              "alternateName": ["Asynarch River", "Asynarch AI", "asynarch.com"],
               "url": "https://asynarch.com"
             },
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/PreOrder"
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Asynarch",
+              "url": "https://asynarch.com",
+              "logo": "https://asynarch.com/apple-touch-icon.png",
+              "sameAs": [
+                "https://www.linkedin.com/company/asynarch",
+                "https://x.com/asynarch?s=11"
+              ]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "River",
+              "url": "https://asynarch.com",
+              "logo": "https://asynarch.com/apple-touch-icon.png",
+              "applicationCategory": "AccountingApplication",
+              "operatingSystem": "All",
+              "description": "The cash book that writes itself. Upload your bank statement. Every payment gets recorded, organized by who it's with.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "Asynarch",
+                "url": "https://asynarch.com"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/PreOrder"
+              }
             }
-          })
+          ])
         }}
       />
-      <BackgroundFlows />
       <Navbar />
       <main>
         <Hero isJoined={isJoined} onJoin={handleJoin} />
+        <WhatRiverDoes />
         <HowItWorks />
-        <YouStayInControl />
-        <WhereRiverStarts />
+        <ItLearnsOnce />
+        <WhyThisMatters />
         <WhereItsGoing />
         <OceanFinale isJoined={isJoined} onJoin={handleJoin} />
       </main>

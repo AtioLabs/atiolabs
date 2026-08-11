@@ -2,29 +2,14 @@ import React from "react";
 
 export default function WhereItsGoing() {
   return (
-    <section id="where-its-going" className="stone-section framer-reveal">
-      <div className="container going-grid">
-        <div className="going-headline">
-          <span className="label reveal-item" style={{ "--delay": "0ms", background: "rgba(255, 255, 255, 0.4)", border: "1px solid rgba(31, 31, 27, 0.05)" } as React.CSSProperties}>
-            Where it's going
-          </span>
-          <h2 className="reveal-item" style={{ "--delay": "80ms", marginTop: "12px", fontSize: "clamp(2rem, 4.5vw, 3.2rem)", lineHeight: "1.2" } as React.CSSProperties}>
-            Today, River reconciles your books.
-            <br />
-            <span style={{ color: "var(--brand-indigo)" }}>One day, River will be your accountant.</span>
-          </h2>
-        </div>
-
-        <div className="going-divider" />
-
-        <div className="going-paragraphs reveal-item" style={{ "--delay": "160ms" } as React.CSSProperties}>
-          <p>
-            We built River to bring complete automated harmony to every financial workflow: from statement recording and ledger matching to proactive tracking, conversational insights, and continuous financial alignment.
-          </p>
-          <p>
-            Built so running a business feels as natural as building one.
-          </p>
-        </div>
+    <section id="where-its-going" className="section framer-reveal" style={{ borderBottom: "1px solid var(--border-color)", padding: "120px 0" }}>
+      <div className="container" style={{ maxWidth: "800px", textAlign: "center" }}>
+        <h2 className="reveal-item" style={{ "--delay": "0ms", fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 500, marginBottom: "24px" } as React.CSSProperties}>
+          The horizon
+        </h2>
+        <p className="reveal-item" style={{ "--delay": "120ms", fontSize: "1.25rem", lineHeight: "1.7", color: "var(--text-muted)", fontWeight: 400, margin: "0 auto" } as React.CSSProperties}>
+          This is the first page. River's next job is to know your business the way you do.
+        </p>
       </div>
     </section>
   );

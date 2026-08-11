@@ -12,7 +12,7 @@ export default function Footer() {
             <span className="logo-divider" aria-hidden="true" />
             <span className="logo-river">River</span>
           </a>
-          <p className="footer-tagline">The accountant and the accounting software, fused into one.</p>
+          <p className="footer-tagline">The cash book that writes itself.</p>
           <div className="footer-socials">
             <a
               href="https://www.linkedin.com/company/asynarch"
@@ -52,19 +52,19 @@ export default function Footer() {
           <div className="footer-col-title">Product</div>
           <ul className="footer-links">
             <li>
-              <a href="#how-it-works">How it Works</a>
+              <a href="#what-river-does">What River does</a>
             </li>
             <li>
-              <a href="#control">Control</a>
+              <a href="#how-it-works">How it works</a>
             </li>
             <li>
-              <a href="#where-starts">Reconciliation</a>
+              <a href="#why-this-matters">Why this matters</a>
             </li>
             <li>
-              <a href="#where-its-going">Vision</a>
+              <a href="#where-its-going">The horizon</a>
             </li>
             <li>
-              <a href="mailto:atiolabs.tech@gmail.com">Contact</a>
+              <a href="mailto:contact@asynarch.com">Contact</a>
             </li>
           </ul>
         </div>

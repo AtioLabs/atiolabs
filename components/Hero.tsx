@@ -9,13 +9,11 @@ export default function Hero({ isJoined, onJoin }: HeroProps) {
   return (
     <section className="hero framer-reveal">
       <div className="container">
-        <h1 className="reveal-item" style={{ "--delay": "0ms", marginBottom: "28px", maxWidth: "1080px", margin: "0 auto 28px", fontSize: "clamp(2.4rem, 5.2vw, 3.8rem)" } as React.CSSProperties}>
-          The accountant and the accounting software,
-          <br className="desktop-br" />
-          fused into one
+        <h1 className="reveal-item" style={{ "--delay": "0ms", marginBottom: "28px", maxWidth: "1080px", margin: "0 auto 28px", fontSize: "clamp(2.6rem, 5.6vw, 4.2rem)" } as React.CSSProperties}>
+          The cash book that writes itself
         </h1>
-        <p className="subtext reveal-item" style={{ "--delay": "80ms", fontSize: "1.28rem", maxWidth: "720px", margin: "0 auto 36px" } as React.CSSProperties}>
-          River automates your financial record-keeping directly from your bank statements, giving you complete clarity, instant reconciliation, and total confidence in your numbers.
+        <p className="subtext reveal-item" style={{ "--delay": "80ms", fontSize: "1.28rem", maxWidth: "740px", margin: "0 auto 36px" } as React.CSSProperties}>
+          Upload your bank statement. Every payment gets recorded, organized by who it's with. No accounts to set up, no software to configure.
         </p>
 
         <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px", display: "flex", justifyContent: "center" } as React.CSSProperties}>
@@ -30,7 +28,7 @@ export default function Hero({ isJoined, onJoin }: HeroProps) {
               letterSpacing: "0.03em"
             }}
           >
-            <span>Try River Today</span>
+            <span>See your cash book</span>
             <span className="btn-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7" />

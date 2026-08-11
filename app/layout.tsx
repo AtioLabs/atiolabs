@@ -28,33 +28,34 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  title: "River by Asynarch | The accountant and the accounting software, fused into one",
-  description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't. AI-native bank reconciliation.",
-  keywords: ["River", "Asynarch", "AI accounting", "automated bank reconciliation", "AI accountant", "general ledger matching", "BRS generation"],
+  title: "The cash book that writes itself | River by Asynarch",
+  description: "Upload your bank statement. Every payment gets recorded, organized by who it's with. No accounts to set up, no software to configure.",
+  keywords: ["River", "Asynarch", "cash book", "automated cash book", "AI accounting", "bank statement parsing", "automated bookkeeping"],
   authors: [{ name: "Asynarch" }],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "River by Asynarch | The accountant and the accounting software, fused into one",
-    description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't.",
+    title: "The cash book that writes itself | River by Asynarch",
+    description: "Upload your bank statement. Every payment gets recorded, organized by who it's with. No accounts to set up, no software to configure.",
     url: "https://asynarch.com",
+    siteName: "Asynarch",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "River — Run the business instead of the bank ledger",
+        alt: "The cash book that writes itself",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "River by Asynarch | The accountant and the accounting software, fused into one",
-    description: "Drop your bank statements and bank ledgers. River reads, matches, and reconciles — you only review what it can't.",
-    images: ["/og-image.jpg"],
+    title: "The cash book that writes itself | River by Asynarch",
+    description: "Upload your bank statement. Every payment gets recorded, organized by who it's with. No accounts to set up, no software to configure.",
+    images: ["/og-image.png"],
   },
 };
 

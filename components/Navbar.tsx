@@ -32,17 +32,17 @@ export default function Navbar() {
           <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
+          <a href="#what-river-does" onClick={() => setIsMobileOpen(false)}>
+            What River does
+          </a>
           <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
-            How it Works
+            How it works
           </a>
-          <a href="#control" onClick={() => setIsMobileOpen(false)}>
-            Control
-          </a>
-          <a href="#where-starts" onClick={() => setIsMobileOpen(false)}>
-            Reconciliation
+          <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)}>
+            Why this matters
           </a>
           <a href="#where-its-going" onClick={() => setIsMobileOpen(false)}>
-            Vision
+            The horizon
           </a>
           <a
             href="https://river.asynarch.com/"
