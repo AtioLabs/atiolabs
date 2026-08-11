@@ -30,8 +30,12 @@ export const metadata: Metadata = {
   },
   title: "The cash book that writes itself | River by Asynarch",
   description: "Upload your bank statement. Every payment gets recorded, organized by who it's with. No accounts to set up, no software to configure.",
-  keywords: ["River", "Asynarch", "cash book", "automated cash book", "AI accounting", "bank statement parsing", "automated bookkeeping"],
-  authors: [{ name: "Asynarch" }],
+  applicationName: "Asynarch",
+  appleWebApp: {
+    title: "Asynarch",
+  },
+  keywords: ["Asynarch", "River", "Asynarch River", "asynarch.com", "cash book", "automated cash book", "AI accounting", "bank statement parsing", "automated bookkeeping"],
+  authors: [{ name: "Asynarch", url: "https://asynarch.com" }],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
