@@ -8,7 +8,7 @@ export default function WhereItsGoing() {
           The horizon
         </h2>
         <p className="reveal-item" style={{ "--delay": "120ms", fontSize: "1.25rem", lineHeight: "1.7", color: "var(--text-muted)", fontWeight: 400, margin: "0 auto" } as React.CSSProperties}>
-          The cash book is the first thing River takes off your plate. It won't be the last. We're building toward a system that runs your books entirely — no accounting team standing between your business and your numbers, no software you have to operate. This is the starting place.
+          The cash book is live today. Next, River takes on your invoices, your payroll, your reports, the rest of what a business runs on. Each one works the same way: it just happens, on its own, the way this one does.
         </p>
       </div>
     </section>

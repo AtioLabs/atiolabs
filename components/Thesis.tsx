@@ -8,7 +8,7 @@ export default function Thesis() {
           This is where it starts
         </h2>
         <p className="reveal-item" style={{ "--delay": "120ms", fontSize: "1.24rem", lineHeight: "1.7", color: "var(--text-muted)", margin: "0 auto" } as React.CSSProperties}>
-          Accounting teams exist to keep books straight. Accounting software exists to help them do it. River is building toward a world where neither is the bottleneck — where your books run themselves, end to end. The cash book is the first piece. Everything else follows from here.
+          Accounting teams exist to keep books straight. Accounting software exists to help them do it. River is building toward a world where neither is the bottleneck, where your books run themselves, end to end. The cash book is the first piece. Everything else follows from here.
         </p>
       </div>
     </section>
