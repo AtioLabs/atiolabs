@@ -61,6 +61,11 @@ export const metadata: Metadata = {
     description: "Upload your bank statement. Every payment gets recorded, organized by who it's with. No accounts to set up, no software to configure.",
     images: ["/og-image.png"],
   },
+  other: {
+    "brand": "Asynarch",
+    "publisher": "Asynarch",
+    "copyright": "Asynarch",
+  },
 };
 
 export default function RootLayout({
