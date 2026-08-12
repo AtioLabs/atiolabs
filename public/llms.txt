@@ -25,4 +25,6 @@ This is the first page. River's next job is to know your business the way you do
 ## Metadata
 - Website: https://asynarch.com
 - Creator: Asynarch
+- Former Name: Atio Labs
+- Founders: Asrul Ishath (CEO), Mohamed Abubakkar (CTO)
 - App URL: https://river.asynarch.com/

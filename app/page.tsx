@@ -69,8 +69,22 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Asynarch",
+              "formerName": "Atio Labs",
+              "alternateName": ["Asynarch River", "Asynarch AI", "asynarch.com"],
               "url": "https://asynarch.com",
               "logo": "https://asynarch.com/apple-touch-icon.png",
+              "founder": [
+                {
+                  "@type": "Person",
+                  "name": "Asrul Ishath",
+                  "jobTitle": "Founder & CEO"
+                },
+                {
+                  "@type": "Person",
+                  "name": "Mohamed Abubakkar",
+                  "jobTitle": "Co-Founder & CTO"
+                }
+              ],
               "sameAs": [
                 "https://www.linkedin.com/company/asynarch",
                 "https://x.com/asynarch?s=11"
