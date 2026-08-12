@@ -1,10 +1,6 @@
 import React from "react";
 
-interface HeroProps {
-  onOpenModal: () => void;
-}
-
-export default function Hero({ onOpenModal }: HeroProps) {
+export default function Hero() {
   return (
     <section className="hero framer-reveal">
       <div className="container">
@@ -16,14 +12,17 @@ export default function Hero({ onOpenModal }: HeroProps) {
         </p>
 
         <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px", display: "flex", justifyContent: "center" } as React.CSSProperties}>
-          <button
-            onClick={onOpenModal}
+          <a
+            href="https://river.asynarch.com/"
             className="btn btn-primary"
             style={{
               padding: "16px 36px",
               fontSize: "1.05rem",
               letterSpacing: "0.03em",
               cursor: "pointer",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
             }}
           >
             <span>Upload your statement</span>
@@ -33,7 +32,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                 <path d="M9 7h8v8" />
               </svg>
             </span>
-          </button>
+          </a>
         </div>
 
         <a href="#thesis" className="reveal-item" style={{

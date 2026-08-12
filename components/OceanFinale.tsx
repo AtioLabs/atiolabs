@@ -1,10 +1,6 @@
 import React from "react";
 
-interface OceanFinaleProps {
-  onOpenModal: () => void;
-}
-
-export default function OceanFinale({ onOpenModal }: OceanFinaleProps) {
+export default function OceanFinale() {
   return (
     <section id="finale" className="ocean-finale framer-reveal">
       <div className="container finale-content">
@@ -16,14 +12,17 @@ export default function OceanFinale({ onOpenModal }: OceanFinaleProps) {
         </p>
 
         <div className="reveal-item" style={{ "--delay": "200ms", display: "flex", justifyContent: "center" } as React.CSSProperties}>
-          <button
-            onClick={onOpenModal}
+          <a
+            href="https://river.asynarch.com/"
             className="btn btn-primary"
             style={{
               padding: "16px 36px",
               fontSize: "1.05rem",
               letterSpacing: "0.03em",
               cursor: "pointer",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
             }}
           >
             <span>Upload your statement</span>
@@ -33,7 +32,7 @@ export default function OceanFinale({ onOpenModal }: OceanFinaleProps) {
                 <path d="M9 7h8v8" />
               </svg>
             </span>
-          </button>
+          </a>
         </div>
       </div>
     </section>

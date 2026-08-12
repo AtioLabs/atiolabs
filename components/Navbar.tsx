@@ -2,11 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-interface NavbarProps {
-  onOpenModal: () => void;
-}
-
-export default function Navbar({ onOpenModal }: NavbarProps) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -35,33 +31,24 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
-          <a href="#thesis" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
+          <a href="#thesis" onClick={() => setIsMobileOpen(false)}>
             Thesis
           </a>
-          <a href="#how-it-works" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
+          <a href="#it-just-happens" onClick={() => setIsMobileOpen(false)}>
+            Overview
+          </a>
+          <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
             How it works
           </a>
-          <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
+          <a href="#every-evening" onClick={() => setIsMobileOpen(false)}>
+            Routine
+          </a>
+          <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)}>
             Why it matters
           </a>
-          <a href="#where-its-going" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
+          <a href="#where-its-going" onClick={() => setIsMobileOpen(false)}>
             The horizon
           </a>
-          <button
-            className="nav-cta-mobile btn btn-primary"
-            onClick={() => {
-              setIsMobileOpen(false);
-              onOpenModal();
-            }}
-          >
-            <span>Upload statement</span>
-            <span className="btn-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17L17 7" />
-                <path d="M9 7h8v8" />
-              </svg>
-            </span>
-          </button>
         </div>
         <button
           className="mobile-menu-btn"
@@ -75,10 +62,10 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
-        <button
-          onClick={onOpenModal}
+        <a
+          href="https://river.asynarch.com/"
           className="btn btn-primary nav-cta-desktop" 
-          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem", cursor: "pointer", whiteSpace: "nowrap" }}
+          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem", cursor: "pointer", whiteSpace: "nowrap", textDecoration: "none", display: "inline-flex", alignItems: "center" }}
         >
           <span>Upload statement</span>
           <span className="btn-icon" aria-hidden="true">
@@ -87,7 +74,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
               <path d="M9 7h8v8" />
             </svg>
           </span>
-        </button>
+        </a>
       </div>
     </nav>
   );

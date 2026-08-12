@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Thesis from "@/components/Thesis";
@@ -11,11 +11,8 @@ import WhyThisMatters from "@/components/WhyThisMatters";
 import WhereItsGoing from "@/components/WhereItsGoing";
 import OceanFinale from "@/components/OceanFinale";
 import Footer from "@/components/Footer";
-import EarlyAccessModal from "@/components/EarlyAccessModal";
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
     if (typeof window !== "undefined" && !("IntersectionObserver" in window)) {
       document.querySelectorAll(".framer-reveal").forEach((el) => {
@@ -114,21 +111,18 @@ export default function Home() {
           ])
         }}
       />
-      <Navbar onOpenModal={() => setIsModalOpen(true)} />
+      <Navbar />
       <main>
-        <Hero onOpenModal={() => setIsModalOpen(true)} />
+        <Hero />
         <Thesis />
         <TheManualEntryGone />
         <HowItWorks />
         <EndYourDay />
         <WhyThisMatters />
         <WhereItsGoing />
-        <OceanFinale onOpenModal={() => setIsModalOpen(true)} />
+        <OceanFinale />
       </main>
       <Footer />
-
-      {/* Option A Modal Popup */}
-      <EarlyAccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 }
