@@ -12,7 +12,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           The cash book that writes itself
         </h1>
         <p className="subtext reveal-item" style={{ "--delay": "80ms", fontSize: "1.28rem", maxWidth: "740px", margin: "0 auto 36px" } as React.CSSProperties}>
-          Upload your statement. See every payment recorded, in minutes.
+          A running ledger, maintained straight from your bank statement.
         </p>
 
         <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px", display: "flex", justifyContent: "center" } as React.CSSProperties}>
@@ -36,7 +36,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           </button>
         </div>
 
-        <a href="#it-just-happens" className="reveal-item" style={{
+        <a href="#thesis" className="reveal-item" style={{
           "--delay": "240ms",
           display: "inline-flex",
           alignItems: "center",

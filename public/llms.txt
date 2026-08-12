@@ -1,26 +1,26 @@
 # River by Asynarch
 
-The cash book that writes itself. Upload your statement. See every payment recorded, in minutes.
+The cash book that writes itself. A running ledger, maintained straight from your bank statement.
+
+## This is where it starts
+Accounting teams exist to keep books straight. Accounting software exists to help them do it. River is building toward a world where neither is the bottleneck, where your books run themselves, end to end. The cash book is the first piece. Everything else follows from here.
 
 ## It just happens
-Right now, someone opens an entry, picks who it's for, and saves it. One payment at a time. Upload your statement instead, and it's done in minutes.
+Traditional software forces someone to open an entry, match a Chart of Accounts, pick a contact, and click save, one payment at a time. River eliminates that manual loop entirely. Most payments, it understands right away. When one isn't obvious, it simply asks who the payment is with. Tell it once. River remembers, and never asks again.
 
 ## How it works
-1. Upload your statement.
-2. River writes down each payment. Who it's with, in plain words.
-3. Your cash book is ready. In minutes.
+1. Drop your bank file — Excel or CSV from any bank.
+2. River identifies each counterparty — Translates raw bank lines into plain-language people and businesses.
+3. Your running ledger updates — Your cash book stays in exact balance with your bank.
 
 ## Every evening
-Upload today's statement before you go home. In a few minutes, every payment from today is recorded and ready.
-
-## It learns, once
-Most payments, River understands right away. When one isn't obvious, it simply asks who the payment is with. Tell it once. River remembers, and never asks again.
+Make it a 2-minute end-of-day habit. Drop today's bank export before you head home, and your books are done for the day.
 
 ## Why this matters
 A business isn't a set of accounts. It's people. The ones who pay you, and the ones you pay. River keeps your books that way, because that's how you already think about your business.
 
 ## The horizon
-This is the first page. River's next job is to know your business the way you do.
+The cash book is the first thing River takes off your plate. It won't be the last. We're building toward a system that runs your books entirely, no accounting team standing between your business and your numbers, no software you have to operate. This is the starting place.
 
 ## Metadata
 - Website: https://asynarch.com

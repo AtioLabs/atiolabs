@@ -35,14 +35,17 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
+          <a href="#thesis" onClick={() => setIsMobileOpen(false)}>
+            Thesis
+          </a>
           <a href="#it-just-happens" onClick={() => setIsMobileOpen(false)}>
             Overview
           </a>
           <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
             How it works
           </a>
-          <a href="#it-learns-once" onClick={() => setIsMobileOpen(false)}>
-            Intelligence
+          <a href="#every-evening" onClick={() => setIsMobileOpen(false)}>
+            Routine
           </a>
           <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)}>
             Why it matters

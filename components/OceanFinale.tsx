@@ -12,7 +12,7 @@ export default function OceanFinale({ onOpenModal }: OceanFinaleProps) {
           Ready to see your cash book?
         </h2>
         <p className="reveal-item" style={{ "--delay": "100ms", marginTop: "16px", marginBottom: "40px", fontSize: "1.24rem" } as React.CSSProperties}>
-          Upload your statement. Your cash book is ready.
+          Drop your bank file and see your books updated automatically.
         </p>
 
         <div className="reveal-item" style={{ "--delay": "200ms", display: "flex", justifyContent: "center" } as React.CSSProperties}>

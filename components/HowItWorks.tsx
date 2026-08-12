@@ -13,20 +13,20 @@ export default function HowItWorks() {
         <div className="how-steps">
           <div className="how-step reveal-item" style={{ "--delay": "160ms" } as React.CSSProperties}>
             <div className="how-step-number">01</div>
-            <h3>Upload your statement</h3>
-            <p>Upload your bank statement in any format.</p>
+            <h3>Drop your bank file</h3>
+            <p>Excel or CSV from any bank.</p>
             <div className="how-connector" />
           </div>
           <div className="how-step reveal-item" style={{ "--delay": "240ms" } as React.CSSProperties}>
             <div className="how-step-number">02</div>
-            <h3>River writes down each payment</h3>
-            <p>Who it's with, in plain words.</p>
+            <h3>River identifies each counterparty</h3>
+            <p>Translates raw bank lines into plain-language people and businesses.</p>
             <div className="how-connector" />
           </div>
           <div className="how-step reveal-item" style={{ "--delay": "320ms" } as React.CSSProperties}>
             <div className="how-step-number">03</div>
-            <h3>Your cash book is ready</h3>
-            <p>In minutes.</p>
+            <h3>Your running ledger updates</h3>
+            <p>Your cash book stays in exact balance with your bank.</p>
           </div>
         </div>
       </div>

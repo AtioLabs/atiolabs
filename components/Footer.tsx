@@ -52,10 +52,16 @@ export default function Footer() {
           <div className="footer-col-title">Product</div>
           <ul className="footer-links">
             <li>
-              <a href="#what-river-does">What River does</a>
+              <a href="#thesis">Thesis</a>
+            </li>
+            <li>
+              <a href="#it-just-happens">Overview</a>
             </li>
             <li>
               <a href="#how-it-works">How it works</a>
+            </li>
+            <li>
+              <a href="#every-evening">Routine</a>
             </li>
             <li>
               <a href="#why-this-matters">Why this matters</a>

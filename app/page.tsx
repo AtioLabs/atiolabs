@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Thesis from "@/components/Thesis";
 import TheManualEntryGone from "@/components/TheManualEntryGone";
 import HowItWorks from "@/components/HowItWorks";
 import EndYourDay from "@/components/EndYourDay";
-import ItLearnsOnce from "@/components/ItLearnsOnce";
 import WhyThisMatters from "@/components/WhyThisMatters";
 import WhereItsGoing from "@/components/WhereItsGoing";
 import OceanFinale from "@/components/OceanFinale";
@@ -117,10 +117,10 @@ export default function Home() {
       <Navbar onOpenModal={() => setIsModalOpen(true)} />
       <main>
         <Hero onOpenModal={() => setIsModalOpen(true)} />
+        <Thesis />
         <TheManualEntryGone />
         <HowItWorks />
         <EndYourDay />
-        <ItLearnsOnce />
         <WhyThisMatters />
         <WhereItsGoing />
         <OceanFinale onOpenModal={() => setIsModalOpen(true)} />
