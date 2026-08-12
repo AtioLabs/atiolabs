@@ -35,22 +35,16 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           <span className="logo-river">River</span>
         </a>
         <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
-          <a href="#thesis" onClick={() => setIsMobileOpen(false)}>
+          <a href="#thesis" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
             Thesis
           </a>
-          <a href="#it-just-happens" onClick={() => setIsMobileOpen(false)}>
-            Overview
-          </a>
-          <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
+          <a href="#how-it-works" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
             How it works
           </a>
-          <a href="#every-evening" onClick={() => setIsMobileOpen(false)}>
-            Routine
-          </a>
-          <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)}>
+          <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
             Why it matters
           </a>
-          <a href="#where-its-going" onClick={() => setIsMobileOpen(false)}>
+          <a href="#where-its-going" onClick={() => setIsMobileOpen(false)} style={{ whiteSpace: "nowrap" }}>
             The horizon
           </a>
           <button
@@ -84,7 +78,7 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
         <button
           onClick={onOpenModal}
           className="btn btn-primary nav-cta-desktop" 
-          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem", cursor: "pointer" }}
+          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem", cursor: "pointer", whiteSpace: "nowrap" }}
         >
           <span>Upload statement</span>
           <span className="btn-icon" aria-hidden="true">
