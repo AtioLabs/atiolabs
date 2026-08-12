@@ -8,7 +8,7 @@ export default function EndYourDay() {
           Every evening
         </h2>
         <p className="reveal-item" style={{ "--delay": "120ms", fontSize: "1.24rem", lineHeight: "1.7", color: "var(--text-muted)", margin: "0 auto" } as React.CSSProperties}>
-          Upload today's statement before you go home. In a few minutes, every payment from today is recorded and ready.
+          Make it a 2-minute end-of-day habit. Drop today's bank export before you head home, and your books are done for the day.
         </p>
       </div>
     </section>
