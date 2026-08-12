@@ -12,7 +12,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           The cash book that writes itself
         </h1>
         <p className="subtext reveal-item" style={{ "--delay": "80ms", fontSize: "1.28rem", maxWidth: "740px", margin: "0 auto 36px" } as React.CSSProperties}>
-          A running ledger, maintained straight from your bank statement.
+          ledger, maintained straight from your bank statement
         </p>
 
         <div className="reveal-item" style={{ "--delay": "160ms", marginBottom: "48px", display: "flex", justifyContent: "center" } as React.CSSProperties}>
