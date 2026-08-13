@@ -49,6 +49,28 @@ export default function Navbar() {
           <a href="#where-its-going" onClick={() => setIsMobileOpen(false)}>
             The horizon
           </a>
+          <a
+            href="https://river.asynarch.com/"
+            className="nav-cta-mobile btn btn-primary"
+            style={{
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              marginTop: "8px",
+              padding: "14px 24px",
+            }}
+            onClick={() => setIsMobileOpen(false)}
+          >
+            <span>Upload statement</span>
+            <span className="btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17L17 7" />
+                <path d="M9 7h8v8" />
+              </svg>
+            </span>
+          </a>
         </div>
         <button
           className="mobile-menu-btn"
