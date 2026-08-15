@@ -80,10 +80,40 @@ export default function TeaserPage() {
         </div>
       </header>
 
-      {/* Main Spacer - Image already contains wording */}
-      <main style={{ flex: 1 }} />
+      {/* Main Center Message Overlay (Responsive Crisp Serif Typography) */}
+      <main
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          margin: "0 auto",
+          flex: 1,
+          width: "100%",
+        }}
+      >
+        <h1
+          style={{
+            fontFamily: "'Newsreader', 'Georgia', serif",
+            fontWeight: 400,
+            fontSize: "clamp(2.4rem, 5.8vw, 4.8rem)",
+            lineHeight: 1.18,
+            letterSpacing: "-0.02em",
+            color: "#1c1917",
+            maxWidth: "14ch",
+            textAlign: "center",
+            margin: 0,
+            textShadow: "0 2px 20px rgba(255, 255, 255, 0.4)",
+          }}
+        >
+          Something new
+          <br />
+          is taking shape.
+        </h1>
+      </main>
 
-      {/* Clean Floating Footer Container (No Black Bar) */}
+      {/* Clean Floating Footer Container */}
       <div
         style={{
           display: "flex",
