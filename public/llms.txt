@@ -1,30 +1,37 @@
 # River by Asynarch
+> The Accounting, as it happens.
 
-The cash book that writes itself. ledger, maintained straight from your bank statement.
+Website: https://asynarch.com
+Creator: Asynarch
+Product: River
+Contact: asynarch.team@gmail.com
 
-## This is where it starts
-Accounting teams exist to keep books straight. Accounting software exists to help them do it. River is building toward a world where neither is the bottleneck, where your books run themselves, end to end. The cash book is the first piece. Everything else follows from here.
+## Overview
+River is the autonomous accounting engine built by Asynarch. Tell River what happened. It does the rest.
+Instead of forcing founders and teams to manually categorize bank statements, navigate complex Charts of Accounts, or configure tax ledgers, River understands everyday business transactions and translates them into balanced, statutory double-entry accounting records in real time.
 
-## It just happens
-Traditional software forces someone to open an entry, match a Chart of Accounts, pick a contact, and click save, one payment at a time. River eliminates that manual loop entirely. Most payments, it understands right away. When one isn't obvious, it simply asks who the payment is with. Tell it once. River remembers, and never asks again.
+## Modality
+- **In River or on WhatsApp:** Converse with River via text messages or voice notes.
+- **Natural Language Execution:** Say "Invoice Alpha Ltd ₹1,00,000 for this month's consulting" or send a photo of a vendor bill. River generates the tax invoice, claims input GST, records TDS deductions, and updates the general ledger automatically.
 
-## How it works
-Step 01: Drop your bank file. Excel or CSV from any bank.
-Step 02: River identifies each counterparty. Translates raw bank lines into plain-language people and businesses.
-Step 03: Your running ledger updates. Your cash book stays in exact balance with your bank.
+## Core Accounting Axioms
+1. **Pre-Post Verification:** Every entry is checked before it is posted.
+2. **Statutory Tax Handling:** GST (CGST/SGST/IGST) and TDS are recorded and reconciled accurately.
+3. **Period Protection:** Locked financial periods strictly reject retroactive modifications.
+4. **Immutable Lineage:** Corrections preserve a complete, traceable accounting history.
+5. **Direct Source of Truth:** Every report originates directly from balanced transactions in the books.
 
-## Every evening
-Make it a 2-minute end-of-day habit. Drop today's bank export before you head home, and your books are done for the day.
+## Privacy & Waitlist Data
+We only collect email addresses solely for waitlist access and product notifications. We do not sell, share, or monitor user data. Contact: asynarch.team@gmail.com.
 
-## Why this matters
-A business isn't a set of accounts. It's people. The ones who pay you, and the ones you pay. River keeps your books that way, because that's how you already think about your business.
+## Endpoints
+- **Home:** https://asynarch.com
+- **Waitlist API:** POST /api/waitlist
 
-## The horizon
-The cash book is live today. Next, River takes on your invoices, your payroll, your reports, the rest of what a business runs on. Each one works the same way: it just happens, on its own, the way this one does.
-
-## Metadata
+## Company Metadata
+- Company: Asynarch Inc.
+- Product: River
 - Website: https://asynarch.com
-- Creator: Asynarch
-- Former Name: Atio Labs
-- Founders: Asrul Ishath (CEO), Mohamed Abubakkar (CTO)
-- App URL: https://river.asynarch.com/
+- Email: asynarch.team@gmail.com
+- Twitter: https://x.com/asynarch
+- LinkedIn: https://linkedin.com/company/asynarch

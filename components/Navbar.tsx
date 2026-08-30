@@ -1,103 +1,179 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [timeString, setTimeString] = useState("");
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    // Live local clock updating every second
+    const updateClock = () => {
+      const now = new Date();
+      setTimeString(
+        now.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
+    };
+    updateClock();
+    const clockInterval = setInterval(updateClock, 1000);
+    return () => clearInterval(clockInterval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
+        // Scrolling down -> hide navbar smoothly
+        setVisible(false);
       } else {
-        setIsScrolled(false);
+        // Scrolling up -> show navbar
+        setVisible(true);
       }
+      lastScrollY.current = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <nav className={isScrolled ? "scrolled" : ""}>
-      <div className="nav-container">
-        <a href="#" className="logo-container">
-          <span className="logo-mark-tile" aria-hidden="true">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="logo-mark-img" src="/atio-mark.png" alt="" width={32} height={32} />
-          </span>
-          <span className="logo-kicker">ASYNARCH</span>
-          <span className="logo-divider" aria-hidden="true" />
-          <span className="logo-river">River</span>
-        </a>
-        <div className={`nav-links ${isMobileOpen ? "mobile-open" : ""}`} id="nav-links">
-          <a href="#thesis" onClick={() => setIsMobileOpen(false)}>
-            Thesis
-          </a>
-          <a href="#it-just-happens" onClick={() => setIsMobileOpen(false)}>
-            Overview
-          </a>
-          <a href="#how-it-works" onClick={() => setIsMobileOpen(false)}>
-            How it works
-          </a>
-          <a href="#every-evening" onClick={() => setIsMobileOpen(false)}>
-            Routine
-          </a>
-          <a href="#why-this-matters" onClick={() => setIsMobileOpen(false)}>
-            Why it matters
-          </a>
-          <a href="#where-its-going" onClick={() => setIsMobileOpen(false)}>
-            The horizon
-          </a>
-          <a
-            href="https://river.asynarch.com/"
-            className="nav-cta-mobile btn btn-primary"
-            style={{
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              marginTop: "8px",
-              padding: "14px 24px",
-            }}
-            onClick={() => setIsMobileOpen(false)}
+    <header
+      className={`fixed top-0 left-0 w-full z-50 pt-4 px-4 sm:px-6 pointer-events-none transition-transform duration-300 ease-out ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
+      <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-4">
+        
+        {/* Brand Lockup (Left) */}
+        <nav className="pointer-events-auto flex items-center gap-3 px-4 py-2 rounded-full bg-[#FBFAF6]/85 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_30px_rgba(20,20,19,0.06)] select-none">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2.5 group cursor-pointer bg-transparent border-0 p-0 outline-none select-none"
+            aria-label="Asynarch River Home"
           >
-            <span>Upload statement</span>
-            <span className="btn-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17L17 7" />
-                <path d="M9 7h8v8" />
-              </svg>
+            {/* Slim Natural Asynarch Wave Mark (Intrinsic Aspect Ratio 1672x941) */}
+            <div className="flex items-center justify-center group-hover:scale-105 transition-transform">
+              <Image
+                src="/asynarch-logo.png"
+                alt="Asynarch"
+                width={1672}
+                height={941}
+                className="h-5 sm:h-6 w-auto object-contain"
+                priority
+              />
+            </div>
+
+            <span className="text-xs sm:text-sm font-mono text-[#8C8885] font-semibold tracking-tight">
+              asynarch
             </span>
-          </a>
+
+            <span className="text-[#8C8885]/30 font-mono text-xs">/</span>
+
+            {/* River Pixel Mac (Intrinsic Aspect Ratio 1402x1122) */}
+            <div className="flex items-center justify-center group-hover:scale-105 transition-transform">
+              <Image
+                src="/river-logo.png"
+                alt="River"
+                width={1402}
+                height={1122}
+                className="h-5 sm:h-6 w-auto object-contain"
+                priority
+              />
+            </div>
+
+            <span className="font-medium text-sm sm:text-base tracking-tight text-[#141413]">
+              river
+            </span>
+          </button>
+        </nav>
+
+        {/* Navigation Anchors, River Status Tray & CTA (Right) */}
+        <div className="pointer-events-auto flex items-center gap-4 sm:gap-6 px-5 py-2 rounded-full bg-[#FBFAF6]/85 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_30px_rgba(20,20,19,0.06)]">
+          
+          {/* Navigation Links */}
+          <div className="hidden lg:flex items-center gap-5">
+            <button
+              onClick={() => scrollToSection("how-it-works")}
+              className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"
+            >
+              How it works
+            </button>
+            <button
+              onClick={() => scrollToSection("problem")}
+              className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"
+            >
+              Problem
+            </button>
+            <button
+              onClick={() => scrollToSection("assurance")}
+              className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"
+            >
+              Assurance
+            </button>
+            <button
+              onClick={() => scrollToSection("benefits")}
+              className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"
+            >
+              Benefits
+            </button>
+            <button
+              onClick={() => scrollToSection("faq")}
+              className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"
+            >
+              FAQ
+            </button>
+          </div>
+
+          <div className="hidden lg:block w-[1px] h-3.5 bg-[#141413]/10"></div>
+
+          {/* BESPOKE RIVER SYSTEM STATUS TRAY */}
+          <div className="flex items-center gap-3 font-mono text-[11px] text-[#57534E] select-none">
+            {/* Live Micro-Soundwave Audio Ready */}
+            <span className="sound-bars !gap-0.5 !h-3">
+              <i className="!w-0.5 !bg-[#172554]"></i>
+              <i className="!w-0.5 !bg-[#172554]"></i>
+              <i className="!w-0.5 !bg-[#172554]"></i>
+              <i className="!w-0.5 !bg-[#172554]"></i>
+            </span>
+
+            {/* Dual Sync Node: River / WhatsApp */}
+            <span className="text-[10px] text-[#8C8885]">sync active</span>
+
+            {/* Operational Emerald Pulse Dot */}
+            <span className="w-1.5 h-1.5 rounded-full bg-[#15803D] animate-pulse"></span>
+
+            {/* Live Local Clock */}
+            {timeString && (
+              <span className="text-[#141413] font-medium tracking-tight text-xs">
+                {timeString}
+              </span>
+            )}
+          </div>
+
+          <div className="w-[1px] h-3.5 bg-[#141413]/10"></div>
+
+          <button
+            onClick={() => scrollToSection("waitlist")}
+            className="btn-indigo px-4 py-1.5 text-xs font-sans font-medium cursor-pointer shadow-sm hover:scale-105 transition-transform"
+          >
+            Join waitlist
+          </button>
         </div>
-        <button
-          className="mobile-menu-btn"
-          id="mobile-menu-btn"
-          aria-label="Toggle menu"
-          onClick={() => setIsMobileOpen(!isMobileOpen)}
-        >
-          <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
-        <a
-          href="https://river.asynarch.com/"
-          className="btn btn-primary nav-cta-desktop" 
-          style={{ padding: "8px 10px 8px 20px", fontSize: "0.85rem", cursor: "pointer", whiteSpace: "nowrap", textDecoration: "none", display: "inline-flex", alignItems: "center" }}
-        >
-          <span>Upload statement</span>
-          <span className="btn-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M7 17L17 7" />
-              <path d="M9 7h8v8" />
-            </svg>
-          </span>
-        </a>
+
       </div>
-    </nav>
+    </header>
   );
 }

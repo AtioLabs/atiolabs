@@ -1,46 +1,56 @@
-# River — AI-Native Bank Reconciliation
+# River by Asynarch — The Accounting, as it happens
 
-River is an AI-native bank reconciliation engine that fuses your accountant and your accounting software. Built by Asynarch.
+River is the autonomous accounting engine built by Asynarch. Tell River what happened. It does the rest.
 
 Website: [https://asynarch.com](https://asynarch.com)
 
 ---
 
-## Value Proposition
-* **Fuses Software & Service:** River is not a tool you learn, nor an accountant you hire. It handles the back-office matching work automatically and flags only what needs a human eye.
-* **Autopilot Reconciliation:** Automatically matches bank statements (PDFs) and general ledgers (spreadsheets), drafts the Bank Reconciliation Statement (BRS), and resolves discrepancies.
-* **Focus on Business:** Removes the administrative bookkeeping burden so leaders can focus on building the business instead of managing the books.
+## Overview
+
+River understands the accounting behind everyday business activity. You only need to describe what happened—in River or on WhatsApp—and River works out how that should be recorded:
+* **Tax Invoicing:** Composes GST-compliant sales invoices, computes SAC/HSN codes, and debits accounts receivable.
+* **Vendor Bills & ITC:** Extracts vendor invoices, capitalizes fixed assets, and claims Input Tax Credit (ITC).
+* **Bank Reconciliation & TDS:** Matches bank statements against receivables, accounts for Section 194J TDS withholdings, and updates ledger balances.
+
+---
+
+## Core Invariants
+
+1. **Every entry is checked before it is posted.**
+2. **GST and TDS are recorded correctly.**
+3. **Locked periods reject new entries.**
+4. **Corrections keep their history.**
+5. **Every report comes from the transactions in the books.**
 
 ---
 
 ## Tech Stack
-* **Framework:** Next.js (App Router)
-* **Styling:** CSS Variables (Vanilla CSS)
-* **Visuals:** Custom SVG canvas background flow, tactile glassmorphism elements, dynamic scenario switcher.
+
+* **Framework:** Next.js (App Router, Turbopack)
+* **Motion & Animation:** GSAP (`gsap`, `ScrollTrigger`, `Draggable`) + Lenis Smooth Scroll (`lenis`)
+* **Styling:** Tailwind CSS + Vanilla CSS Custom Properties
+* **Typography:** Fraunces (Display), Inter (Body UI), IBM Plex Mono (Tabular Numbers)
 
 ---
 
-## Getting Started
+## Development
 
-### 1. Install Dependencies
 ```bash
+# Install dependencies
 npm install
-```
 
-### 2. Run Development Server
-```bash
+# Run local development server
 npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) to view the landing page locally.
 
-### 3. Build Production Bundle
-```bash
+# Build production bundle
 npm run build
 ```
 
 ---
 
-## Directory Structure
-* `/app` — Pages, dynamic sitemap routing, and global stylesheets.
-* `/components` — Reusable UI modules (Hero, HowItWorks, Reconciler Simulator, BackgroundFlows).
-* `/public` — Static branding assets (favicons, og-image previews, verification tokens).
+## Routes
+
+* `/` — River landing page with interactive software simulators & draggable desktop canvas.
+* `/privacy` — Privacy Policy.
+* `/api/waitlist` — Early access waitlist submission endpoint.

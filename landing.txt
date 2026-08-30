@@ -1,0 +1,71 @@
+HERO
+
+The Accounting, as it happens.
+
+Tell River what happened. It does the rest.
+
+HOW IT WORKS
+
+Talk to it like a person, in River or on WhatsApp:
+
+"Invoice Alpha Ltd ₹1,00,000 for this month's consulting."
+
+"Record the TechMart bill for the new laptop."
+
+"Alpha paid the invoice with 10% TDS."
+
+River takes care of the accounting behind each command. It creates the invoice, records the bill, keeps track of what you're owed, and updates the books when money comes in.
+
+PROBLEM 
+
+This used to be a job.
+
+Someone had to read the bill, work out what needed to be recorded, enter it, and check everything was right. That was a morning's work for one invoice.
+
+River does the same thing in the time it takes to send a WhatsApp message.
+
+Assurance 
+
+The books don't move unless they balance
+
+Every entry is checked before it is posted. GST and TDS are recorded correctly. Locked periods reject new entries. Corrections keep their history. Every report comes from the transactions in the books.
+
+Benefits
+
+You don't need to know accounting
+
+River understands the accounting behind everyday business activity. You only need to describe what happened. It works out how that should be recorded.
+
+FAQ
+
+What do I need to give River?
+
+River needs the information that makes up your business, such as your customers, vendors, services, and bank accounts. After that, you can give it work in plain language.
+
+Do I need to know how to make an accounting entry?
+
+No. You describe the business event. River works out the accounting and records it.
+
+Can River create invoices for me?
+
+Yes. Tell River who to invoice, what the invoice is for, and the amount. It creates the invoice and records it in your books.
+
+Can River handle GST and TDS?
+
+Yes. River applies the relevant tax treatment when it records the transaction.
+
+What happens to my existing books?
+
+River can work from your existing accounting data and opening balances when you move from another system.
+
+Do I still need an accountant?
+
+River handles the accounting work. You can still keep an accountant for judgment, review, or sign-off.
+
+Is River something I operate?
+
+You give River commands in River or on WhatsApp. It takes care of the accounting work behind them.
+
+CTA
+Leave the accounting to River.
+Join the waitlist
