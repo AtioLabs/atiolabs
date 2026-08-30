@@ -1,10 +1,30 @@
 User-agent: *
 Allow: /
 
-# Disallow API and Next.js internal build folders
+# Explicit AI crawler and search bot permissions
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Disallow API and test routes only
 Disallow: /api/
-Disallow: /_next/
-Disallow: /static/
 Disallow: /font-test
 
 Sitemap: https://asynarch.com/sitemap.xml
