@@ -5,7 +5,6 @@ import Image from "next/image";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LivingHeroBackground from "./LivingHeroBackground";
 
 const KAOMOJI_EXPRESSIONS = ["{ ^-^ }", "{ ^o^ }", "(•‿•)", "{ ^-^ }"];
 
@@ -13,6 +12,7 @@ export default function Hero() {
   const [kaomojiIndex, setKaomojiIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const centerTextRef = useRef<HTMLDivElement | null>(null);
+  const landscapeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,7 +35,7 @@ export default function Hero() {
       zIndexBoost: true,
     });
 
-    // 2. Calibrated Parallax
+    // 2. Calibrated Parallax on scroll
     const ctx = gsap.context(() => {
       gsap.to(".parallax-card-top-right", {
         y: 35,
@@ -111,18 +111,33 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[96vh] flex flex-col justify-center items-center overflow-hidden px-4 sm:px-6 pt-24 pb-20"
+      className="relative min-h-[96vh] flex flex-col justify-center items-center overflow-hidden px-4 sm:px-6 pt-24 sm:pt-28 pb-16 sm:pb-24"
     >
-      {/* LIVING PIXEL-ART HERO BACKGROUND (Birds, Clouds, Flowers & Breathing Person) */}
-      <LivingHeroBackground />
+      {/* ORIGINAL STATIC PIXEL-ART HERO LANDSCAPE BANNER */}
+      <div
+        ref={landscapeRef}
+        className="absolute inset-x-0 bottom-0 h-[460px] sm:h-[580px] md:h-[680px] lg:h-[760px] pointer-events-none select-none z-0"
+      >
+        <div className="relative w-full h-full">
+          <Image
+            src="/hero-bg.png"
+            alt="River Landscape"
+            fill
+            className="object-cover object-[25%_bottom] sm:object-bottom opacity-90 sm:opacity-95"
+            priority
+          />
+          {/* Smooth Soft Gradient Blend into Background Canvas */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/25 to-transparent" />
+        </div>
+      </div>
 
       {/* Container for Centered Text and Scattered Interactive Floating Desktop & Mobile Artifacts */}
-      <div className="relative w-full max-w-[1440px] mx-auto min-h-[580px] sm:min-h-[660px] flex flex-col justify-center items-center z-10">
+      <div className="relative w-full max-w-[1440px] mx-auto min-h-[520px] sm:min-h-[640px] flex flex-col justify-center items-center z-10">
         
-        {/* ARTIFACT 01: River Retro Computer Mascot (Top-Right on Mobile & Desktop) */}
+        {/* ARTIFACT 01: River Retro Computer Mascot (Top-Right) */}
         <div
           style={{ touchAction: "none" }}
-          className="gsap-draggable-card parallax-card-top-right absolute right-2 sm:right-8 lg:right-24 top-4 sm:top-20 lg:top-28 z-20 select-none cursor-grab active:cursor-grabbing"
+          className="gsap-draggable-card parallax-card-top-right absolute right-2 sm:right-8 lg:right-24 top-2 sm:top-16 lg:top-24 z-20 select-none cursor-grab active:cursor-grabbing"
         >
           <div className="p-2.5 sm:p-4 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-lg sm:shadow-xl hover:scale-105 transition-all duration-300">
             <div className="w-12 h-12 sm:w-20 sm:h-20 md:w-24 md:h-24 relative flex items-center justify-center pointer-events-none">
@@ -145,10 +160,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ARTIFACT 02: Pure Asynarch Great Wave Sticker (Top-Left on Mobile & Desktop) */}
+        {/* ARTIFACT 02: Pure Asynarch Great Wave Sticker (Top-Left) */}
         <div
           style={{ touchAction: "none" }}
-          className="gsap-draggable-card parallax-card-top-left absolute left-2 sm:left-8 lg:left-24 top-4 sm:top-20 lg:top-28 z-20 select-none -rotate-6 cursor-grab active:cursor-grabbing"
+          className="gsap-draggable-card parallax-card-top-left absolute left-2 sm:left-8 lg:left-24 top-2 sm:top-16 lg:top-24 z-20 select-none -rotate-6 cursor-grab active:cursor-grabbing"
         >
           <div className="p-2 sm:p-4 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-lg sm:shadow-xl hover:scale-105 hover:rotate-0 transition-all duration-300">
             <div className="h-8 sm:h-14 md:h-16 aspect-[3/2] relative flex items-center justify-center mx-auto pointer-events-none">
@@ -163,10 +178,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ARTIFACT 03: WhatsApp Voice Note Pill (Bottom-Right on Mobile & Desktop) */}
+        {/* ARTIFACT 03: WhatsApp Voice Note Pill (Bottom-Right, Desktop & Tablet) */}
         <div
           style={{ touchAction: "none" }}
-          className="gsap-draggable-card parallax-card-bottom-right absolute right-2 sm:right-12 bottom-4 sm:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
+          className="gsap-draggable-card parallax-card-bottom-right hidden sm:block absolute right-4 sm:right-12 bottom-6 sm:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
         >
           <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-[#EFEAE2]/95 backdrop-blur-md border border-[#25D366]/40 shadow-md sm:shadow-lg hover:scale-105 transition-transform">
             <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center text-[9px] sm:text-[10px] font-bold pointer-events-none shrink-0">
@@ -189,10 +204,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ARTIFACT 04: Chill Kaomoji Badge (Bottom-Left on Mobile & Desktop) */}
+        {/* ARTIFACT 04: Chill Kaomoji Badge (Bottom-Left, Desktop & Tablet) */}
         <div
           style={{ touchAction: "none" }}
-          className="gsap-draggable-card parallax-card-bottom-left absolute left-2 sm:left-12 bottom-4 sm:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
+          className="gsap-draggable-card parallax-card-bottom-left hidden sm:block absolute left-4 sm:left-12 bottom-6 sm:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
         >
           <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-sm sm:shadow-md text-center hover:scale-105 transition-transform">
             <span className="font-mono text-[10px] sm:text-xs text-[#172554] font-medium pointer-events-none">
@@ -201,7 +216,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ARTIFACT 05: Balanced Equilibrium Seal (Desktop) */}
+        {/* ARTIFACT 05: Balanced Equilibrium Seal (Desktop Widescreen) */}
         <div
           style={{ touchAction: "none" }}
           className="gsap-draggable-card hidden xl:block absolute right-32 top-1/2 -translate-y-8 z-20 select-none -rotate-3 cursor-grab active:cursor-grabbing"
