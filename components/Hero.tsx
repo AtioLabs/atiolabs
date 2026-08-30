@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LivingHeroBackground from "./LivingHeroBackground";
 
 const KAOMOJI_EXPRESSIONS = ["{ ^-^ }", "{ ^o^ }", "(•‿•)", "{ ^-^ }"];
 
@@ -12,7 +13,6 @@ export default function Hero() {
   const [kaomojiIndex, setKaomojiIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const centerTextRef = useRef<HTMLDivElement | null>(null);
-  const landscapeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -83,20 +83,6 @@ export default function Hero() {
         },
       });
 
-      // Background landscape parallax
-      if (landscapeRef.current) {
-        gsap.to(landscapeRef.current, {
-          y: 60,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1.2,
-          },
-        });
-      }
-
       // Subtle scale and fade of hero center text on scroll
       gsap.to(centerTextRef.current, {
         opacity: 0.15,
@@ -127,23 +113,8 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-[96vh] flex flex-col justify-center items-center overflow-hidden px-4 sm:px-6 pt-24 pb-20"
     >
-      {/* AMBIENT PIXEL-ART HERO LANDSCAPE BANNER */}
-      <div
-        ref={landscapeRef}
-        className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[480px] md:h-[580px] pointer-events-none select-none z-0"
-      >
-        <div className="relative w-full h-full">
-          <Image
-            src="/hero-bg.png"
-            alt="Hero Landscape"
-            fill
-            className="object-cover object-bottom opacity-75 sm:opacity-85"
-            priority
-          />
-          {/* Smooth Top Gradient Fade into Cream Canvas */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/40 to-transparent" />
-        </div>
-      </div>
+      {/* LIVING PIXEL-ART HERO BACKGROUND (Birds, Clouds, Flowers & Breathing Person) */}
+      <LivingHeroBackground />
 
       {/* Container for Centered Text and Scattered Interactive Floating Desktop & Mobile Artifacts */}
       <div className="relative w-full max-w-[1440px] mx-auto min-h-[580px] sm:min-h-[660px] flex flex-col justify-center items-center z-10">
