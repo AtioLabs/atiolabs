@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "The Accounting, as it happens",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Accounting, as it happens | River by Asynarch",
     description: "Tell River what happened. It does the rest.",
-    images: ["/og-image.png"],
+    images: ["/og.png"],
   },
   other: {
     "brand": "Asynarch",
