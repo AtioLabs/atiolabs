@@ -12,6 +12,7 @@ export default function Hero() {
   const [kaomojiIndex, setKaomojiIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const centerTextRef = useRef<HTMLDivElement | null>(null);
+  const landscapeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +24,7 @@ export default function Hero() {
   useEffect(() => {
     gsap.registerPlugin(Draggable, ScrollTrigger);
 
-    // 1. GSAP Draggable Physics
+    // 1. GSAP Draggable Physics for Desktop and Mobile Touch
     const draggables = Draggable.create(".gsap-draggable-card", {
       type: "x,y",
       edgeResistance: 0.65,
@@ -34,11 +35,11 @@ export default function Hero() {
       zIndexBoost: true,
     });
 
-    // 2. Calibrated Parallax (Drifts outward/downward, NEVER collides with Navbar)
+    // 2. Calibrated Parallax
     const ctx = gsap.context(() => {
       gsap.to(".parallax-card-top-right", {
-        y: 40,
-        x: 20,
+        y: 35,
+        x: 15,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -49,8 +50,8 @@ export default function Hero() {
       });
 
       gsap.to(".parallax-card-top-left", {
-        y: 35,
-        x: -20,
+        y: 30,
+        x: -15,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -61,7 +62,7 @@ export default function Hero() {
       });
 
       gsap.to(".parallax-card-bottom-right", {
-        y: 50,
+        y: 40,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -72,7 +73,7 @@ export default function Hero() {
       });
 
       gsap.to(".parallax-card-bottom-left", {
-        y: 45,
+        y: 35,
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -81,6 +82,20 @@ export default function Hero() {
           scrub: 1.3,
         },
       });
+
+      // Background landscape parallax
+      if (landscapeRef.current) {
+        gsap.to(landscapeRef.current, {
+          y: 60,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        });
+      }
 
       // Subtle scale and fade of hero center text on scroll
       gsap.to(centerTextRef.current, {
@@ -110,15 +125,36 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[96vh] flex flex-col justify-center items-center overflow-hidden px-4 sm:px-6 pt-24"
+      className="relative min-h-[96vh] flex flex-col justify-center items-center overflow-hidden px-4 sm:px-6 pt-24 pb-20"
     >
-      {/* Container for Centered Text and Scattered Interactive GSAP Draggable Floating Desktop Artifacts */}
-      <div className="relative w-full max-w-[1440px] mx-auto min-h-[660px] flex flex-col justify-center items-center">
+      {/* AMBIENT PIXEL-ART HERO LANDSCAPE BANNER */}
+      <div
+        ref={landscapeRef}
+        className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[480px] md:h-[580px] pointer-events-none select-none z-0"
+      >
+        <div className="relative w-full h-full">
+          <Image
+            src="/hero-bg.png"
+            alt="Hero Landscape"
+            fill
+            className="object-cover object-bottom opacity-75 sm:opacity-85"
+            priority
+          />
+          {/* Smooth Top Gradient Fade into Cream Canvas */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/40 to-transparent" />
+        </div>
+      </div>
+
+      {/* Container for Centered Text and Scattered Interactive Floating Desktop & Mobile Artifacts */}
+      <div className="relative w-full max-w-[1440px] mx-auto min-h-[580px] sm:min-h-[660px] flex flex-col justify-center items-center z-10">
         
-        {/* GSAP DRAGGABLE FLOATING ARTIFACT 01: River Retro Computer Mascot (Flanking Top-Right, safely below Nav) */}
-        <div className="gsap-draggable-card parallax-card-top-right hidden md:block absolute right-8 lg:right-24 top-28 lg:top-36 z-20 select-none">
-          <div className="p-4 rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-xl hover:scale-105 transition-all duration-300">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 relative flex items-center justify-center pointer-events-none">
+        {/* ARTIFACT 01: River Retro Computer Mascot (Top-Right on Mobile & Desktop) */}
+        <div
+          style={{ touchAction: "none" }}
+          className="gsap-draggable-card parallax-card-top-right absolute right-2 sm:right-8 lg:right-24 top-4 sm:top-20 lg:top-28 z-20 select-none cursor-grab active:cursor-grabbing"
+        >
+          <div className="p-2.5 sm:p-4 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-lg sm:shadow-xl hover:scale-105 transition-all duration-300">
+            <div className="w-12 h-12 sm:w-20 sm:h-20 md:w-24 md:h-24 relative flex items-center justify-center pointer-events-none">
               <Image
                 src="/river-logo.png"
                 alt="River Retro Computer Mascot"
@@ -127,19 +163,24 @@ export default function Hero() {
                 priority
               />
             </div>
-            <div className="mt-2 text-center pointer-events-none">
-              <span className="font-mono text-xs text-[#172554] font-bold block transition-all duration-300">
+            <div className="mt-1 sm:mt-2 text-center pointer-events-none">
+              <span className="font-mono text-[10px] sm:text-xs text-[#172554] font-bold block transition-all duration-300">
                 {KAOMOJI_EXPRESSIONS[kaomojiIndex]}
               </span>
-              <span className="font-mono text-[10px] text-[#15803D] font-semibold">books balanced</span>
+              <span className="font-mono text-[8px] sm:text-[10px] text-[#15803D] font-semibold hidden xs:block">
+                books balanced
+              </span>
             </div>
           </div>
         </div>
 
-        {/* GSAP DRAGGABLE FLOATING ARTIFACT 02: Pure Asynarch Great Wave Sticker (Flanking Top-Left, safely below Nav) */}
-        <div className="gsap-draggable-card parallax-card-top-left hidden md:block absolute left-8 lg:left-24 top-28 lg:top-36 z-20 select-none -rotate-6">
-          <div className="p-4 rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-xl hover:scale-105 hover:rotate-0 transition-all duration-300">
-            <div className="h-16 sm:h-20 aspect-[3/2] relative flex items-center justify-center mx-auto pointer-events-none">
+        {/* ARTIFACT 02: Pure Asynarch Great Wave Sticker (Top-Left on Mobile & Desktop) */}
+        <div
+          style={{ touchAction: "none" }}
+          className="gsap-draggable-card parallax-card-top-left absolute left-2 sm:left-8 lg:left-24 top-4 sm:top-20 lg:top-28 z-20 select-none -rotate-6 cursor-grab active:cursor-grabbing"
+        >
+          <div className="p-2 sm:p-4 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-lg sm:shadow-xl hover:scale-105 hover:rotate-0 transition-all duration-300">
+            <div className="h-8 sm:h-14 md:h-16 aspect-[3/2] relative flex items-center justify-center mx-auto pointer-events-none">
               <Image
                 src="/asynarch-logo.png"
                 alt="Asynarch Wave Mark"
@@ -151,18 +192,21 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* GSAP DRAGGABLE FLOATING ARTIFACT 03: WhatsApp Voice Note Pill (Mid-Right) */}
-        <div className="gsap-draggable-card parallax-card-bottom-right hidden lg:block absolute right-12 bottom-16 z-20 select-none rotate-3">
-          <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-[#EFEAE2] border border-[#25D366]/40 shadow-lg hover:scale-105 transition-transform">
-            <div className="w-6 h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center text-[10px] font-bold pointer-events-none">
+        {/* ARTIFACT 03: WhatsApp Voice Note Pill (Bottom-Right on Mobile & Desktop) */}
+        <div
+          style={{ touchAction: "none" }}
+          className="gsap-draggable-card parallax-card-bottom-right absolute right-2 sm:right-12 bottom-4 sm:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
+        >
+          <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-[#EFEAE2]/95 backdrop-blur-md border border-[#25D366]/40 shadow-md sm:shadow-lg hover:scale-105 transition-transform">
+            <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#25D366] text-white flex items-center justify-center text-[9px] sm:text-[10px] font-bold pointer-events-none shrink-0">
               W
             </div>
             <div className="pointer-events-none">
-              <p className="text-xs font-sans text-[#075E54] font-medium leading-none">
+              <p className="text-[10px] sm:text-xs font-sans text-[#075E54] font-medium leading-none">
                 &ldquo;Alpha paid with TDS&rdquo;
               </p>
-              <div className="flex items-center gap-1.5 mt-1 text-[10px] font-mono text-[#57534E]">
-                <span className="sound-bars">
+              <div className="flex items-center gap-1 sm:gap-1.5 mt-0.5 sm:mt-1 text-[8px] sm:text-[10px] font-mono text-[#57534E]">
+                <span className="sound-bars !gap-0.5 !h-2.5 sm:!h-3">
                   <i className="!bg-[#25D366]"></i>
                   <i className="!bg-[#25D366]"></i>
                   <i className="!bg-[#25D366]"></i>
@@ -174,17 +218,23 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* GSAP DRAGGABLE FLOATING ARTIFACT 04: Chill Kaomoji Badge (Mid-Left) */}
-        <div className="gsap-draggable-card parallax-card-bottom-left hidden lg:block absolute left-12 bottom-16 z-20 select-none rotate-3">
-          <div className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-md text-center hover:scale-105 transition-transform">
-            <span className="font-mono text-xs text-[#172554] font-medium pointer-events-none">
+        {/* ARTIFACT 04: Chill Kaomoji Badge (Bottom-Left on Mobile & Desktop) */}
+        <div
+          style={{ touchAction: "none" }}
+          className="gsap-draggable-card parallax-card-bottom-left absolute left-2 sm:left-12 bottom-4 sm:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
+        >
+          <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-sm sm:shadow-md text-center hover:scale-105 transition-transform">
+            <span className="font-mono text-[10px] sm:text-xs text-[#172554] font-medium pointer-events-none">
               (⌐■_■) 0.4s · auto
             </span>
           </div>
         </div>
 
-        {/* GSAP DRAGGABLE FLOATING ARTIFACT 05: Balanced Equilibrium Seal */}
-        <div className="gsap-draggable-card hidden xl:block absolute right-32 top-1/2 -translate-y-8 z-20 select-none -rotate-3">
+        {/* ARTIFACT 05: Balanced Equilibrium Seal (Desktop) */}
+        <div
+          style={{ touchAction: "none" }}
+          className="gsap-draggable-card hidden xl:block absolute right-32 top-1/2 -translate-y-8 z-20 select-none -rotate-3 cursor-grab active:cursor-grabbing"
+        >
           <div className="px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#15803D]/20 shadow-md text-center hover:scale-105 transition-transform">
             <span className="font-mono text-[11px] text-[#15803D] font-bold pointer-events-none">
               BALANCED · ₹0.00 VARIANCE
@@ -192,32 +242,32 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* HERO CENTER TEXT STAGE (Expansive, Balanced & Centered) */}
+        {/* HERO CENTER TEXT STAGE */}
         <div
           ref={centerTextRef}
-          className="relative z-10 text-center max-w-4xl lg:max-w-5xl mx-auto py-12 px-4 flex flex-col items-center justify-center"
+          className="relative z-10 text-center max-w-4xl lg:max-w-5xl mx-auto py-8 sm:py-12 px-4 flex flex-col items-center justify-center"
         >
           {/* Display Headline */}
-          <h1 className="font-display font-medium text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[-0.035em] text-[#141413] leading-[1.04] mb-8 text-center">
+          <h1 className="font-display font-medium text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[-0.035em] text-[#141413] leading-[1.05] mb-6 sm:mb-8 text-center">
             The Accounting, as it happens
           </h1>
 
           {/* Subhead */}
-          <p className="font-sans text-xl sm:text-2xl md:text-3xl text-[#57534E] font-normal leading-relaxed mb-12 max-w-2xl text-center">
+          <p className="font-sans text-base sm:text-xl md:text-2xl lg:text-3xl text-[#57534E] font-normal leading-relaxed mb-8 sm:mb-12 max-w-2xl text-center">
             Tell River what happened. It does the rest.
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <button
               onClick={() => scrollToSection("waitlist")}
-              className="btn-indigo px-8 py-4 text-base font-sans font-medium cursor-pointer shadow-lg hover:scale-105 transition-transform"
+              className="btn-indigo px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-sans font-medium cursor-pointer shadow-lg hover:scale-105 transition-transform"
             >
               Join the waitlist
             </button>
             <button
               onClick={() => scrollToSection("how-it-works")}
-              className="px-7 py-4 rounded-full bg-white hover:bg-[#FBFAF6] text-[#141413] border border-[#141413]/10 text-base font-sans font-medium transition-all shadow-sm cursor-pointer hover:scale-105"
+              className="px-5 sm:px-7 py-3.5 sm:py-4 rounded-full bg-white/90 backdrop-blur-md hover:bg-white text-[#141413] border border-[#141413]/10 text-sm sm:text-base font-sans font-medium transition-all shadow-sm cursor-pointer hover:scale-105"
             >
               How it works →
             </button>
