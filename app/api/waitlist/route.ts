@@ -2,22 +2,17 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
+const DEFAULT_SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbwSSmpAkNqhYshnVB43GLg8sTLGGP9YNJUceVa9VjDRRBuV8sAlXIj8y6dKhZ_nGi8kug/exec";
+
 async function appendToGoogleSheet(email: string, timestamp: string) {
   const url =
     process.env.GOOGLE_SHEET_WEBAPP_URL ||
     process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
-    process.env.WAITLIST_SHEET_URL;
-
-  if (!url) {
-    console.warn(
-      "GOOGLE_SHEET_WEBAPP_URL not configured. Please add it to your environment variables."
-    );
-    return false;
-  }
+    process.env.WAITLIST_SHEET_URL ||
+    DEFAULT_SHEET_URL;
 
   try {
-    // Google Apps Script Web App endpoints respond with a 302 redirect on POST,
-    // so redirect: "follow" is essential.
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -29,12 +24,7 @@ async function appendToGoogleSheet(email: string, timestamp: string) {
       redirect: "follow",
     });
 
-    if (!res.ok) {
-      console.error(`Google Sheet endpoint responded with status: ${res.status}`);
-      return false;
-    }
-
-    return true;
+    return res.ok;
   } catch (err) {
     console.error("Error communicating with Google Sheet Webhook:", err);
     return false;
@@ -53,7 +43,7 @@ export async function POST(request: Request) {
     const timestamp = new Date().toISOString();
 
     // 1. Primary Store: Google Sheets Webhook
-    const sheetSaved = await appendToGoogleSheet(email, timestamp);
+    await appendToGoogleSheet(email, timestamp);
 
     // 2. Local Backup: waitlist.json (for local development)
     const filePath = path.join(process.cwd(), "waitlist.json");
@@ -68,14 +58,12 @@ export async function POST(request: Request) {
         fs.writeFileSync(filePath, JSON.stringify(waitlist, null, 2), "utf-8");
       }
     } catch (localErr) {
-      // Expected on read-only serverless hosts like Vercel
-      console.log("Local waitlist write skipped (serverless environment).");
+      // Expected on read-only serverless hosts like Vercel or GitHub Pages
     }
 
     return NextResponse.json({
       success: true,
       message: "Successfully joined waitlist.",
-      sheetSaved,
     });
   } catch (error) {
     console.error("Waitlist API error:", error);

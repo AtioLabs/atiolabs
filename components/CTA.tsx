@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+const GOOGLE_SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbwSSmpAkNqhYshnVB43GLg8sTLGGP9YNJUceVa9VjDRRBuV8sAlXIj8y6dKhZ_nGi8kug/exec";
+
 export default function CTA() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -14,14 +17,35 @@ export default function CTA() {
     }
 
     setStatus("loading");
+
+    const payload = JSON.stringify({
+      email,
+      timestamp: new Date().toISOString(),
+      source: "River Landing Page Waitlist",
+    });
+
     try {
-      await fetch("/api/waitlist", {
+      // 1. Try local/Vercel server API route
+      const apiRes = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+        body: payload,
+      }).catch(() => null);
+
+      // 2. Direct client-side POST to Google Apps Script (handles GitHub Pages static export)
+      if (!apiRes || !apiRes.ok) {
+        await fetch(GOOGLE_SHEET_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: payload,
+        });
+      }
+
       setStatus("success");
-    } catch {
+    } catch (err) {
+      console.error("Waitlist submit error:", err);
+      // Still show success to user so client experience is never blocked
       setStatus("success");
     }
   };
@@ -30,7 +54,7 @@ export default function CTA() {
     <section id="waitlist" className="py-32 md:py-48 relative bg-[#FBFAF6]">
       <div className="max-w-[880px] mx-auto px-6 md:px-12 text-center">
         
-        {/* Verbatim Display Headline (Pure Focus, No Duplicate Logo Clutter) */}
+        {/* Verbatim Display Headline */}
         <h2 className="font-display font-medium text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.035em] text-[#141413] leading-[1.06] mb-12">
           Leave the accounting to River
         </h2>
