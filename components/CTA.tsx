@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const GOOGLE_SHEET_URL =
-  "https://script.google.com/macros/s/AKfycbyH9091ZYCKwBSAqzbpsIcntfgLucYyn3lxigt6U06c7AtDNaFx79gr46MLH2dCGPkVaA/exec";
+  "https://script.google.com/macros/s/AKfycbwxxnPUiwiVjlhnNcgvebAa3JBs8ZJS-vms2YLTCX4_tnDx5CnWIC_lar2jPz3RXeoPcg/exec";
 
 export default function CTA() {
   const [email, setEmail] = useState("");

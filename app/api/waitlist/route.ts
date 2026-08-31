@@ -2,20 +2,20 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-const DEFAULT_SHEET_URL =
-  "https://script.google.com/macros/s/AKfycbyH9091ZYCKwBSAqzbpsIcntfgLucYyn3lxigt6U06c7AtDNaFx79gr46MLH2dCGPkVaA/exec";
+const WORKING_SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbwxxnPUiwiVjlhnNcgvebAa3JBs8ZJS-vms2YLTCX4_tnDx5CnWIC_lar2jPz3RXeoPcg/exec";
 
 async function appendToGoogleSheet(email: string, timestamp: string) {
   const url =
     process.env.GOOGLE_SHEET_WEBAPP_URL ||
     process.env.GOOGLE_SHEETS_WEBHOOK_URL ||
     process.env.WAITLIST_SHEET_URL ||
-    DEFAULT_SHEET_URL;
+    WORKING_SHEET_URL;
 
   try {
     const res = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({
         email,
         timestamp,
