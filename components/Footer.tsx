@@ -188,7 +188,7 @@ export default function Footer() {
 
           {/* Unified Wordmark Block */}
           <div className="river-wordmark select-none">
-            <span className="font-display font-medium text-6xl sm:text-8xl md:text-9xl lg:text-[140px] text-[#141413]/15 uppercase tracking-normal sm:tracking-tight leading-none inline-block">
+            <span className="font-display font-medium text-5xl sm:text-7xl md:text-9xl lg:text-[140px] text-[#141413]/15 uppercase tracking-normal sm:tracking-tight leading-none inline-block">
               RIVER
             </span>
           </div>

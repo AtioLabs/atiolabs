@@ -71,6 +71,36 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://asynarch.com/#organization",
+      "name": "Asynarch",
+      "url": "https://asynarch.com",
+      "logo": "https://asynarch.com/asynarch-logo.png",
+      "sameAs": ["https://x.com/asynarch", "https://linkedin.com/company/asynarch"],
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://asynarch.com/#software",
+      "name": "River",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, WhatsApp, iOS, Android",
+      "description": "Tell River what happened. It does the rest. Conversational accounting built for modern business, in River or on WhatsApp.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+      },
+      "publisher": {
+        "@id": "https://asynarch.com/#organization",
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -78,6 +108,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable} ${ibmPlexMono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

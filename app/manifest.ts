@@ -3,8 +3,8 @@ import { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "River by Asynarch",
-    short_name: "Asynarch River",
-    description: "The cash book that writes itself. Upload your bank statement. Every payment gets recorded, organized by who it's with.",
+    short_name: "River",
+    description: "Tell River what happened. It does the rest. Conversational accounting built for modern business, in River or on WhatsApp.",
     start_url: "/",
     display: "standalone",
     background_color: "#FBFAF6",
