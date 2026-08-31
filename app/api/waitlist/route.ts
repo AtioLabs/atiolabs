@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 const DEFAULT_SHEET_URL =
-  "https://script.google.com/macros/s/AKfycbwSSmpAkNqhYshnVB43GLg8sTLGGP9YNJUceVa9VjDRRBuV8sAlXIj8y6dKhZ_nGi8kug/exec";
+  "https://script.google.com/macros/s/AKfycbyH9091ZYCKwBSAqzbpsIcntfgLucYyn3lxigt6U06c7AtDNaFx79gr46MLH2dCGPkVaA/exec";
 
 async function appendToGoogleSheet(email: string, timestamp: string) {
   const url =
@@ -19,7 +19,7 @@ async function appendToGoogleSheet(email: string, timestamp: string) {
       body: JSON.stringify({
         email,
         timestamp,
-        source: "Landing Page Waitlist",
+        source: "River Landing Page Waitlist",
       }),
       redirect: "follow",
     });

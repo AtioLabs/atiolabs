@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const GOOGLE_SHEET_URL =
-  "https://script.google.com/macros/s/AKfycbwSSmpAkNqhYshnVB43GLg8sTLGGP9YNJUceVa9VjDRRBuV8sAlXIj8y6dKhZ_nGi8kug/exec";
+  "https://script.google.com/macros/s/AKfycbyH9091ZYCKwBSAqzbpsIcntfgLucYyn3lxigt6U06c7AtDNaFx79gr46MLH2dCGPkVaA/exec";
 
 export default function CTA() {
   const [email, setEmail] = useState("");
@@ -34,7 +34,6 @@ export default function CTA() {
 
       // 2. Direct client-side POST to Google Apps Script (handles GitHub Pages static hosting)
       if (!apiRes || !apiRes.ok) {
-        // Use text/plain or no-cors to avoid browser CORS preflight blocking
         await fetch(GOOGLE_SHEET_URL, {
           method: "POST",
           mode: "no-cors",
