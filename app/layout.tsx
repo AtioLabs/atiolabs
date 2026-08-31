@@ -1,42 +1,45 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Fraunces, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-// Body / UI text
 const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  variable: "--font-sans",
   display: "swap",
 });
 
-// Display / large headings
 const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  variable: "--font-display",
   display: "swap",
-  axes: ["SOFT", "WONK", "opsz"],
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
-// Tabular numbers & financial figures
 const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://asynarch.com"),
-  alternates: {
-    canonical: "/",
-  },
   title: "River by Asynarch — The Accounting, as it happens",
   description: "Tell River what happened. It does the rest. Conversational accounting built for modern business, in River or on WhatsApp.",
-  applicationName: "River by Asynarch",
-  appleWebApp: {
-    title: "River",
+  alternates: {
+    canonical: "https://asynarch.com",
   },
-  keywords: ["Asynarch", "River", "River accounting", "Asynarch River", "asynarch.com", "autonomous accounting", "conversational accounting", "WhatsApp accounting", "double-entry ledger"],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   authors: [{ name: "Asynarch", url: "https://asynarch.com" }],
   icons: {
     icon: "/favicon.ico",
@@ -97,6 +100,44 @@ const jsonLd = {
       "publisher": {
         "@id": "https://asynarch.com/#organization",
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://asynarch.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is River for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "River is for GST-registered service companies in India.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "How does River decide what to record?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "River uses the business details, documents, accounts, and context you provide. It interprets the event, prepares the accounting treatment, and checks the entry before posting it.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "Can I see what River recorded?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. River keeps the transaction, accounting entry, and source information connected so the result can be reviewed and traced.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What happens after I join early access?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We’ll contact you when River is ready to understand your business and bring in your existing accounting data.",
+          },
+        },
+      ],
     },
   ],
 };

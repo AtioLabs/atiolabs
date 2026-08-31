@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Assurance() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const headlineRef = useRef<HTMLHeadingElement | null>(null);
 
   const cards = [
     {
@@ -54,18 +55,41 @@ export default function Assurance() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      // 1. Headline Scrub Effect
+      gsap.fromTo(
+        headlineRef.current,
+        {
+          opacity: 0.3,
+          y: 30,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: headlineRef.current,
+            start: "top 85%",
+            end: "top 45%",
+            scrub: 1,
+          },
+        }
+      );
+
+      // 2. Staggered Hardware Cards Lift
       gsap.fromTo(
         ".assurance-card-item",
         {
-          y: 50,
-          opacity: 0.7,
+          y: 60,
+          opacity: 0,
+          scale: 0.95,
         },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power2.out",
+          scale: 1,
+          duration: 0.9,
+          stagger: 0.12,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 70%",
@@ -73,8 +97,9 @@ export default function Assurance() {
         }
       );
 
+      // 3. Ambient Parallax Floating Seal
       gsap.to(".assurance-floater", {
-        y: -40,
+        y: -50,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top bottom",
@@ -98,9 +123,12 @@ export default function Assurance() {
           </div>
         </div>
 
-        {/* Section Header */}
+        {/* Section Header with Scrub Animation */}
         <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28 relative z-10">
-          <h2 className="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[#141413] leading-[1.12]">
+          <h2
+            ref={headlineRef}
+            className="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[#141413] leading-[1.12]"
+          >
             The books don&apos;t move unless they balance
           </h2>
         </div>
