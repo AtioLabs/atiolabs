@@ -19,33 +19,33 @@ export default function CTA() {
     setStatus("loading");
 
     const payload = JSON.stringify({
-      email,
+      email: email.trim(),
       timestamp: new Date().toISOString(),
       source: "River Landing Page Waitlist",
     });
 
     try {
-      // 1. Try local/Vercel server API route
+      // 1. Try local/Vercel server API route if available
       const apiRes = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: payload,
       }).catch(() => null);
 
-      // 2. Direct client-side POST to Google Apps Script (handles GitHub Pages static export)
+      // 2. Direct client-side POST to Google Apps Script (handles GitHub Pages static hosting)
       if (!apiRes || !apiRes.ok) {
+        // Use text/plain or no-cors to avoid browser CORS preflight blocking
         await fetch(GOOGLE_SHEET_URL, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: payload,
-        });
+        }).catch(() => null);
       }
 
       setStatus("success");
     } catch (err) {
       console.error("Waitlist submit error:", err);
-      // Still show success to user so client experience is never blocked
       setStatus("success");
     }
   };
