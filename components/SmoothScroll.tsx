@@ -13,20 +13,21 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 1.6,
+      wheelMultiplier: 1.0,
+      autoRaf: false, // Prevents dual RAF loop collision with GSAP
     });
 
     lenisRef.current = lenis;
 
-    // Synchronize Lenis with GSAP ScrollTrigger
+    // Update ScrollTrigger on Lenis scroll
     lenis.on("scroll", ScrollTrigger.update);
 
+    // Single unified GSAP RAF loop
     const updateGsap = (time: number) => {
       lenis.raf(time * 1000);
     };
