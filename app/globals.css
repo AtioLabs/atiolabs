@@ -26,8 +26,6 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  max-width: 100vw;
 }
 
 body {
@@ -36,7 +34,8 @@ body {
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
-  max-width: 100vw;
+  position: relative;
+  width: 100%;
 }
 
 .font-display {
@@ -163,23 +162,12 @@ body::before {
   100% { transform: scaleY(1.1); opacity: 1; }
 }
 
-/* Smooth Floating Keyframes */
-@keyframes floatGentle {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(1deg); }
-}
-
-@keyframes floatReverse {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(8px) rotate(-1deg); }
-}
-
 .animate-float-slow {
-  animation: floatGentle 5s ease-in-out infinite;
+  /* Static to prevent vertical page drift */
 }
 
 .animate-float-reverse {
-  animation: floatReverse 6s ease-in-out infinite;
+  /* Static to prevent vertical page drift */
 }
 
 @keyframes fadeIn {

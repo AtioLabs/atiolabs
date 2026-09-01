@@ -45,7 +45,7 @@ export default function Hero() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: 1.2,
+          scrub: true,
         },
       });
 
@@ -57,7 +57,7 @@ export default function Hero() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: 1,
+          scrub: true,
         },
       });
 
@@ -68,7 +68,7 @@ export default function Hero() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: 1.5,
+          scrub: true,
         },
       });
 
@@ -79,7 +79,7 @@ export default function Hero() {
           trigger: containerRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: 1.3,
+          scrub: true,
         },
       });
 
@@ -92,7 +92,7 @@ export default function Hero() {
           trigger: containerRef.current,
           start: "center center",
           end: "bottom top",
-          scrub: 1,
+          scrub: true,
         },
       });
     }, containerRef);
@@ -123,6 +123,7 @@ export default function Hero() {
             src="/hero-bg.png"
             alt="River Landscape"
             fill
+            sizes="100vw"
             className="object-cover object-[25%_bottom] sm:object-bottom opacity-90 sm:opacity-95"
             priority
           />
@@ -145,6 +146,7 @@ export default function Hero() {
                 src="/river-logo.png"
                 alt="River Retro Computer Mascot"
                 fill
+                sizes="(max-width: 640px) 48px, (max-width: 768px) 80px, 96px"
                 className="object-contain"
                 priority
               />
@@ -171,6 +173,7 @@ export default function Hero() {
                 src="/asynarch-logo.png"
                 alt="Asynarch Wave Mark"
                 fill
+                sizes="(max-width: 640px) 48px, (max-width: 768px) 84px, 96px"
                 className="object-contain"
                 priority
               />

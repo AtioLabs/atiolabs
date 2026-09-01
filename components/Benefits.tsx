@@ -50,7 +50,7 @@ export default function Benefits() {
             trigger: sectionRef.current,
             start: "top 75%",
             end: "top 35%",
-            scrub: 1,
+            scrub: true,
           },
         }
       );
@@ -61,7 +61,7 @@ export default function Benefits() {
           trigger: sectionRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: 1.2,
+          scrub: true,
         },
       });
     }, sectionRef);

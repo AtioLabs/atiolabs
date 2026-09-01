@@ -70,7 +70,7 @@ export default function Assurance() {
             trigger: headlineRef.current,
             start: "top 85%",
             end: "top 45%",
-            scrub: 1,
+            scrub: true,
           },
         }
       );
@@ -96,17 +96,6 @@ export default function Assurance() {
           },
         }
       );
-
-      // 3. Ambient Parallax Floating Seal
-      gsap.to(".assurance-floater", {
-        y: -50,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.2,
-        },
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -116,15 +105,13 @@ export default function Assurance() {
     <section ref={sectionRef} id="assurance" className="py-28 md:py-40 relative overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         
-        {/* Floating Balanced Seal (Top-Right) */}
-        <div className="assurance-floater hidden lg:block absolute right-8 top-12 select-none animate-float-slow rotate-3 z-20">
-          <div className="px-4 py-2 rounded-full bg-white border border-[#15803D]/20 shadow-md text-xs font-mono text-[#15803D] font-bold">
-            ZERO VARIANCE · BALANCED ✓
-          </div>
-        </div>
-
-        {/* Section Header with Scrub Animation */}
+        {/* Section Header with Centered Balanced Badge (Zero Overlap) */}
         <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#15803D]/20 shadow-sm text-xs font-mono text-[#15803D] font-bold mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#15803D] animate-pulse"></span>
+            <span>ZERO VARIANCE · BALANCED ✓</span>
+          </div>
+
           <h2
             ref={headlineRef}
             className="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[#141413] leading-[1.12]"

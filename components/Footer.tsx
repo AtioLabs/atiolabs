@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function Footer() {
   const footerRef = useRef<HTMLElement | null>(null);
   const monumentRef = useRef<HTMLDivElement | null>(null);
-  const [modalType, setModalType] = useState<"privacy" | "terms" | null>(null);
+  const [modalType, setModalType] = useState<"privacy" | "terms" | "about" | null>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -33,7 +33,7 @@ export default function Footer() {
             trigger: monumentRef.current,
             start: "top 95%",
             end: "bottom 75%",
-            scrub: 1,
+            scrub: true,
           },
         }
       );
@@ -57,7 +57,7 @@ export default function Footer() {
             trigger: monumentRef.current,
             start: "top 95%",
             end: "bottom 75%",
-            scrub: 1,
+            scrub: true,
           },
         }
       );
@@ -81,7 +81,7 @@ export default function Footer() {
             trigger: monumentRef.current,
             start: "top 95%",
             end: "bottom 75%",
-            scrub: 1,
+            scrub: true,
           },
         }
       );
@@ -155,6 +155,14 @@ export default function Footer() {
               Asynarch
             </span>
             <div>
+              <button
+                onClick={() => setModalType("about")}
+                className="hover:text-[#141413] transition-colors cursor-pointer bg-transparent border-0 p-0 text-xs font-mono text-[#686461]"
+              >
+                about asynarch ↗
+              </button>
+            </div>
+            <div>
               <a href="https://asynarch.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#141413] transition-colors">
                 asynarch.com ↗
               </a>
@@ -200,10 +208,17 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Colophon: Privacy · Terms · Contact */}
+        {/* Bottom Colophon: About · Privacy · Terms · Contact */}
         <div className="pt-8 border-t border-[#141413]/06 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-[#8C8885]">
           <div className="flex items-center gap-3">
             <p>© 2026 Asynarch Inc.</p>
+            <span>·</span>
+            <button
+              onClick={() => setModalType("about")}
+              className="hover:text-[#141413] underline underline-offset-2 cursor-pointer bg-transparent border-0 p-0 text-[11px] font-mono text-[#8C8885]"
+            >
+              About
+            </button>
             <span>·</span>
             <button
               onClick={() => setModalType("privacy")}
@@ -231,41 +246,90 @@ export default function Footer() {
 
       </div>
 
-      {/* Lightweight Privacy & Terms Modal */}
+      {/* Lightweight Modals: About, Privacy & Terms with Single Clean Top-Right Close Button */}
       {modalType && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#141413]/40 backdrop-blur-sm animate-fadeIn">
-          <div className="mac-window bg-white max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between border-b border-[#141413]/08 pb-3">
+          <div className={`mac-window bg-white w-full shadow-2xl space-y-4 max-h-[88vh] flex flex-col ${
+            modalType === "about" ? "max-w-2xl" : "max-w-md"
+          }`}>
+            {/* Modal Titlebar with Single Unified Close Button */}
+            <div className="flex items-center justify-between border-b border-[#141413]/08 px-6 py-4 bg-[#FAF8F4] rounded-t-2xl shrink-0">
               <span className="font-mono text-xs font-bold text-[#141413] uppercase tracking-wider">
-                {modalType === "privacy" ? "Privacy Notice" : "Terms & Conditions"}
+                {modalType === "about"
+                  ? "About Asynarch"
+                  : modalType === "privacy"
+                  ? "Privacy Notice"
+                  : "Terms & Conditions"}
               </span>
               <button
                 onClick={() => setModalType(null)}
-                className="text-xs font-mono text-[#8C8885] hover:text-[#141413] cursor-pointer bg-transparent border-0"
+                className="text-xs font-mono text-[#686461] hover:text-[#141413] px-2.5 py-1 rounded-full bg-[#141413]/05 hover:bg-[#141413]/10 transition-colors cursor-pointer border-0"
               >
                 ✕ Close
               </button>
             </div>
 
-            <div className="space-y-3 font-sans text-xs sm:text-sm text-[#57534E] leading-relaxed">
-              <p>
-                We only collect your email address exclusively for the purpose of managing early access waitlist notifications.
-              </p>
-              <p>
-                We do not sell, share, or use your email for marketing, tracking, or telemetry.
-              </p>
-              <p className="pt-2 font-mono text-xs text-[#141413]">
-                Contact: <a href="mailto:asynarch.team@gmail.com" className="text-[#172554] underline">asynarch.team@gmail.com</a>
-              </p>
-            </div>
+            {/* Modal Content */}
+            <div className="p-6 sm:p-8 overflow-y-auto space-y-4 font-sans text-sm text-[#3D3A37] leading-[1.75]">
+              {modalType === "about" ? (
+                <div className="space-y-4 text-left">
+                  <h2 className="font-display font-medium text-2xl sm:text-3xl text-[#141413] tracking-tight mb-4">
+                    About Asynarch
+                  </h2>
 
-            <div className="pt-2 text-right">
-              <button
-                onClick={() => setModalType(null)}
-                className="btn-indigo px-5 py-2 text-xs font-sans font-medium rounded-full cursor-pointer"
-              >
-                Got it
-              </button>
+                  <p>
+                    The idea didn&apos;t start with accounting. It started with a simpler thought: make people&apos;s lives easier. So I built things. Then I used them, and hated using them too. Easier still meant work.
+                  </p>
+
+                  <p>
+                    I stopped building and started watching. What people were doing with their time, everywhere, in businesses with nothing in common. One thought stuck: software should do the job itself. Not wait for someone to run it.
+                  </p>
+
+                  <p className="font-medium text-[#141413]">
+                    My name&apos;s Asrul. From Madurai. This started in April 2026.
+                  </p>
+
+                  <p>
+                    For accounting, that&apos;s the whole idea: you say what happened, it takes care of the rest. For GST-registered businesses, to start.
+                  </p>
+
+                  <p className="font-mono text-xs sm:text-[13px] text-[#172554] bg-[#172554]/05 p-3.5 rounded-xl border border-[#172554]/10 font-semibold">
+                    We&apos;re a four-person team: Naveen (COO), Abu (CTO), Nantha (CFO), and Asrul (CEO).
+                  </p>
+
+                  <p>
+                    We called it River. Accounting shouldn&apos;t be something you sit down and do. It should just move, the way a river does, without you standing over it.
+                  </p>
+
+                  <p className="pt-2 border-t border-[#141413]/06 font-medium text-[#172554]">
+                    You can only connect the dots looking backwards. I didn&apos;t set out to build an accounting company. I set out to make software work for itself. Accounting&apos;s just where it landed first.
+                  </p>
+                </div>
+              ) : modalType === "privacy" ? (
+                <div className="space-y-3">
+                  <p>
+                    We only collect your email address exclusively for the purpose of managing early access waitlist notifications.
+                  </p>
+                  <p>
+                    We do not sell, share, or use your email for marketing, tracking, or telemetry.
+                  </p>
+                  <p className="pt-2 font-mono text-xs text-[#141413]">
+                    Contact: <a href="mailto:asynarch.team@gmail.com" className="text-[#172554] underline">asynarch.team@gmail.com</a>
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <p>
+                    River by Asynarch is currently in pre-launch early access. Early access features are subject to continuous refinement.
+                  </p>
+                  <p>
+                    By submitting your email, you agree to receive product updates and onboarding communications regarding River.
+                  </p>
+                  <p className="pt-2 font-mono text-xs text-[#141413]">
+                    Contact: <a href="mailto:asynarch.team@gmail.com" className="text-[#172554] underline">asynarch.team@gmail.com</a>
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -10,17 +10,21 @@ function AnimatedRow1() {
   const [stepStage, setStepStage] = useState<"idle" | "typingItem" | "taxCalc" | "odometer" | "posted">("idle");
   const [counterValue, setCounterValue] = useState(0);
   const rowRef = useRef<HTMLDivElement | null>(null);
-  const isStarted = useRef(false);
+  const isRunning = useRef(false);
+  const activeTimers = useRef<NodeJS.Timeout[]>([]);
 
   const fullText = "Invoice Alpha Ltd ₹1,00,000 for this month's consulting";
+
+  const clearAllTimers = () => {
+    activeTimers.current.forEach((t) => clearInterval(t));
+    activeTimers.current = [];
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let isCancelled = false;
-
     function runSequence() {
-      if (isCancelled) return;
+      clearAllTimers();
       setTypedText("");
       setRiverResponded(false);
       setStepStage("idle");
@@ -28,67 +32,65 @@ function AnimatedRow1() {
       let index = 0;
 
       const typeInterval = setInterval(() => {
-        if (isCancelled) {
-          clearInterval(typeInterval);
-          return;
-        }
         if (index <= fullText.length) {
           setTypedText(fullText.slice(0, index));
           index++;
         } else {
           clearInterval(typeInterval);
           
-          setTimeout(() => {
-            if (isCancelled) return;
+          const t1 = setTimeout(() => {
             setRiverResponded(true);
 
-            setTimeout(() => {
-              if (isCancelled) return;
+            const t2 = setTimeout(() => {
               setStepStage("typingItem");
 
-              setTimeout(() => {
-                if (isCancelled) return;
+              const t3 = setTimeout(() => {
                 setStepStage("taxCalc");
 
-                setTimeout(() => {
-                  if (isCancelled) return;
+                const t4 = setTimeout(() => {
                   setStepStage("odometer");
                   let count = 0;
                   const rollInterval = setInterval(() => {
-                    if (isCancelled) {
-                      clearInterval(rollInterval);
-                      return;
-                    }
                     count += 11800;
                     if (count >= 118000) {
                       setCounterValue(118000);
                       clearInterval(rollInterval);
                       setStepStage("posted");
-
-                      setTimeout(() => {
-                        if (isCancelled) return;
-                        runSequence();
-                      }, 7000);
+                      isRunning.current = false;
                     } else {
                       setCounterValue(count);
                     }
                   }, 40);
+                  activeTimers.current.push(rollInterval);
                 }, 400);
+                activeTimers.current.push(t4);
               }, 500);
+              activeTimers.current.push(t3);
             }, 500);
+            activeTimers.current.push(t2);
           }, 400);
+          activeTimers.current.push(t1);
         }
       }, 35);
+      activeTimers.current.push(typeInterval);
     }
 
     const trigger = ScrollTrigger.create({
       trigger: rowRef.current,
       start: "top 75%",
       onEnter: () => {
-        if (!isStarted.current) {
-          isStarted.current = true;
+        if (!isRunning.current) {
+          isRunning.current = true;
           runSequence();
         }
+      },
+      onLeave: () => {
+        clearAllTimers();
+        isRunning.current = false;
+      },
+      onLeaveBack: () => {
+        clearAllTimers();
+        isRunning.current = false;
       },
     });
 
@@ -109,15 +111,15 @@ function AnimatedRow1() {
     );
 
     return () => {
-      isCancelled = true;
+      clearAllTimers();
       trigger.kill();
     };
   }, []);
 
   return (
-    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10 min-h-[460px]">
+    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
       {/* Left: Soundwave & Typing Speech Bubble (Zero-Layout-Shift Fixed Box) */}
-      <div className="lg:col-span-5 space-y-4 min-h-[190px] flex flex-col justify-start">
+      <div className="lg:col-span-5 space-y-4 flex flex-col justify-start">
         <div className="flex items-center gap-2">
           <span className="sound-bars">
             <i></i><i></i><i></i><i></i><i></i>
@@ -125,15 +127,27 @@ function AnimatedRow1() {
           <span className="text-xs font-mono text-[#8C8885]">text / voice command</span>
         </div>
 
-        {/* User Speech Bubble */}
-        <div className="p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md min-h-[84px] flex items-center">
-          <span>&ldquo;{typedText}&rdquo;</span>
+        {/* User Speech Bubble with Invisible Height Anchor (0px Layout Shift) */}
+        <div className="relative p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md flex items-center min-h-[76px] sm:min-h-[84px]">
+          {/* Invisible placeholder preserving 100% stable wrapped height */}
+          <span className="invisible opacity-0 select-none pointer-events-none" aria-hidden="true">
+            &ldquo;{fullText}&rdquo;
+          </span>
+          {/* Real-time typing overlay */}
+          <span className="absolute inset-x-4 sm:inset-x-5 flex items-center">
+            <span>&ldquo;{typedText || (isRunning.current ? "" : fullText)}&rdquo;</span>
+            {typedText.length > 0 && typedText.length < fullText.length && (
+              <span className="inline-block w-0.5 h-4 bg-[#172554] ml-0.5 animate-pulse" />
+            )}
+          </span>
         </div>
 
-        {/* River Response Bubble Slot */}
-        <div className="h-8 flex items-center">
+        {/* River Response Bubble Slot (Fixed Height to Prevent Layout Shift) */}
+        <div className="h-9 flex items-center">
           <div className={`transition-all duration-500 transform ${
-            riverResponded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-1 scale-95 pointer-events-none"
+            riverResponded || stepStage === "posted"
+              ? "opacity-100 translate-y-0 scale-100"
+              : "opacity-0 translate-y-1 scale-95 pointer-events-none"
           }`}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-[#172554] text-white text-xs font-mono font-medium shadow-sm">
               <span>on it!</span>
@@ -237,7 +251,7 @@ function AnimatedRow1() {
                 <div className="flex justify-between pt-2.5 border-t border-[#141413]/06 text-sm font-bold text-[#172554] items-center">
                   <span className="tracking-tight">TOTAL INVOICE PAYABLE</span>
                   <span className="font-mono text-base text-[#172554]">
-                    ₹{counterValue.toLocaleString("en-IN")}.00
+                    ₹{(counterValue || (stepStage === "posted" ? 118000 : 0)).toLocaleString("en-IN")}.00
                   </span>
                 </div>
               </div>
@@ -278,17 +292,21 @@ function AnimatedRow2() {
   const [isHighlighted, setIsHighlighted] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
   const rowRef = useRef<HTMLDivElement | null>(null);
-  const isStarted = useRef(false);
+  const isRunning = useRef(false);
+  const activeTimers = useRef<NodeJS.Timeout[]>([]);
 
   const fullText = "Record the TechMart bill for the new laptop";
+
+  const clearAllTimers = () => {
+    activeTimers.current.forEach((t) => clearInterval(t));
+    activeTimers.current = [];
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let isCancelled = false;
-
     function runSequence() {
-      if (isCancelled) return;
+      clearAllTimers();
       setTypedText("");
       setRiverResponded(false);
       setIsHighlighted(false);
@@ -296,47 +314,48 @@ function AnimatedRow2() {
       let index = 0;
 
       const typeInterval = setInterval(() => {
-        if (isCancelled) {
-          clearInterval(typeInterval);
-          return;
-        }
         if (index <= fullText.length) {
           setTypedText(fullText.slice(0, index));
           index++;
         } else {
           clearInterval(typeInterval);
           
-          setTimeout(() => {
-            if (isCancelled) return;
+          const t1 = setTimeout(() => {
             setRiverResponded(true);
 
-            setTimeout(() => {
-              if (isCancelled) return;
+            const t2 = setTimeout(() => {
               setIsHighlighted(true);
 
-              setTimeout(() => {
-                if (isCancelled) return;
+              const t3 = setTimeout(() => {
                 setIsLogged(true);
-
-                setTimeout(() => {
-                  if (isCancelled) return;
-                  runSequence();
-                }, 7000);
+                isRunning.current = false;
               }, 600);
+              activeTimers.current.push(t3);
             }, 500);
+            activeTimers.current.push(t2);
           }, 400);
+          activeTimers.current.push(t1);
         }
       }, 35);
+      activeTimers.current.push(typeInterval);
     }
 
     const trigger = ScrollTrigger.create({
       trigger: rowRef.current,
       start: "top 75%",
       onEnter: () => {
-        if (!isStarted.current) {
-          isStarted.current = true;
+        if (!isRunning.current) {
+          isRunning.current = true;
           runSequence();
         }
+      },
+      onLeave: () => {
+        clearAllTimers();
+        isRunning.current = false;
+      },
+      onLeaveBack: () => {
+        clearAllTimers();
+        isRunning.current = false;
       },
     });
 
@@ -357,13 +376,13 @@ function AnimatedRow2() {
     );
 
     return () => {
-      isCancelled = true;
+      clearAllTimers();
       trigger.kill();
     };
   }, []);
 
   return (
-    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10 min-h-[460px]">
+    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
       {/* Left: PDF Bill Card with Light Frosted River Floating Capsule */}
       <div className="lg:col-span-7 order-2 lg:order-1 relative pt-4 sm:pt-5">
         
@@ -470,7 +489,7 @@ function AnimatedRow2() {
       </div>
 
       {/* Right: Soundwave & Typing Speech Bubble (Zero-Layout-Shift Fixed Box) */}
-      <div className="lg:col-span-5 space-y-4 order-1 lg:order-2 min-h-[190px] flex flex-col justify-start">
+      <div className="lg:col-span-5 space-y-4 order-1 lg:order-2 flex flex-col justify-start">
         <div className="flex items-center gap-2">
           <span className="sound-bars">
             <i></i><i></i><i></i><i></i><i></i>
@@ -478,15 +497,27 @@ function AnimatedRow2() {
           <span className="text-xs font-mono text-[#8C8885]">text / voice command</span>
         </div>
 
-        {/* User Speech Bubble */}
-        <div className="p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md min-h-[84px] flex items-center">
-          <span>&ldquo;{typedText}&rdquo;</span>
+        {/* User Speech Bubble with Invisible Height Anchor (0px Layout Shift) */}
+        <div className="relative p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md flex items-center min-h-[76px] sm:min-h-[84px]">
+          {/* Invisible placeholder preserving 100% stable wrapped height */}
+          <span className="invisible opacity-0 select-none pointer-events-none" aria-hidden="true">
+            &ldquo;{fullText}&rdquo;
+          </span>
+          {/* Real-time typing overlay */}
+          <span className="absolute inset-x-4 sm:inset-x-5 flex items-center">
+            <span>&ldquo;{typedText || (isRunning.current ? "" : fullText)}&rdquo;</span>
+            {typedText.length > 0 && typedText.length < fullText.length && (
+              <span className="inline-block w-0.5 h-4 bg-[#172554] ml-0.5 animate-pulse" />
+            )}
+          </span>
         </div>
 
-        {/* River Response Bubble Slot */}
-        <div className="h-8 flex items-center">
+        {/* River Response Bubble Slot (Fixed Height to Prevent Layout Shift) */}
+        <div className="h-9 flex items-center">
           <div className={`transition-all duration-500 transform ${
-            riverResponded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-1 scale-95 pointer-events-none"
+            riverResponded || isLogged
+              ? "opacity-100 translate-y-0 scale-100"
+              : "opacity-0 translate-y-1 scale-95 pointer-events-none"
           }`}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-[#172554] text-white text-xs font-mono font-medium shadow-sm">
               <span>recorded!</span>
@@ -504,17 +535,21 @@ function AnimatedRow3() {
   const [isDepositLanded, setIsDepositLanded] = useState(false);
   const [invoiceCleared, setInvoiceCleared] = useState(false);
   const rowRef = useRef<HTMLDivElement | null>(null);
-  const isStarted = useRef(false);
+  const isRunning = useRef(false);
+  const activeTimers = useRef<NodeJS.Timeout[]>([]);
 
   const fullText = "Alpha paid the invoice with 10% TDS";
+
+  const clearAllTimers = () => {
+    activeTimers.current.forEach((t) => clearInterval(t));
+    activeTimers.current = [];
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let isCancelled = false;
-
     function runSequence() {
-      if (isCancelled) return;
+      clearAllTimers();
       setTypedText("");
       setRiverResponded(false);
       setIsDepositLanded(false);
@@ -522,47 +557,48 @@ function AnimatedRow3() {
       let index = 0;
 
       const typeInterval = setInterval(() => {
-        if (isCancelled) {
-          clearInterval(typeInterval);
-          return;
-        }
         if (index <= fullText.length) {
           setTypedText(fullText.slice(0, index));
           index++;
         } else {
           clearInterval(typeInterval);
           
-          setTimeout(() => {
-            if (isCancelled) return;
+          const t1 = setTimeout(() => {
             setRiverResponded(true);
 
-            setTimeout(() => {
-              if (isCancelled) return;
+            const t2 = setTimeout(() => {
               setIsDepositLanded(true);
 
-              setTimeout(() => {
-                if (isCancelled) return;
+              const t3 = setTimeout(() => {
                 setInvoiceCleared(true);
-
-                setTimeout(() => {
-                  if (isCancelled) return;
-                  runSequence();
-                }, 7000);
+                isRunning.current = false;
               }, 600);
+              activeTimers.current.push(t3);
             }, 500);
+            activeTimers.current.push(t2);
           }, 400);
+          activeTimers.current.push(t1);
         }
       }, 35);
+      activeTimers.current.push(typeInterval);
     }
 
     const trigger = ScrollTrigger.create({
       trigger: rowRef.current,
       start: "top 75%",
       onEnter: () => {
-        if (!isStarted.current) {
-          isStarted.current = true;
+        if (!isRunning.current) {
+          isRunning.current = true;
           runSequence();
         }
+      },
+      onLeave: () => {
+        clearAllTimers();
+        isRunning.current = false;
+      },
+      onLeaveBack: () => {
+        clearAllTimers();
+        isRunning.current = false;
       },
     });
 
@@ -583,15 +619,15 @@ function AnimatedRow3() {
     );
 
     return () => {
-      isCancelled = true;
+      clearAllTimers();
       trigger.kill();
     };
   }, []);
 
   return (
-    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10 min-h-[460px]">
+    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
       {/* Left: Soundwave & Typing Speech Bubble (Zero-Layout-Shift Fixed Box) */}
-      <div className="lg:col-span-5 space-y-4 min-h-[190px] flex flex-col justify-start">
+      <div className="lg:col-span-5 space-y-4 flex flex-col justify-start">
         <div className="flex items-center gap-2">
           <span className="sound-bars">
             <i></i><i></i><i></i><i></i><i></i>
@@ -599,15 +635,27 @@ function AnimatedRow3() {
           <span className="text-xs font-mono text-[#8C8885]">text / voice command</span>
         </div>
 
-        {/* User Speech Bubble */}
-        <div className="p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md min-h-[84px] flex items-center">
-          <span>&ldquo;{typedText}&rdquo;</span>
+        {/* User Speech Bubble with Invisible Height Anchor (0px Layout Shift) */}
+        <div className="relative p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md flex items-center min-h-[76px] sm:min-h-[84px]">
+          {/* Invisible placeholder preserving 100% stable wrapped height */}
+          <span className="invisible opacity-0 select-none pointer-events-none" aria-hidden="true">
+            &ldquo;{fullText}&rdquo;
+          </span>
+          {/* Real-time typing overlay */}
+          <span className="absolute inset-x-4 sm:inset-x-5 flex items-center">
+            <span>&ldquo;{typedText || (isRunning.current ? "" : fullText)}&rdquo;</span>
+            {typedText.length > 0 && typedText.length < fullText.length && (
+              <span className="inline-block w-0.5 h-4 bg-[#172554] ml-0.5 animate-pulse" />
+            )}
+          </span>
         </div>
 
-        {/* River Response Bubble Slot */}
-        <div className="h-8 flex items-center">
+        {/* River Response Bubble Slot (Fixed Height to Prevent Layout Shift) */}
+        <div className="h-9 flex items-center">
           <div className={`transition-all duration-500 transform ${
-            riverResponded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-1 scale-95 pointer-events-none"
+            riverResponded || invoiceCleared
+              ? "opacity-100 translate-y-0 scale-100"
+              : "opacity-0 translate-y-1 scale-95 pointer-events-none"
           }`}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-[#172554] text-white text-xs font-mono font-medium shadow-sm">
               <span>reconciled!</span>

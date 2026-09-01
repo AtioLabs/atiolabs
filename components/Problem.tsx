@@ -31,7 +31,7 @@ export default function Problem() {
             trigger: sectionRef.current,
             start: "top 75%",
             end: "top 30%",
-            scrub: 1,
+            scrub: true,
           },
         }
       );
@@ -71,7 +71,7 @@ export default function Problem() {
           trigger: sectionRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: 1.2,
+          scrub: true,
         },
       });
     }, sectionRef);
