@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import PixelSpriteSheet from "./PixelSpriteSheet";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MagneticFloater from "./MagneticFloater";
 
 export default function Problem() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -83,29 +86,75 @@ export default function Problem() {
     <section
       ref={sectionRef}
       id="problem"
-      className="py-28 md:py-40 relative bg-[#F7F4EC]/60 border-y border-[#141413]/06 overflow-hidden"
+      className="py-20 md:py-28 relative bg-[#F7F4EC]/60 border-y border-[#141413]/06 overflow-hidden"
     >
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         
-        {/* Floating Workday Time Tag (Top-Left) */}
-        <div className="problem-floater-left hidden lg:block absolute left-4 xl:left-12 top-10 select-none animate-float-slow -rotate-6 z-20">
-          <div className="px-4 py-2 rounded-2xl bg-white border border-[#141413]/10 shadow-lg text-xs font-mono text-[#57534E]">
-            <span className="text-[#DC2626] font-bold">09:00 AM – 05:00 PM</span>
-            <span className="block text-[10px] text-[#8C8885]">manual ledgering & tax checks</span>
-          </div>
+        {/* The Late Grind Floater with 4-Frame Animated Tea Spritesheet (Top-Left) */}
+        <div className="problem-floater-left hidden lg:block absolute left-4 xl:left-12 top-6 z-20 select-none">
+          <MagneticFloater draggable={true} tiltAngle={14} floatAmplitudeY={6} floatDuration={3.6}>
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_24px_rgba(20,20,19,0.06)] -rotate-2 group hover:scale-105 transition-all">
+              <PixelSpriteSheet
+                sheetSrc="/sprites/tea-spritesheet.png"
+                totalFrames={4}
+                frameWidth={26}
+                frameHeight={52}
+                durationSeconds={1.6}
+                alt="Tea drinking animation"
+              />
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]"></span>
+                <span className="font-mono text-xs text-[#57534E] whitespace-nowrap">
+                  cold tea · still matching invoices
+                </span>
+              </div>
+            </div>
+          </MagneticFloater>
         </div>
 
-        {/* Floating Red Rubber Stamp (Bottom-Right) with Impact Drop */}
+        {/* The Lost Weekend Floater with Sunday Spreadsheet Desk (Bottom-Right) */}
         <div
           ref={stampRef}
-          className="hidden lg:block absolute right-4 xl:right-12 bottom-12 select-none z-20"
+          className="hidden lg:block absolute right-4 xl:right-12 bottom-6 z-20 select-none"
         >
-          <div className="px-4 py-2 rounded-2xl bg-[#EF4444]/08 border border-[#EF4444]/30 shadow-lg text-xs font-mono text-[#DC2626] font-bold uppercase tracking-wider">
-            ENTERED IN BOOKS ✓
+          <MagneticFloater draggable={true} tiltAngle={14} floatAmplitudeY={6} floatDuration={3.2}>
+            <div className="inline-flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_24px_rgba(20,20,19,0.06)] rotate-2 group hover:scale-105 transition-all">
+              <Image
+                src="/sprites/pixel-spreadsheet-desk.png"
+                alt="Sunday spreadsheets"
+                width={56}
+                height={53}
+                className="w-13 h-auto object-contain [image-rendering:pixelated]"
+              />
+              <div className="flex flex-col text-left">
+                <span className="font-mono text-xs text-[#78716C] font-semibold">( ; _ ; )</span>
+                <span className="font-sans text-xs text-[#57534E] font-medium whitespace-nowrap">
+                  sunday spent on spreadsheets
+                </span>
+              </div>
+            </div>
+          </MagneticFloater>
+        </div>
+
+        {/* Mobile View: Tea Drinker Eyebrow (Visible on screens < lg) */}
+        <div className="flex lg:hidden justify-center mb-6">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-sm text-xs">
+            <PixelSpriteSheet
+              sheetSrc="/sprites/tea-spritesheet.png"
+              totalFrames={4}
+              frameWidth={22}
+              frameHeight={44}
+              durationSeconds={1.6}
+              alt="Tea drinking animation"
+            />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]"></span>
+            <span className="font-mono text-[11px] text-[#57534E]">
+              cold tea · still matching invoices
+            </span>
           </div>
         </div>
 
-        {/* Apple Notes Manifesto Document (Clean, Ending on Punchline) */}
+        {/* Apple Notes Manifesto Document (Clean, Pristine, Traffic Lights Completely Clear) */}
         <div ref={cardRef} className="max-w-[760px] mx-auto relative z-10">
           <div className="mac-window bg-[#FFFEFA] border border-[#141413]/12 shadow-[0_24px_70px_rgba(20,20,19,0.09),0_1px_0_rgba(255,255,255,1)_inset]">
             
@@ -154,6 +203,25 @@ export default function Problem() {
 
             </div>
 
+          </div>
+        </div>
+
+        {/* Mobile View: Sunday Spreadsheet Desk (Visible on screens < lg) */}
+        <div className="flex lg:hidden justify-center mt-6">
+          <div className="inline-flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-sm text-xs">
+            <Image
+              src="/sprites/pixel-spreadsheet-desk.png"
+              alt="Sunday spreadsheets"
+              width={48}
+              height={45}
+              className="w-11 h-auto object-contain [image-rendering:pixelated]"
+            />
+            <div className="flex flex-col text-left">
+              <span className="font-mono text-[11px] text-[#78716C] font-semibold">( ; _ ; )</span>
+              <span className="font-sans text-[11px] text-[#57534E] font-medium">
+                sunday spent on spreadsheets
+              </span>
+            </div>
           </div>
         </div>
 

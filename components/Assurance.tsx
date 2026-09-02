@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+import PixelSpriteSheet from "./PixelSpriteSheet";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -102,14 +104,25 @@ export default function Assurance() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="assurance" className="py-28 md:py-40 relative overflow-hidden">
+    <section ref={sectionRef} id="assurance" className="py-20 md:py-28 relative overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         
-        {/* Section Header with Centered Balanced Badge (Zero Overlap) */}
-        <div className="text-center max-w-3xl mx-auto mb-20 md:mb-28 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#15803D]/20 shadow-sm text-xs font-mono text-[#15803D] font-bold mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#15803D] animate-pulse"></span>
-            <span>ZERO VARIANCE · BALANCED ✓</span>
+        {/* Section Header with 4-Frame Animated Sleeping Spritesheet */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 relative z-10 flex flex-col items-center">
+          {/* Animated Eyebrow */}
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#15803D]/20 shadow-sm text-xs mb-6 sm:mb-8 group hover:scale-105 transition-all">
+            <PixelSpriteSheet
+              sheetSrc="/sprites/sleeping-spritesheet.png"
+              totalFrames={4}
+              frameWidth={44}
+              frameHeight={41}
+              durationSeconds={1.8}
+              alt="Sleeping animation cycle"
+            />
+            <span className="font-mono text-xs text-[#15803D] font-bold">{`{ ^-^ }`}</span>
+            <span className="font-sans text-xs text-[#14532D] font-medium whitespace-nowrap">
+              sleep through the audit
+            </span>
           </div>
 
           <h2

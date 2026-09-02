@@ -2,14 +2,17 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import PixelSpriteSheet from "./PixelSpriteSheet";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MagneticFloater from "./MagneticFloater";
 
 const KAOMOJI_EXPRESSIONS = ["{ ^-^ }", "{ ^o^ }", "(•‿•)", "{ ^-^ }"];
 
 export default function Hero() {
   const [kaomojiIndex, setKaomojiIndex] = useState(0);
+  const [mobileCompanionIndex, setMobileCompanionIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const centerTextRef = useRef<HTMLDivElement | null>(null);
   const landscapeRef = useRef<HTMLDivElement | null>(null);
@@ -19,6 +22,13 @@ export default function Hero() {
       setKaomojiIndex((prev) => (prev + 1) % KAOMOJI_EXPRESSIONS.length);
     }, 2800);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const companionInterval = setInterval(() => {
+      setMobileCompanionIndex((prev) => (prev === 0 ? 1 : 0));
+    }, 3800);
+    return () => clearInterval(companionInterval);
   }, []);
 
   useEffect(() => {
@@ -207,29 +217,56 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ARTIFACT 04: Chill Kaomoji Badge (Bottom-Left, Desktop & Tablet) */}
+        {/* ARTIFACT 04: Freedom Floater with 4-Frame Running Spritesheet (Desktop Only) */}
         <div
           style={{ touchAction: "none" }}
-          className="gsap-draggable-card parallax-card-bottom-left hidden sm:block absolute left-4 sm:left-12 bottom-6 sm:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
+          className="gsap-draggable-card parallax-card-bottom-left hidden md:block absolute left-4 lg:left-12 bottom-8 lg:bottom-12 z-20 select-none rotate-2 sm:rotate-3 cursor-grab active:cursor-grabbing"
         >
-          <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-sm sm:shadow-md text-center hover:scale-105 transition-transform">
-            <span className="font-mono text-[10px] sm:text-xs text-[#172554] font-medium pointer-events-none">
-              (⌐■_■) 0.4s · auto
-            </span>
-          </div>
+          <MagneticFloater draggable={false} tiltAngle={14} floatAmplitudeY={6} floatDuration={3.4}>
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_30px_rgba(20,20,19,0.08)] text-center transition-all group hover:scale-105">
+              <PixelSpriteSheet
+                sheetSrc="/sprites/running-spritesheet.png"
+                totalFrames={4}
+                frameWidth={24}
+                frameHeight={38}
+                durationSeconds={0.65}
+                alt="Running sprint animation"
+              />
+              <span className="font-mono text-xs text-[#172554] font-semibold pointer-events-none">
+                (⌐■_■)
+              </span>
+              <span className="font-sans text-xs text-[#141413] font-medium pointer-events-none whitespace-nowrap">
+                go build something else
+              </span>
+            </div>
+          </MagneticFloater>
         </div>
 
-        {/* ARTIFACT 05: Balanced Equilibrium Seal (Desktop Widescreen) */}
+        {/* ARTIFACT 05: Origin Floater with 4-Frame Pushup Spritesheet (Desktop Only) */}
         <div
           style={{ touchAction: "none" }}
-          className="gsap-draggable-card hidden xl:block absolute right-32 top-1/2 -translate-y-8 z-20 select-none -rotate-3 cursor-grab active:cursor-grabbing"
+          className="gsap-draggable-card hidden md:block absolute right-4 lg:right-24 top-1/2 -translate-y-8 z-20 select-none -rotate-2 cursor-grab active:cursor-grabbing"
         >
-          <div className="px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#15803D]/20 shadow-md text-center hover:scale-105 transition-transform">
-            <span className="font-mono text-[11px] text-[#15803D] font-bold pointer-events-none">
-              BALANCED · ₹0.00 VARIANCE
-            </span>
-          </div>
+          <MagneticFloater draggable={false} tiltAngle={14} floatAmplitudeY={6} floatDuration={3.8}>
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_30px_rgba(20,20,19,0.08)] text-center transition-all group hover:scale-105">
+              <PixelSpriteSheet
+                sheetSrc="/sprites/pushups-spritesheet.png"
+                totalFrames={4}
+                frameWidth={50}
+                frameHeight={28}
+                durationSeconds={1.2}
+                alt="Pushups exercise animation"
+              />
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#15803D] animate-pulse shrink-0"></span>
+                <span className="font-sans text-xs text-[#141413] font-medium pointer-events-none whitespace-nowrap">
+                  your computer has a job now
+                </span>
+              </div>
+            </div>
+          </MagneticFloater>
         </div>
+
 
         {/* HERO CENTER TEXT STAGE */}
         <div
@@ -259,6 +296,54 @@ export default function Hero() {
               className="px-5 sm:px-7 py-3.5 sm:py-4 rounded-full bg-white/90 backdrop-blur-md hover:bg-white text-[#141413] border border-[#141413]/10 text-sm sm:text-base font-sans font-medium transition-all shadow-sm cursor-pointer hover:scale-105"
             >
               How it works →
+            </button>
+          </div>
+
+          {/* Mobile-Only Single Living Dynamic Pill (Zero Parallel Stacking!) */}
+          <div className="flex md:hidden justify-center mt-7 z-20">
+            <button
+              onClick={() => setMobileCompanionIndex((prev) => (prev === 0 ? 1 : 0))}
+              aria-label="Toggle animated status"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-[0_4px_16px_rgba(20,20,19,0.06)] text-center cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95"
+            >
+              {mobileCompanionIndex === 0 ? (
+                <div key="pushup" className="inline-flex items-center gap-2 animate-fadeIn">
+                  <PixelSpriteSheet
+                    sheetSrc="/sprites/pushups-spritesheet.png"
+                    totalFrames={4}
+                    frameWidth={38}
+                    frameHeight={22}
+                    durationSeconds={1.2}
+                    alt="Pushups exercise animation"
+                  />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#15803D] animate-pulse shrink-0"></span>
+                  <span className="font-sans text-[11px] text-[#141413] font-medium whitespace-nowrap">
+                    your computer has a job now
+                  </span>
+                </div>
+              ) : (
+                <div key="runner" className="inline-flex items-center gap-2 animate-fadeIn">
+                  <PixelSpriteSheet
+                    sheetSrc="/sprites/running-spritesheet.png"
+                    totalFrames={4}
+                    frameWidth={18}
+                    frameHeight={30}
+                    durationSeconds={0.65}
+                    alt="Running sprint animation"
+                  />
+                  <span className="font-mono text-[10px] text-[#172554] font-semibold">
+                    (⌐■_■)
+                  </span>
+                  <span className="font-sans text-[11px] text-[#141413] font-medium whitespace-nowrap">
+                    go build something else
+                  </span>
+                </div>
+              )}
+              {/* Subtle tap/toggle indicator dots */}
+              <div className="flex gap-1 ml-0.5">
+                <span className={`w-1 h-1 rounded-full transition-colors ${mobileCompanionIndex === 0 ? "bg-[#141413]/40" : "bg-[#141413]/15"}`} />
+                <span className={`w-1 h-1 rounded-full transition-colors ${mobileCompanionIndex === 1 ? "bg-[#141413]/40" : "bg-[#141413]/15"}`} />
+              </div>
             </button>
           </div>
         </div>

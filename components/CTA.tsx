@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import PixelSpriteSheet from "./PixelSpriteSheet";
 
 const GOOGLE_SHEET_URL =
   "https://script.google.com/macros/s/AKfycbwxxnPUiwiVjlhnNcgvebAa3JBs8ZJS-vms2YLTCX4_tnDx5CnWIC_lar2jPz3RXeoPcg/exec";
@@ -50,16 +52,32 @@ export default function CTA() {
   };
 
   return (
-    <section id="waitlist" className="py-24 sm:py-32 md:py-48 relative bg-[#FBFAF6]">
-      <div className="max-w-[880px] mx-auto px-4 sm:px-6 md:px-12 text-center">
+    <section id="waitlist" className="py-20 sm:py-24 md:py-32 relative bg-[#FBFAF6] overflow-hidden">
+      <div className="max-w-[880px] mx-auto px-4 sm:px-6 md:px-12 text-center relative z-10">
         
+        {/* Animated Eyebrow: 4-Frame Walking Spritesheet */}
+        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#F59E0B]/25 shadow-sm text-xs mb-6 sm:mb-8 group hover:scale-105 transition-all">
+          <PixelSpriteSheet
+            sheetSrc="/sprites/walking-spritesheet.png"
+            totalFrames={4}
+            frameWidth={24}
+            frameHeight={53}
+            durationSeconds={0.8}
+            alt="Walking home cycle"
+          />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] shrink-0"></span>
+          <span className="font-mono text-[11px] sm:text-xs text-[#57534E]">
+            told river , went home
+          </span>
+        </div>
+
         {/* Verbatim Display Headline */}
         <h2 className="font-display font-medium text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.035em] text-[#141413] leading-[1.08] mb-8 sm:mb-12">
           Leave the accounting to River
         </h2>
 
         {/* Sleek, Compact Waitlist Form Pill */}
-        <div className="max-w-md mx-auto">
+        <div className="max-w-md mx-auto relative">
           {status === "success" ? (
             <div className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[#15803D]/08 border border-[#15803D]/20 text-center animate-fadeIn">
               <span className="text-xs font-mono font-bold text-[#15803D] uppercase tracking-wider block mb-1.5">

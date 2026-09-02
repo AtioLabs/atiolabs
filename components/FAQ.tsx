@@ -87,11 +87,11 @@ export default function FAQ() {
   };
 
   return (
-    <section ref={sectionRef} id="faq" className="py-32 md:py-48 relative">
+    <section ref={sectionRef} id="faq" className="py-20 md:py-28 relative">
       <div className="max-w-[920px] mx-auto px-6 md:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-20 md:mb-28">
+        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <h2 className="font-display font-medium text-4xl sm:text-5xl md:text-6xl tracking-[-0.03em] text-[#141413] leading-[1.12]">
             Frequently Asked Questions
           </h2>

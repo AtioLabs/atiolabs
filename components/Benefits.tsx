@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MagneticFloater from "./MagneticFloater";
 
 export default function Benefits() {
   const [selectedPrompt, setSelectedPrompt] = useState(0);
@@ -73,19 +75,12 @@ export default function Benefits() {
     <section
       ref={sectionRef}
       id="benefits"
-      className="py-28 md:py-40 relative bg-[#F7F4EC]/60 border-y border-[#141413]/06 overflow-hidden"
+      className="py-20 md:py-28 relative bg-[#F7F4EC]/60 border-y border-[#141413]/06 overflow-hidden"
     >
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         
-        {/* Floating Chill Badge (Left) */}
-        <div className="benefits-floater hidden lg:block absolute left-8 top-16 select-none animate-float-slow -rotate-6 z-20">
-          <div className="px-4 py-2 rounded-full bg-white border border-[#141413]/10 shadow-md text-xs font-mono text-[#172554]">
-            (⌐■_■) 0.4s · auto-coded
-          </div>
-        </div>
-
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-6 mb-16 relative z-10">
+        <div className="max-w-3xl mx-auto text-center space-y-4 mb-12 relative z-10">
           <h2 className="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[#141413] leading-[1.12]">
             You don&apos;t need to know accounting
           </h2>
@@ -95,8 +90,26 @@ export default function Benefits() {
           </p>
         </div>
 
-        {/* Beautiful & Cute Interactive Conversational Stage with Dynamic Reactive Kaomoji */}
+        {/* Eyebrow with Chilling Founder (Visible on all screen sizes) */}
+        <div className="flex justify-center mb-6 sm:mb-8">
+          <div className="inline-flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#141413]/10 shadow-sm text-xs group hover:scale-105 transition-all">
+            <Image
+              src="/sprites/pixel-chilling.png"
+              alt="Chilling founder sprite"
+              width={56}
+              height={38}
+              className="w-12 sm:w-14 h-auto object-contain [image-rendering:pixelated]"
+            />
+            <span className="font-mono text-xs text-[#172554] font-bold">(˶ᵔ ᵕ ᵔ˶)</span>
+            <span className="font-sans text-[11px] sm:text-xs text-[#141413] font-medium whitespace-nowrap">
+              forgot i had accounting
+            </span>
+          </div>
+        </div>
+
+        {/* Beautiful & Cute Interactive Conversational Stage */}
         <div ref={cardRef} className="max-w-2xl mx-auto relative z-10">
+
           <div className="mac-window bg-white shadow-2xl p-6 sm:p-10 space-y-6">
             
             {/* Window Titlebar */}

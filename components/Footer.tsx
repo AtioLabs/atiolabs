@@ -91,7 +91,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="border-t border-[#141413]/08 bg-[#FBFAF6] pt-24 pb-16 text-xs text-[#686461] select-none overflow-hidden relative">
+    <footer ref={footerRef} className="border-t border-[#141413]/08 bg-[#FBFAF6] pt-16 md:pt-20 pb-16 text-xs text-[#686461] select-none overflow-hidden relative">
       <div className="max-w-[1240px] mx-auto px-6 md:px-12">
         
         {/* Top Row: Institutional Brand & Navigation Directory */}
@@ -187,7 +187,7 @@ export default function Footer() {
         </div>
 
         {/* 100% LOCKED BASELINE "R I V E R" MONUMENT */}
-        <div ref={monumentRef} className="py-20 md:py-32 text-center relative overflow-hidden flex items-center justify-center gap-6 sm:gap-12">
+        <div ref={monumentRef} className="py-14 md:py-20 text-center relative overflow-hidden flex items-center justify-center gap-6 sm:gap-12">
           
           {/* Left Converging River Silhouette Mascot */}
           <div className="converging-mascot-left w-10 h-10 sm:w-14 sm:h-14 relative hidden sm:flex items-center justify-center shrink-0">

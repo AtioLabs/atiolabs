@@ -783,11 +783,11 @@ function AnimatedRow3() {
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-28 md:py-40 relative">
+    <section id="how-it-works" className="py-20 md:py-28 relative">
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         
         {/* Section Headline */}
-        <div className="text-center max-w-3xl mx-auto mb-20 md:mb-32">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <h2 className="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[#141413] leading-[1.12]">
             Talk to it like a person, in River or on WhatsApp
           </h2>
@@ -800,14 +800,14 @@ export default function HowItWorks() {
         </div>
 
         {/* 3 Living Interactive Rows */}
-        <div className="space-y-28 md:space-y-40">
+        <div className="space-y-20 md:space-y-28">
           <AnimatedRow1 />
           <AnimatedRow2 />
           <AnimatedRow3 />
         </div>
 
         {/* Footer Editorial Callout */}
-        <div className="max-w-4xl mx-auto mt-28 md:mt-36 p-8 md:p-14 rounded-3xl bg-white border border-[#141413]/08 shadow-sm text-center relative z-10">
+        <div className="max-w-4xl mx-auto mt-16 md:mt-24 p-8 md:p-14 rounded-3xl bg-white border border-[#141413]/08 shadow-sm text-center relative z-10">
           <p className="font-display font-medium text-2xl sm:text-3xl md:text-4xl text-[#141413] leading-relaxed tracking-tight">
             River takes care of the accounting behind each command. It creates the invoice, records the bill, keeps track of what you&apos;re owed, and updates the books when money comes in.
           </p>
