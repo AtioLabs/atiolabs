@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   const [visible, setVisible] = useState(true);
@@ -57,11 +58,11 @@ export default function Navbar() {
     >
       <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
         
-        {/* Brand Lockup (Left) */}
-        <nav className="pointer-events-auto flex items-center gap-2 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-full bg-[#FBFAF6]/90 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_30px_rgba(20,20,19,0.06)] select-none shrink-0">
+        {/* Brand Lockup & Direct Navigation (Left) */}
+        <nav className="pointer-events-auto flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#FBFAF6]/90 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_30px_rgba(20,20,19,0.06)] select-none shrink-0">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2 sm:gap-2.5 group cursor-pointer bg-transparent border-0 p-0 outline-none select-none"
+            className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer bg-transparent border-0 p-0 outline-none select-none"
             aria-label="Asynarch River Home"
           >
             {/* Slim Natural Asynarch Wave Mark */}
@@ -69,39 +70,45 @@ export default function Navbar() {
               <Image
                 src="/asynarch-logo.png"
                 alt="Asynarch"
-                width={1672}
-                height={941}
-                className="h-4 sm:h-5 md:h-6 w-auto object-contain"
+                width={1159}
+                height={727}
+                className="h-3.5 sm:h-4 md:h-4.5 w-auto object-contain"
                 priority
               />
             </div>
 
             <span className="text-[11px] sm:text-xs md:text-sm font-mono text-[#8C8885] font-semibold tracking-tight">
-              asynarch
+              Asynarch
             </span>
 
-            <span className="text-[#8C8885]/30 font-mono text-xs">/</span>
+            <span className="text-[#8C8885]/30 font-mono text-xs px-0.5">/</span>
 
-            {/* River Pixel Mac */}
+            {/* River Computer Mascot */}
             <div className="flex items-center justify-center group-hover:scale-105 transition-transform">
               <Image
                 src="/river-logo.png"
                 alt="River"
-                width={1402}
-                height={1122}
-                className="h-4 sm:h-5 md:h-6 w-auto object-contain"
+                width={1192}
+                height={1063}
+                className="h-3.5 sm:h-4 md:h-4.5 w-auto object-contain"
                 priority
               />
             </div>
 
             <span className="font-medium text-xs sm:text-sm md:text-base tracking-tight text-[#141413]">
-              river
+              River
             </span>
           </button>
         </nav>
 
-        {/* Mobile Action Button (< 768px) */}
-        <div className="pointer-events-auto flex md:hidden items-center">
+        {/* Mobile Action Buttons (< 768px) */}
+        <div className="pointer-events-auto flex md:hidden items-center gap-2">
+          <Link
+            href="/about"
+            className="px-3 py-1.5 rounded-full bg-[#FBFAF6]/90 backdrop-blur-md border border-[#141413]/10 text-xs font-mono text-[#57534E] hover:text-[#141413] shadow-xs transition-colors"
+          >
+            About
+          </Link>
           <button
             onClick={() => scrollToSection("waitlist")}
             className="btn-indigo px-3.5 py-2 text-xs font-sans font-medium rounded-full cursor-pointer shadow-sm"
@@ -145,6 +152,12 @@ export default function Navbar() {
             >
               FAQ
             </button>
+            <Link
+              href="/about"
+              className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"
+            >
+              About
+            </Link>
           </div>
 
           <div className="hidden lg:block w-[1px] h-3.5 bg-[#141413]/10"></div>

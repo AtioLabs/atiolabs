@@ -1,0 +1,62 @@
+# Conversion Analysis: Asynarch homepage
+
+## Context
+
+- **Page type:** Pre-launch product homepage
+- **Primary conversion goal:** Join the River waitlist
+- **Likely traffic context:** Mixed direct, social, referral, and future organic traffic; no conversion analytics were provided, so findings are qualitative rather than measured.
+
+## What Is Already Working
+
+- The hero idea—**“The Accounting, as it happens”**—is ownable and supported by a clear subheadline: “Tell River what happened. It does the rest.”
+- The page demonstrates the workflow rather than relying on generic AI claims. Invoice creation, bill ingestion, reconciliation, GST, TDS, and ledger effects are concrete.
+- The editorial serif, restrained navy/cream palette, landscape visual, and small system annotations give River a distinctive personality in a generic SaaS category.
+- The page handles core objections in the FAQ, including migration, accountants, accounting knowledge, invoices, and Indian tax treatment.
+
+## Top Issues (Priority Order)
+
+1. **The ideal customer is not explicit above the fold** — hero — state who River is built for so visitors can self-qualify immediately. The page currently explains what River does but not whether it is for founders, small businesses, finance teams, or accountants.
+2. **The waitlist ask arrives before sufficient trust** — hero and early page — add an early, truthful trust layer: product status, control model, security/data-handling facts, founder/company credibility, or named design-partner proof when available. Accounting buyers are being asked to entrust sensitive financial data.
+3. **The CTA is clear but underspecified** — “Join the waitlist” — explain what happens next and what early access includes. Reduce uncertainty without manufactured scarcity or urgency.
+4. **The product story is concrete but visually slow to scan** — middle workflow section — preserve the demonstrations, but add short outcome labels that let a visitor understand the workflow while skimming: “Create invoices,” “Record bills,” “Reconcile payments,” and “Keep GST/TDS correct.”
+5. **The long page delays the strongest control message** — “The books don’t move unless they balance” — move a compact version of this assurance closer to the first CTA. In accounting automation, control and auditability are conversion arguments, not secondary features.
+
+## Copy Recommendations
+
+- **Headline:** “The Accounting, as it happens” → keep as the brand headline, but pair it with a category/ICP eyebrow such as **“AI accounting for Indian businesses”** if that audience statement is accurate.
+- **Subheadline:** “Tell River what happened. It does the rest.” → **“Tell River what happened—in River or WhatsApp. It creates the entry, applies GST or TDS, and posts only when the books balance.”**
+- **Primary CTA:** “Join the waitlist” → **“Get early access”** or **“Join River’s early access”**; support it with a one-line expectation about follow-up.
+- **Secondary CTA:** “How it works” → keep; it serves visitors who need evidence before committing.
+
+## Recommended First Experiment
+
+**Hypothesis:** Clarifying the ideal customer and moving River’s control model beside the hero CTA will increase qualified waitlist starts because visitors will understand both relevance and safety before being asked to act.
+
+Build a focused acquisition page or hero variant with:
+
+1. explicit audience/category language;
+2. a compressed three-step product demonstration;
+3. pre-post verification and tax handling near the first CTA;
+4. a transparent early-access expectation;
+5. no invented metrics, logos, testimonials, or urgency.
+
+Measure waitlist CTA clicks and completed submissions separately. Conversion rate, traffic source mix, and downstream form data are needed before calling the result.
+
+## Benchmark Evidence
+
+Current accounting/fintech homepage benchmarks consistently emphasize:
+
+- a named financial workflow in the hero;
+- one primary CTA;
+- product UI or workflow visualization;
+- an early trust/compliance layer;
+- specific, verifiable outcomes rather than abstract AI claims.
+
+Sources:
+
+- [Asynarch homepage](https://www.asynarch.com/)
+- [Accounting homepage benchmark](https://www.webanatomy.ai/best-landing-pages/accounting)
+- [Fintech homepage benchmark](https://www.webanatomy.ai/best-landing-pages/fintech)
+- [Fintech SaaS landing-page patterns](https://designrevision.com/blog/fintech-saas-landing-pages)
+- [Maxima](https://www.maxima.ai/)
+- [Digits](https://digits.com/)

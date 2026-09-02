@@ -178,3 +178,32 @@ body::before {
 .animate-fadeIn {
   animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+@keyframes cloudDriftSlow {
+  0% { transform: translateX(-180px); }
+  100% { transform: translateX(calc(100vw + 180px)); }
+}
+
+@keyframes cloudDriftFast {
+  0% { transform: translateX(-240px); }
+  100% { transform: translateX(calc(100vw + 240px)); }
+}
+
+@keyframes birdGlide {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(45px, -12px); }
+  100% { transform: translate(110px, -4px); }
+}
+
+.animate-cloud-slow {
+  animation: cloudDriftSlow 65s linear infinite;
+}
+
+.animate-cloud-mid {
+  animation: cloudDriftFast 45s linear infinite;
+}
+
+.animate-bird-glide {
+  animation: birdGlide 8s ease-in-out infinite alternate;
+}
+

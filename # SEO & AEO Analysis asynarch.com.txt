@@ -1,0 +1,61 @@
+# SEO & AEO Analysis: asynarch.com
+
+## Executive finding
+
+Asynarch is effectively starting from zero in measured organic visibility. The domain returned no ranked keywords, no domain overview data, and no search competitors in the current dataset. River also did not appear in the sampled AI answers around **“AI accounting software India.”** This is normal for a pre-launch product, but it means search engines and answer engines do not yet have enough crawlable, corroborated material to understand where River belongs.
+
+## Current Rankings
+
+- Ranked keywords found for `asynarch.com`: **0** in the current dataset.
+- Domain ranking overview: **no measurable organic footprint returned**.
+- Organic competitors: **none returned**, because the domain has not accumulated enough ranking overlap.
+- The homepage title, **“River by Asynarch — The Accounting, as it happens,”** is distinctive but does not explicitly include the category phrases a new buyer is likely to search, such as “AI accounting software,” “automated bookkeeping,” or “GST accounting software.”
+
+These are dataset observations, not a claim that the site has never received a search impression.
+
+## AI / LLM Visibility
+
+- River and Asynarch were not present in the sampled AI-answer results for **“AI accounting software India.”**
+- The result set was broad and noisy, but recognizable vendors and established entities received citations while Asynarch did not.
+- AI answers surfaced accounting and ERP brands including Intuit/QuickBooks, Ramco, and Entries AI. This suggests that strong category language plus corroborating third-party/company profiles help answer engines classify vendors.
+- The current homepage is strong at explaining the product interaction, but thin on explicit entity facts: who River is for, where it operates, its product category, launch status, security/control posture, and how it differs from bookkeeping software or an accountant.
+
+## Competitive Landscape
+
+The closest useful reference set is not a single organic competitor list—none was returned—but three positioning patterns visible in current category pages:
+
+1. **Maxima** — leads with the category and workflow: “Agentic accounting automation, from record to report,” then adds customer proof and control language.
+2. **Digits** — makes the category explicit (“AI-native accounting software”) and organizes the story around setup, continuous bookkeeping, human collaboration, and tax readiness.
+3. **Entries AI** — is already classified by AI results as an AI-native ERP/accounting platform for Indian startups and SMEs.
+
+River’s strongest differentiation is simpler and more human: describe a business event in natural language or WhatsApp, and River performs the accounting while enforcing balanced books and Indian tax treatment. That differentiation should be expressed on dedicated, crawlable pages—not only through a visually rich homepage sequence.
+
+## Quick Wins
+
+1. **Make the category explicit in metadata and supporting copy.** Keep the brand line, but add a descriptive title/meta phrase such as “AI accounting software for Indian businesses” where accurate.
+2. **Create one focused, indexable use-case page first.** Recommended topic: natural-language accounting for Indian businesses, covering invoices, bills, reconciliation, GST, and TDS in plain language.
+3. **Add organization, software application, and FAQ structured data.** Mark up only facts already supported on the site; do not manufacture ratings, pricing, or launch claims.
+4. **Strengthen entity clarity.** State who River is for, geography/tax context, pre-launch status, and the distinction between River’s automated work and an accountant’s judgment/review.
+5. **Build corroboration beyond the homepage.** Keep company profiles consistent, earn relevant mentions, and publish specific educational pages that can be cited independently.
+
+## Content Gaps
+
+High-priority content clusters to validate and build:
+
+- AI accounting software for Indian businesses
+- Automated bookkeeping with GST and TDS
+- WhatsApp accounting / conversational accounting
+- Automatic invoice, bill, and payment recording
+- Bank reconciliation with TDS deductions
+- River vs. traditional bookkeeping workflows
+- Whether businesses still need an accountant when using accounting automation
+
+A useful first page should target one coherent intent rather than trying to rank the homepage for every phrase.
+
+## Evidence & Sources
+
+- DataForSEO domain keyword, overview, competitor, and AI-mention datasets queried for `asynarch.com` and “AI accounting software India” (current workspace analysis).
+- [Asynarch homepage](https://www.asynarch.com/)
+- [Maxima](https://www.maxima.ai/)
+- [Digits](https://digits.com/)
+- [Entries AI](https://entries.ai/)
