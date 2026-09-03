@@ -126,7 +126,7 @@ export default function Hero() {
       {/* ORIGINAL STATIC PIXEL-ART HERO LANDSCAPE BANNER */}
       <div
         ref={landscapeRef}
-        className="absolute inset-x-0 bottom-0 h-[460px] sm:h-[580px] md:h-[680px] lg:h-[760px] pointer-events-none select-none z-0"
+        className="absolute inset-x-0 bottom-0 h-[220px] xs:h-[260px] sm:h-[420px] md:h-[580px] lg:h-[760px] pointer-events-none select-none z-0"
       >
         <div className="relative w-full h-full">
           <Image
@@ -134,11 +134,11 @@ export default function Hero() {
             alt="River Landscape"
             fill
             sizes="100vw"
-            className="object-cover object-[25%_bottom] sm:object-bottom opacity-90 sm:opacity-95"
+            className="object-cover object-[25%_bottom] sm:object-bottom opacity-85 sm:opacity-95"
             priority
           />
           {/* Smooth Soft Gradient Blend into Background Canvas */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/40 to-transparent" />
         </div>
       </div>
 

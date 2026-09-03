@@ -87,7 +87,7 @@ export default function FAQ() {
   };
 
   return (
-    <section ref={sectionRef} id="faq" className="py-20 md:py-28 relative">
+    <section ref={sectionRef} id="faq" className="py-28 md:py-36 lg:py-44 relative">
       <div className="max-w-[920px] mx-auto px-6 md:px-8">
         
         {/* Section Header */}

@@ -3,13 +3,13 @@ import { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://asynarch.com",
+      url: "https://www.asynarch.com",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: "https://asynarch.com/about",
+      url: "https://www.asynarch.com/about",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

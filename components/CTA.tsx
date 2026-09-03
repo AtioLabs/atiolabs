@@ -52,7 +52,7 @@ export default function CTA() {
   };
 
   return (
-    <section id="waitlist" className="py-20 sm:py-24 md:py-32 relative bg-[#FBFAF6] overflow-hidden">
+    <section id="waitlist" className="py-28 sm:py-36 md:py-44 relative bg-[#FBFAF6] overflow-hidden">
       <div className="max-w-[880px] mx-auto px-4 sm:px-6 md:px-12 text-center relative z-10">
         
         {/* Animated Eyebrow: 4-Frame Walking Spritesheet */}

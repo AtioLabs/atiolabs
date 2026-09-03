@@ -104,7 +104,7 @@ export default function Assurance() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="assurance" className="py-20 md:py-28 relative overflow-hidden">
+    <section ref={sectionRef} id="assurance" className="py-28 md:py-36 lg:py-44 relative overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         
         {/* Section Header with 4-Frame Animated Sleeping Spritesheet */}

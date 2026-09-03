@@ -783,7 +783,7 @@ function AnimatedRow3() {
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 md:py-28 relative">
+    <section id="how-it-works" className="py-28 md:py-36 lg:py-44 relative">
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         
         {/* Section Headline */}

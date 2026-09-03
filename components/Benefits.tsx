@@ -75,7 +75,7 @@ export default function Benefits() {
     <section
       ref={sectionRef}
       id="benefits"
-      className="py-20 md:py-28 relative bg-[#F7F4EC]/60 border-y border-[#141413]/06 overflow-hidden"
+      className="py-28 md:py-36 lg:py-44 relative bg-[#F7F4EC]/60 border-y border-[#141413]/06 overflow-hidden"
     >
       <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
         

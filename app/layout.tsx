@@ -24,11 +24,11 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://asynarch.com"),
+  metadataBase: new URL("https://www.asynarch.com"),
   title: "River by Asynarch — The Accounting, as it happens",
   description: "Tell River what happened. It does the rest. Conversational accounting built for modern business, in River or on WhatsApp.",
   alternates: {
-    canonical: "https://asynarch.com",
+    canonical: "https://www.asynarch.com",
   },
   robots: {
     index: true,
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  authors: [{ name: "Asynarch", url: "https://asynarch.com" }],
+  authors: [{ name: "Asynarch", url: "https://www.asynarch.com" }],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Accounting, as it happens | River by Asynarch",
     description: "Tell River what happened. It does the rest.",
-    url: "https://asynarch.com",
+    url: "https://www.asynarch.com",
     siteName: "River by Asynarch",
     type: "website",
     images: [
@@ -80,15 +80,15 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://asynarch.com/#organization",
+      "@id": "https://www.asynarch.com/#organization",
       "name": "Asynarch",
-      "url": "https://asynarch.com",
-      "logo": "https://asynarch.com/asynarch-logo.png",
+      "url": "https://www.asynarch.com",
+      "logo": "https://www.asynarch.com/asynarch-logo.png",
       "sameAs": ["https://x.com/asynarch", "https://linkedin.com/company/asynarch"],
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://asynarch.com/#software",
+      "@id": "https://www.asynarch.com/#software",
       "name": "River",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, WhatsApp, iOS, Android",
@@ -99,12 +99,12 @@ const jsonLd = {
         "priceCurrency": "USD",
       },
       "publisher": {
-        "@id": "https://asynarch.com/#organization",
+        "@id": "https://www.asynarch.com/#organization",
       },
     },
     {
       "@type": "FAQPage",
-      "@id": "https://asynarch.com/#faq",
+      "@id": "https://www.asynarch.com/#faq",
       "mainEntity": [
         {
           "@type": "Question",

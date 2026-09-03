@@ -27,4 +27,4 @@ Allow: /
 Disallow: /api/
 Disallow: /font-test
 
-Sitemap: https://asynarch.com/sitemap.xml
+Sitemap: https://www.asynarch.com/sitemap.xml

@@ -101,7 +101,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="border-t border-[#141413]/08 bg-[#FBFAF6] pt-16 md:pt-20 pb-16 text-xs text-[#686461] select-none overflow-hidden relative">
+    <footer ref={footerRef} className="border-t border-[#141413]/08 bg-[#FBFAF6] pt-24 md:pt-32 pb-20 text-xs text-[#686461] select-none overflow-hidden relative">
       <div className="max-w-[1240px] mx-auto px-6 md:px-12">
         
         {/* Top Row: Institutional Brand & Navigation Directory */}
