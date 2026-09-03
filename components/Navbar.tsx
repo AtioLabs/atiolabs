@@ -70,8 +70,8 @@ export default function Navbar() {
               <Image
                 src="/asynarch-logo.png"
                 alt="Asynarch"
-                width={1159}
-                height={727}
+                width={644}
+                height={610}
                 className="h-3.5 sm:h-4 md:h-4.5 w-auto object-contain"
                 priority
               />
@@ -88,8 +88,8 @@ export default function Navbar() {
               <Image
                 src="/river-logo.png"
                 alt="River"
-                width={1192}
-                height={1063}
+                width={754}
+                height={649}
                 className="h-3.5 sm:h-4 md:h-4.5 w-auto object-contain"
                 priority
               />

@@ -177,13 +177,13 @@ export default function Hero() {
           style={{ touchAction: "none" }}
           className="gsap-draggable-card parallax-card-top-left absolute left-2 sm:left-8 lg:left-24 top-2 sm:top-16 lg:top-24 z-20 select-none -rotate-6 cursor-grab active:cursor-grabbing"
         >
-          <div className="p-2 sm:p-4 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-lg sm:shadow-xl hover:scale-105 hover:rotate-0 transition-all duration-300">
-            <div className="h-8 sm:h-14 md:h-16 aspect-[3/2] relative flex items-center justify-center mx-auto pointer-events-none">
+          <div className="p-2.5 sm:p-4 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-[#141413]/10 shadow-lg sm:shadow-xl hover:scale-105 hover:rotate-0 transition-all duration-300">
+            <div className="w-9 h-9 sm:w-14 sm:h-14 md:w-16 md:h-16 relative flex items-center justify-center mx-auto pointer-events-none">
               <Image
                 src="/asynarch-logo.png"
                 alt="Asynarch Wave Mark"
                 fill
-                sizes="(max-width: 640px) 48px, (max-width: 768px) 84px, 96px"
+                sizes="(max-width: 640px) 36px, (max-width: 768px) 56px, 64px"
                 className="object-contain"
                 priority
               />
