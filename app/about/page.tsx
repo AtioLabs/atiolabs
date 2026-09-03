@@ -4,12 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SmoothScroll from "@/components/SmoothScroll";
 
 export default function AboutPage() {
   return (
-    <SmoothScroll>
-      <div className="min-h-screen bg-[#FBFAF6] text-[#141413] selection:bg-[#172554]/15 selection:text-[#172554] antialiased flex flex-col justify-between">
+    <div className="min-h-screen bg-[#FBFAF6] text-[#141413] selection:bg-[#172554]/15 selection:text-[#172554] antialiased flex flex-col justify-between">
         {/* Real Site Navbar */}
         <Navbar />
 
@@ -106,6 +104,5 @@ export default function AboutPage() {
         {/* Real Site Footer (With brand vision, directory, converging mascots & RIVER monument) */}
         <Footer />
       </div>
-    </SmoothScroll>
   );
 }
