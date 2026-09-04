@@ -161,8 +161,8 @@ export default function Footer() {
               </a>
             </div>
             <div>
-              <a href="mailto:asynarch.team@gmail.com" className="hover:text-[#141413] transition-colors">
-                asynarch.team@gmail.com ↗
+              <a href="mailto:contact@asynarch.com" className="hover:text-[#141413] transition-colors">
+                contact@asynarch.com ↗
               </a>
             </div>
           </div>
@@ -233,7 +233,7 @@ export default function Footer() {
             </button>
             <span>·</span>
             <a
-              href="mailto:asynarch.team@gmail.com"
+              href="mailto:contact@asynarch.com"
               className="hover:text-[#141413] underline underline-offset-2 text-[#8C8885]"
             >
               Contact
@@ -279,7 +279,7 @@ export default function Footer() {
                     We do not sell, share, or use your email for marketing, tracking, or telemetry.
                   </p>
                   <p className="pt-2 font-mono text-xs text-[#141413]">
-                    Contact: <a href="mailto:asynarch.team@gmail.com" className="text-[#172554] underline">asynarch.team@gmail.com</a>
+                    Contact: <a href="mailto:contact@asynarch.com" className="text-[#172554] underline">contact@asynarch.com</a>
                   </p>
                 </div>
               ) : (
@@ -291,7 +291,7 @@ export default function Footer() {
                     By submitting your email, you agree to receive product updates and onboarding communications regarding River.
                   </p>
                   <p className="pt-2 font-mono text-xs text-[#141413]">
-                    Contact: <a href="mailto:asynarch.team@gmail.com" className="text-[#172554] underline">asynarch.team@gmail.com</a>
+                    Contact: <a href="mailto:contact@asynarch.com" className="text-[#172554] underline">contact@asynarch.com</a>
                   </p>
                 </div>
               )}
@@ -309,7 +309,7 @@ export default function Footer() {
         <p>For accounting, that&apos;s the whole idea: you say what happened, it takes care of the rest. For GST-registered businesses, to start.</p>
         <p>We&apos;re a four-person team: Naveen (COO), Abu (CTO), Nantha (CFO), and Asrul (CEO).</p>
         <p>We called it River. Accounting shouldn&apos;t be something you sit down and do. It should just move, the way a river does, without you standing over it.</p>
-        <p>Built by Asynarch in Madurai. Contact: asynarch.team@gmail.com</p>
+        <p>Built by Asynarch in Madurai. Contact: contact@asynarch.com</p>
         <a href="https://asynarch.com/about">Read full About Asynarch page</a>
       </section>
     </footer>

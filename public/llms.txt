@@ -4,7 +4,7 @@
 Website: https://asynarch.com
 Creator: Asynarch
 Product: River
-Contact: asynarch.team@gmail.com
+Contact: contact@asynarch.com
 
 ## Overview
 River is the autonomous accounting engine built by Asynarch. Tell River what happened. It does the rest.
@@ -40,7 +40,7 @@ The human mind wasn't built to spend thirty years operating tools. Let people do
 — Asrul
 
 ## Privacy & Waitlist Data
-We only collect email addresses solely for waitlist access and product notifications. We do not sell, share, or monitor user data. Contact: asynarch.team@gmail.com.
+We only collect email addresses solely for waitlist access and product notifications. We do not sell, share, or monitor user data. Contact: contact@asynarch.com.
 
 ## Endpoints
 - **Home:** https://asynarch.com
@@ -53,6 +53,6 @@ We only collect email addresses solely for waitlist access and product notificat
 - Team: Naveen (COO), Abu (CTO), Nantha (CFO), Asrul (CEO)
 - Location: Madurai
 - Website: https://asynarch.com
-- Email: asynarch.team@gmail.com
+- Email: contact@asynarch.com
 - Twitter: https://x.com/asynarch
 - LinkedIn: https://linkedin.com/company/asynarch
