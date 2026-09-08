@@ -123,7 +123,7 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-[96vh] flex flex-col justify-center items-center overflow-hidden px-4 sm:px-6 pt-24 sm:pt-28 pb-16 sm:pb-24"
     >
-      {/* ORIGINAL STATIC PIXEL-ART HERO LANDSCAPE BANNER */}
+      {/* VIBRANT SUNLIT PIXEL-ART HERO LANDSCAPE BANNER */}
       <div
         ref={landscapeRef}
         className="absolute inset-x-0 bottom-0 h-[220px] xs:h-[260px] sm:h-[420px] md:h-[580px] lg:h-[760px] pointer-events-none select-none z-0"
@@ -134,11 +134,11 @@ export default function Hero() {
             alt="River Landscape"
             fill
             sizes="100vw"
-            className="object-cover object-[25%_bottom] sm:object-bottom opacity-85 sm:opacity-95"
+            className="object-cover object-[25%_bottom] sm:object-bottom opacity-100 contrast-[1.08] saturate-[1.18] brightness-[1.03]"
             priority
           />
-          {/* Smooth Soft Gradient Blend into Background Canvas */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/40 to-transparent" />
+          {/* Pure Soft Sky Blend at the very top edge only (no milky wash over the landscape!) */}
+          <div className="absolute inset-x-0 top-0 h-28 sm:h-44 bg-gradient-to-b from-[#FBFAF6] via-[#FBFAF6]/60 to-transparent z-10 pointer-events-none" />
         </div>
       </div>
 
