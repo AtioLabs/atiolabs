@@ -285,12 +285,15 @@ export default function Hero() {
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <button
-              onClick={() => scrollToSection("waitlist")}
-              className="btn-indigo px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-sans font-medium cursor-pointer shadow-lg hover:scale-105 transition-transform"
+            <a
+              href="https://calendly.com/asynarch-team/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-indigo px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-sans font-medium cursor-pointer shadow-lg hover:scale-105 transition-transform inline-flex items-center gap-2"
             >
-              Join the waitlist
-            </button>
+              <span>Book a 30-min demo</span>
+              <span className="opacity-70">➔</span>
+            </a>
             <button
               onClick={() => scrollToSection("how-it-works")}
               className="px-5 sm:px-7 py-3.5 sm:py-4 rounded-full bg-white/90 backdrop-blur-md hover:bg-white text-[#141413] border border-[#141413]/10 text-sm sm:text-base font-sans font-medium transition-all shadow-sm cursor-pointer hover:scale-105"

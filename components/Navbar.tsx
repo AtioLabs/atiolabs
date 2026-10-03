@@ -109,12 +109,14 @@ export default function Navbar() {
           >
             About
           </Link>
-          <button
-            onClick={() => scrollToSection("waitlist")}
+          <a
+            href="https://calendly.com/asynarch-team/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-indigo px-3.5 py-2 text-xs font-sans font-medium rounded-full cursor-pointer shadow-sm"
           >
-            Join waitlist
-          </button>
+            Book a demo
+          </a>
         </div>
 
         {/* Desktop Navigation Anchors, River Status Tray & CTA (>= 768px) */}
@@ -188,12 +190,14 @@ export default function Navbar() {
 
           <div className="w-[1px] h-3.5 bg-[#141413]/10"></div>
 
-          <button
-            onClick={() => scrollToSection("waitlist")}
+          <a
+            href="https://calendly.com/asynarch-team/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-indigo px-4 py-1.5 text-xs font-sans font-medium cursor-pointer shadow-sm hover:scale-105 transition-transform"
           >
-            Join waitlist
-          </button>
+            Book a demo
+          </a>
         </div>
 
       </div>
