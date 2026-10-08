@@ -70,8 +70,8 @@ export const metadata: Metadata = {
   other: {
     "brand": "Asynarch",
     "product": "River",
-    "publisher": "Asynarch",
-    "copyright": "Asynarch",
+    "publisher": "Asynarch Autonomiccomputing Private Limited",
+    "copyright": "Asynarch Autonomiccomputing Private Limited",
   },
 };
 
@@ -82,6 +82,7 @@ const jsonLd = {
       "@type": "Organization",
       "@id": "https://www.asynarch.com/#organization",
       "name": "Asynarch",
+      "legalName": "Asynarch Autonomiccomputing Private Limited",
       "url": "https://www.asynarch.com",
       "logo": "https://www.asynarch.com/asynarch-logo.png",
       "sameAs": ["https://x.com/asynarch", "https://linkedin.com/company/asynarch"],

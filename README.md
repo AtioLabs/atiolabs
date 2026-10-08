@@ -52,5 +52,5 @@ npm run build
 ## Routes
 
 * `/` — River landing page with interactive software simulators & draggable desktop canvas.
-* `/privacy` — Privacy Policy.
+* `/about` — About Asynarch and the River story.
 * `/api/waitlist` — Early access waitlist submission endpoint.

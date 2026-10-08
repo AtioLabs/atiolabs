@@ -209,7 +209,7 @@ export default function Footer() {
         {/* Bottom Colophon: About · Privacy · Terms · Contact */}
         <div className="pt-8 border-t border-[#141413]/06 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-[#8C8885]">
           <div className="flex items-center gap-3">
-            <p>© 2026 Asynarch.</p>
+            <p>© 2026 Asynarch Autonomiccomputing Private Limited.</p>
             <span>·</span>
             <Link
               href="/about"
@@ -273,10 +273,13 @@ export default function Footer() {
               {modalType === "privacy" ? (
                 <div className="space-y-3">
                   <p>
-                    We only collect your email address exclusively for the purpose of managing early access waitlist notifications.
+                    River is operated by Asynarch Autonomiccomputing Private Limited (&ldquo;Asynarch&rdquo;).
                   </p>
                   <p>
-                    We do not sell, share, or use your email for marketing, tracking, or telemetry.
+                    We only collect your email address exclusively for the purpose of managing early access waitlist notifications and demo requests.
+                  </p>
+                  <p>
+                    We do not sell, share, or use your information for third-party marketing, tracking, or telemetry.
                   </p>
                   <p className="pt-2 font-mono text-xs text-[#141413]">
                     Contact: <a href="mailto:contact@asynarch.com" className="text-[#172554] underline">contact@asynarch.com</a>
@@ -285,10 +288,13 @@ export default function Footer() {
               ) : (
                 <div className="space-y-3">
                   <p>
+                    River is a software platform operated by Asynarch Autonomiccomputing Private Limited (&ldquo;Asynarch&rdquo;).
+                  </p>
+                  <p>
                     River by Asynarch is currently in pre-launch early access. Early access features are subject to continuous refinement.
                   </p>
                   <p>
-                    By submitting your email, you agree to receive product updates and onboarding communications regarding River.
+                    By submitting your details or scheduling a demo, you agree to receive product updates and onboarding communications regarding River.
                   </p>
                   <p className="pt-2 font-mono text-xs text-[#141413]">
                     Contact: <a href="mailto:contact@asynarch.com" className="text-[#172554] underline">contact@asynarch.com</a>
@@ -307,7 +313,7 @@ export default function Footer() {
         <p>The idea didn&apos;t start with accounting. It started with a simpler thought: make people&apos;s lives easier. So I built things. Then I used them, and hated using them too. Easier still meant work.</p>
         <p>Software should do the job itself. Not wait for someone to run it.</p>
         <p>For accounting, that&apos;s the whole idea: you say what happened, it takes care of the rest. For GST-registered businesses, to start.</p>
-        <p>We&apos;re a four-person team: Naveen (COO), Abu (CTO), Nantha (CFO), and Asrul (CEO).</p>
+        <p>We&apos;re a three-person team: Naveen (CTO), Nantha (CFO), and Asrul (CEO).</p>
         <p>We called it River. Accounting shouldn&apos;t be something you sit down and do. It should just move, the way a river does, without you standing over it.</p>
         <p>Built by Asynarch in Madurai. Contact: contact@asynarch.com</p>
         <a href="https://asynarch.com/about">Read full About Asynarch page</a>

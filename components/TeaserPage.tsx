@@ -140,7 +140,7 @@ export default function TeaserPage() {
             boxShadow: "0 4px 20px rgba(0, 0, 0, 0.04)",
           }}
         >
-          © {new Date().getFullYear()} Asynarch
+          © {new Date().getFullYear()} Asynarch Autonomiccomputing Private Limited
         </div>
 
         <div

@@ -54,7 +54,7 @@ export default function AboutPage() {
 
                 {/* Team Section: Clean Architectural Divider */}
                 <div className="py-4 border-y border-[#141413]/10 font-mono text-xs sm:text-sm text-[#141413] leading-relaxed">
-                  We&apos;re a four-person team: Naveen (COO), Abu (CTO), Nantha (CFO), and Asrul (CEO).
+                  We&apos;re a three-person team: Naveen (CTO), Nantha (CFO), and Asrul (CEO).
                 </div>
 
                 <p>
