@@ -7,7 +7,8 @@ const checks = [
     name: "Pre-post verification",
     state: "HELD",
     title: "Every entry is checked before it is posted",
-    detail: "The attempted entry is ₹10,000 short. It stays out of the books.",
+    detail:
+      "Debits are ₹10,000 short of credits — the TDS is missing. It stays out of the books.",
     debit: "1,08,000",
     credit: "1,18,000",
     delta: "₹10,000",
