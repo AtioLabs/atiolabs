@@ -1,230 +1,97 @@
 "use client";
-
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import PixelSpriteSheet from "./PixelSpriteSheet";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import MagneticFloater from "./MagneticFloater";
 
 export default function Problem() {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
-  const stampRef = useRef<HTMLDivElement | null>(null);
-  const [highlightActive, setHighlightActive] = useState(false);
-
+  const root = useRef<HTMLElement>(null);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     const ctx = gsap.context(() => {
-      // 1. Apple Notes Window Smooth Reveal
-      gsap.fromTo(
-        cardRef.current,
-        {
-          y: 60,
-          opacity: 0.8,
-          scale: 0.97,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            end: "top 30%",
-            scrub: true,
-          },
-        }
-      );
-
-      // 2. Active Highlighter Trigger
-      ScrollTrigger.create({
-        trigger: cardRef.current,
-        start: "top 60%",
-        onEnter: () => setHighlightActive(true),
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      gsap.from(".problem-line", {
+        y: 70,
+        opacity: 0,
+        stagger: 0.13,
+        duration: 1.1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: root.current, start: "top 65%" },
       });
-
-      // 3. Red Rubber Stamp Drop Impact
-      gsap.fromTo(
-        stampRef.current,
-        {
-          scale: 2,
-          opacity: 0,
-          rotate: 20,
-        },
-        {
-          scale: 1,
-          opacity: 1,
-          rotate: 6,
-          duration: 0.6,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 50%",
-          },
-        }
-      );
-
-      // 4. Parallax Floaters
-      gsap.to(".problem-floater-left", {
-        y: -40,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
+      gsap.from(".problem-resolution", {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: { trigger: ".problem-resolution", start: "top 85%" },
       });
-    }, sectionRef);
-
+    }, root);
     return () => ctx.revert();
   }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="problem"
-      className="py-28 md:py-36 lg:py-44 relative bg-[#F7F4EC]/60 border-y border-[#141413]/06 overflow-hidden"
-    >
-      <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
-        
-        {/* The Late Grind Floater with 4-Frame Animated Tea Spritesheet (Top-Left) */}
-        <div className="problem-floater-left hidden lg:block absolute left-4 xl:left-12 top-6 z-20 select-none">
-          <MagneticFloater draggable={true} tiltAngle={14} floatAmplitudeY={6} floatDuration={3.6}>
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_24px_rgba(20,20,19,0.06)] -rotate-2 group hover:scale-105 transition-all">
-              <PixelSpriteSheet
-                sheetSrc="/sprites/tea-spritesheet.png"
-                totalFrames={4}
-                frameWidth={26}
-                frameHeight={52}
-                durationSeconds={1.6}
-                alt="Tea drinking animation"
-              />
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]"></span>
-                <span className="font-mono text-xs text-[#57534E] whitespace-nowrap">
-                  cold tea · still matching invoices
-                </span>
-              </div>
-            </div>
-          </MagneticFloater>
-        </div>
-
-        {/* The Lost Weekend Floater with Sunday Spreadsheet Desk (Bottom-Right) */}
+    <section id="problem" ref={root} className="problem-editorial section-pad">
+      <div className="section-kicker">
+        <span>01 / The old way</span>
+        <span>River by Asynarch</span>
+      </div>
+      <div className="problem-scene-grid">
+        <h2 className="problem-head font-display">
+          <span className="problem-line">This used to</span>
+          <span className="problem-line">be a job.</span>
+        </h2>
         <div
-          ref={stampRef}
-          className="hidden lg:block absolute right-4 xl:right-12 bottom-6 z-20 select-none"
+          className="manual-scene"
+          role="img"
+          aria-label="A person at a spreadsheet desk, surrounded by bills to read, enter and check."
         >
-          <MagneticFloater draggable={true} tiltAngle={14} floatAmplitudeY={6} floatDuration={3.2}>
-            <div className="inline-flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_24px_rgba(20,20,19,0.06)] rotate-2 group hover:scale-105 transition-all">
-              <Image
-                src="/sprites/pixel-spreadsheet-desk.png"
-                alt="Sunday spreadsheets"
-                width={56}
-                height={53}
-                className="w-13 h-auto object-contain [image-rendering:pixelated]"
-              />
-              <div className="flex flex-col text-left">
-                <span className="font-mono text-xs text-[#78716C] font-semibold">( ; _ ; )</span>
-                <span className="font-sans text-xs text-[#57534E] font-medium whitespace-nowrap">
-                  sunday spent on spreadsheets
-                </span>
-              </div>
-            </div>
-          </MagneticFloater>
-        </div>
-
-        {/* Mobile View: Tea Drinker Eyebrow (Visible on screens < lg) */}
-        <div className="flex lg:hidden justify-center mb-6">
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-sm text-xs">
-            <PixelSpriteSheet
-              sheetSrc="/sprites/tea-spritesheet.png"
-              totalFrames={4}
-              frameWidth={22}
-              frameHeight={44}
-              durationSeconds={1.6}
-              alt="Tea drinking animation"
-            />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C2410C]"></span>
-            <span className="font-mono text-[11px] text-[#57534E]">
-              cold tea · still matching invoices
-            </span>
+          <div className="desk-orbit orbit-one" />
+          <div className="desk-orbit orbit-two" />
+          <span className="scene-time font-mono">09:41</span>
+          <div className="scene-paper paper-one">
+            <span>BILL / 001</span>
+            <i />
+            <i />
+            <i />
+            <b>₹1,18,000</b>
           </div>
-        </div>
-
-        {/* Apple Notes Manifesto Document (Clean, Pristine, Traffic Lights Completely Clear) */}
-        <div ref={cardRef} className="max-w-[760px] mx-auto relative z-10">
-          <div className="mac-window bg-[#FFFEFA] border border-[#141413]/12 shadow-[0_24px_70px_rgba(20,20,19,0.09),0_1px_0_rgba(255,255,255,1)_inset]">
-            
-            {/* Notes Titlebar */}
-            <div className="mac-titlebar bg-[#F8F6F0]">
-              <div className="traffic-dots">
-                <span className="dot-close"></span>
-                <span className="dot-min"></span>
-                <span className="dot-zoom"></span>
-              </div>
-              <span className="font-mono text-[11px] text-[#686461]">
-                notes — the_old_way.txt
-              </span>
-              <div className="w-8"></div>
-            </div>
-
-            {/* Document Body with Exact Copy & Scroll-Swept Yellow Highlighter */}
-            <div className="p-8 sm:p-12 md:p-16 space-y-8 text-left">
-              
-              {/* Display Headline */}
-              <h2 className="font-display font-medium text-3xl sm:text-4xl md:text-5xl tracking-[-0.03em] text-[#141413] leading-[1.12]">
-                This used to be a job
-              </h2>
-
-              {/* Exact Problem Copy with Animated Sweeping Yellow Highlighter */}
-              <div className="space-y-4 font-sans text-base sm:text-lg md:text-xl text-[#3D3A37] leading-[1.65] font-normal">
-                <p>
-                  Someone had to read the bill, work out what needed to be recorded, enter it, and check everything was right.
-                </p>
-                <div className="relative inline-block overflow-hidden rounded">
-                  <span
-                    className={`absolute inset-0 bg-[#FEF08A] transition-transform duration-1000 ease-out origin-left ${
-                      highlightActive ? "scale-x-100" : "scale-x-0"
-                    }`}
-                  />
-                  <span className="relative z-10 px-2 py-0.5 font-medium text-[#141413]">
-                    That was someone&apos;s job, every day
-                  </span>
-                </div>
-              </div>
-
-              {/* Exact Closing Punchline (No Duplicate Logo Clutter) */}
-              <p className="font-display text-xl sm:text-2xl md:text-3xl text-[#172554] leading-[1.35] font-medium pt-6 border-t border-[#141413]/08">
-                River does the same thing in the time it takes to send a WhatsApp message
-              </p>
-
-            </div>
-
+          <div className="scene-paper paper-two">
+            <span>JOURNAL</span>
+            <i />
+            <i />
+            <i />
+            <b>Dr. / Cr.</b>
           </div>
-        </div>
-
-        {/* Mobile View: Sunday Spreadsheet Desk (Visible on screens < lg) */}
-        <div className="flex lg:hidden justify-center mt-6">
-          <div className="inline-flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#141413]/10 shadow-sm text-xs">
-            <Image
-              src="/sprites/pixel-spreadsheet-desk.png"
-              alt="Sunday spreadsheets"
-              width={48}
-              height={45}
-              className="w-11 h-auto object-contain [image-rendering:pixelated]"
-            />
-            <div className="flex flex-col text-left">
-              <span className="font-mono text-[11px] text-[#78716C] font-semibold">( ; _ ; )</span>
-              <span className="font-sans text-[11px] text-[#57534E] font-medium">
-                sunday spent on spreadsheets
-              </span>
-            </div>
+          <img
+            className="desk-character"
+            src="/sprites/review/owner-desk-clean.png"
+            alt=""
+            width="1290"
+            height="1219"
+          />
+          <div className="manual-loop">
+            <span>Read the bill</span>
+            <span>Work it out</span>
+            <span>Enter it</span>
+            <span>Check it</span>
           </div>
+          <span className="scene-caption tiny-label">
+            Every bill. Every entry. Every day.
+          </span>
         </div>
-
+      </div>
+      <div className="problem-foot">
+        <p>
+          Someone had to read the bill, work out what needed to be recorded,
+          enter it, and check everything was right. That was someone’s job,
+          every day.
+        </p>
+        <div className="problem-resolution">
+          <span className="tiny-label">River does the same thing.</span>
+          <p className="font-display">
+            In the time it takes to send a WhatsApp message.
+          </p>
+          <span className="problem-arrow" aria-hidden="true">
+            ↓
+          </span>
+        </div>
       </div>
     </section>
   );

@@ -1,818 +1,307 @@
 "use client";
-
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-function AnimatedRow1() {
-  const [typedText, setTypedText] = useState("");
-  const [riverResponded, setRiverResponded] = useState(false);
-  const [stepStage, setStepStage] = useState<"idle" | "typingItem" | "taxCalc" | "odometer" | "posted">("idle");
-  const [counterValue, setCounterValue] = useState(0);
-  const rowRef = useRef<HTMLDivElement | null>(null);
-  const isRunning = useRef(false);
-  const activeTimers = useRef<NodeJS.Timeout[]>([]);
-
-  const fullText = "Invoice Alpha Ltd ₹1,00,000 for this month's consulting";
-
-  const clearAllTimers = () => {
-    activeTimers.current.forEach((t) => clearInterval(t));
-    activeTimers.current = [];
-  };
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    function runSequence() {
-      clearAllTimers();
-      setTypedText("");
-      setRiverResponded(false);
-      setStepStage("idle");
-      setCounterValue(0);
-      let index = 0;
-
-      const typeInterval = setInterval(() => {
-        if (index <= fullText.length) {
-          setTypedText(fullText.slice(0, index));
-          index++;
-        } else {
-          clearInterval(typeInterval);
-          
-          const t1 = setTimeout(() => {
-            setRiverResponded(true);
-
-            const t2 = setTimeout(() => {
-              setStepStage("typingItem");
-
-              const t3 = setTimeout(() => {
-                setStepStage("taxCalc");
-
-                const t4 = setTimeout(() => {
-                  setStepStage("odometer");
-                  let count = 0;
-                  const rollInterval = setInterval(() => {
-                    count += 11800;
-                    if (count >= 118000) {
-                      setCounterValue(118000);
-                      clearInterval(rollInterval);
-                      setStepStage("posted");
-                      isRunning.current = false;
-                    } else {
-                      setCounterValue(count);
-                    }
-                  }, 40);
-                  activeTimers.current.push(rollInterval);
-                }, 400);
-                activeTimers.current.push(t4);
-              }, 500);
-              activeTimers.current.push(t3);
-            }, 500);
-            activeTimers.current.push(t2);
-          }, 400);
-          activeTimers.current.push(t1);
-        }
-      }, 35);
-      activeTimers.current.push(typeInterval);
-    }
-
-    const trigger = ScrollTrigger.create({
-      trigger: rowRef.current,
-      start: "top 75%",
-      onEnter: () => {
-        if (!isRunning.current) {
-          isRunning.current = true;
-          runSequence();
-        }
-      },
-      onLeave: () => {
-        clearAllTimers();
-        isRunning.current = false;
-      },
-      onLeaveBack: () => {
-        clearAllTimers();
-        isRunning.current = false;
-      },
-    });
-
-    gsap.fromTo(
-      rowRef.current,
-      { opacity: 0.7, y: 50, scale: 0.98 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: rowRef.current,
-          start: "top 80%",
-        },
-      }
-    );
-
-    return () => {
-      clearAllTimers();
-      trigger.kill();
-    };
-  }, []);
-
+const stages = [
+  {
+    label: "You tell River",
+    title: <>Invoice Alpha Ltd.</>,
+    detail: "Invoice Alpha Ltd ₹1,00,000 for this month's consulting",
+  },
+  {
+    label: "River creates the invoice",
+    title: <>This month’s consulting.</>,
+    detail: "Consulting services · CGST @ 9% · SGST @ 9%",
+  },
+  {
+    label: "The accounting entry",
+    title: <>Accounts receivable.</>,
+    detail: "Dr Accounts Receivable · Cr Consulting Revenue · Cr Output GST",
+  },
+  {
+    label: "You tell River",
+    title: <>Record the TechMart bill.</>,
+    detail: "Record the TechMart bill for the new laptop",
+  },
+  {
+    label: "You tell River",
+    title: <>Alpha paid the invoice.</>,
+    detail: "Alpha paid the invoice with 10% TDS",
+  },
+  {
+    label: "River records",
+    title: <>The accounting behind each command.</>,
+    detail:
+      "It creates the invoice, records the bill, keeps track of what you’re owed, and updates the books when money comes in.",
+  },
+];
+function Row({
+  label,
+  value,
+  className = "",
+}: {
+  label: string;
+  value: string;
+  className?: string;
+}) {
   return (
-    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
-      {/* Left: Soundwave & Typing Speech Bubble (Zero-Layout-Shift Fixed Box) */}
-      <div className="lg:col-span-5 space-y-4 flex flex-col justify-start">
-        <div className="flex items-center gap-2">
-          <span className="sound-bars">
-            <i></i><i></i><i></i><i></i><i></i>
-          </span>
-          <span className="text-xs font-mono text-[#8C8885]">text / voice command</span>
-        </div>
-
-        {/* User Speech Bubble with Invisible Height Anchor (0px Layout Shift) */}
-        <div className="relative p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md flex items-center min-h-[76px] sm:min-h-[84px]">
-          {/* Invisible placeholder preserving 100% stable wrapped height */}
-          <span className="invisible opacity-0 select-none pointer-events-none" aria-hidden="true">
-            &ldquo;{fullText}&rdquo;
-          </span>
-          {/* Real-time typing overlay */}
-          <span className="absolute inset-x-4 sm:inset-x-5 flex items-center">
-            <span>&ldquo;{typedText || (isRunning.current ? "" : fullText)}&rdquo;</span>
-            {typedText.length > 0 && typedText.length < fullText.length && (
-              <span className="inline-block w-0.5 h-4 bg-[#172554] ml-0.5 animate-pulse" />
-            )}
-          </span>
-        </div>
-
-        {/* River Response Bubble Slot (Fixed Height to Prevent Layout Shift) */}
-        <div className="h-9 flex items-center">
-          <div className={`transition-all duration-500 transform ${
-            riverResponded || stepStage === "posted"
-              ? "opacity-100 translate-y-0 scale-100"
-              : "opacity-0 translate-y-1 scale-95 pointer-events-none"
-          }`}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-[#172554] text-white text-xs font-mono font-medium shadow-sm">
-              <span>on it!</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Right: Invoicing Card with Light Frosted River Floating Capsule */}
-      <div className="lg:col-span-7 relative pt-4 sm:pt-5">
-        
-        {/* Light Frosted Apple Glass Kaomoji Capsule (Top-Center) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#141413] shadow-[0_4px_14px_rgba(20,20,19,0.06)] border border-[#141413]/10 text-[11px] font-mono tracking-tight transition-all duration-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#15803D] animate-pulse"></span>
-            <span className="font-semibold text-[#141413]">River</span>
-            <span className="text-[#8C8885]">·</span>
-            <span className="font-bold text-[#172554]">
-              {stepStage === "posted" ? "{ ^-^ }" : "{ ^o^ }"}
-            </span>
-          </div>
-        </div>
-
-        {/* Outer Wispr Ambient Frame */}
-        <div className="relative rounded-[28px] p-2 sm:p-2.5 bg-gradient-to-b from-white/90 via-[#F9F7F1]/80 to-[#F2EFE8]/70 border border-[#141413]/10 shadow-[0_1px_3px_rgba(20,20,19,0.02),0_24px_60px_-12px_rgba(20,20,19,0.09)] backdrop-blur-xl">
-          
-          {/* Main Card Container */}
-          <div className="bg-white rounded-[22px] border border-[#141413]/08 overflow-hidden shadow-sm">
-            
-            {/* Top Titlebar */}
-            <div className="px-4 sm:px-6 py-3 bg-[#FAF8F5] border-b border-[#141413]/06 flex items-center justify-between">
-              <div className="flex items-center gap-2.5 font-mono text-[11px] text-[#686461]">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/90 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/90 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/90 inline-block"></span>
-                </div>
-                <span className="text-[#141413]/20">|</span>
-                <span className="font-semibold text-[#141413]">Invoice.app</span>
-                <span className="text-[#8C8885] hidden sm:inline">— Sales Tax Invoice #INV-2026-084</span>
-              </div>
-              <span className="font-mono text-[10px] text-[#8C8885]">#INV-2026-084</span>
-            </div>
-
-            {/* Stage Body */}
-            <div className="p-5 sm:p-7 space-y-4 font-mono text-xs">
-              
-              {/* Customer Row */}
-              <div className="flex justify-between items-center pb-3 border-b border-[#141413]/06">
-                <div>
-                  <span className="text-[10px] uppercase font-semibold tracking-wider text-[#8C8885] block">CUSTOMER</span>
-                  <span className="font-bold text-sm text-[#141413] block mt-0.5">Alpha Ltd</span>
-                  <span className="text-[11px] text-[#57534E] block mt-0.5">Chennai, Tamil Nadu · GSTIN: 33AAAAA0000A1Z5</span>
-                </div>
-                <span className={`text-[10px] font-mono px-3 py-1 rounded-full font-semibold transition-all duration-500 flex items-center gap-1.5 ${
-                  stepStage === "posted"
-                    ? "text-[#15803D] bg-[#15803D]/10 border border-[#15803D]/25 shadow-sm scale-105"
-                    : "text-[#8C8885] bg-[#141413]/05 border border-[#141413]/06"
-                }`}>
-                  {stepStage === "posted" ? "ISSUED & BALANCED ✓" : "Composing..."}
-                </span>
-              </div>
-
-              {/* Line Items & Calculations */}
-              <div className="space-y-2 py-1">
-                <div className="flex justify-between font-sans items-center py-1">
-                  <span className={`transition-all duration-300 ${
-                    stepStage !== "idle" ? "text-[#141413] font-medium" : "text-[#8C8885]"
-                  }`}>
-                    Strategic Consulting (SAC 9983)
-                  </span>
-                  <span className="font-mono font-bold text-[#141413]">
-                    {stepStage !== "idle" ? "₹1,00,000.00" : "—"}
-                  </span>
-                </div>
-
-                <div className={`flex justify-between text-[#57534E] py-0.5 transition-all duration-500 ${
-                  stepStage === "taxCalc" || stepStage === "odometer" || stepStage === "posted"
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-20 -translate-x-2"
-                }`}>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#172554]/40"></span>
-                    Central GST (CGST @ 9%)
-                  </span>
-                  <span className="font-mono">₹9,000.00</span>
-                </div>
-
-                <div className={`flex justify-between text-[#57534E] py-0.5 transition-all duration-500 ${
-                  stepStage === "taxCalc" || stepStage === "odometer" || stepStage === "posted"
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-20 -translate-x-2"
-                }`}>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#172554]/40"></span>
-                    State GST (SGST @ 9%)
-                  </span>
-                  <span className="font-mono">₹9,000.00</span>
-                </div>
-
-                <div className="flex justify-between pt-2.5 border-t border-[#141413]/06 text-sm font-bold text-[#172554] items-center">
-                  <span className="tracking-tight">TOTAL INVOICE PAYABLE</span>
-                  <span className="font-mono text-base text-[#172554]">
-                    ₹{(counterValue || (stepStage === "posted" ? 118000 : 0)).toLocaleString("en-IN")}.00
-                  </span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Slotted Physical Journal Paper Ticket (Bottom Dock) */}
-            <div className={`mx-3 sm:mx-4 mb-3 sm:mb-4 p-3.5 sm:p-4 rounded-xl bg-[#F6F4EE] border transition-all duration-500 ${
-              stepStage === "posted" ? "border-[#15803D]/30 bg-[#F0FDF4]/60 shadow-sm" : "border-[#141413]/07 opacity-70"
-            }`}>
-              <div className="flex items-center justify-between text-[9px] uppercase tracking-wider text-[#8C8885] font-semibold border-b border-[#141413]/06 pb-1.5 mb-2">
-                <span>General Ledger Journal Entry</span>
-                <span className="font-mono text-[9px] text-[#15803D] font-bold">ZERO VARIANCE ✓</span>
-              </div>
-              <div className="space-y-1.5 font-mono text-[11px]">
-                <div className="flex items-center gap-2 text-[#141413] font-semibold">
-                  <span className="px-1.5 py-0.5 rounded bg-[#172554] text-white text-[9px] font-bold">Dr</span>
-                  <span>Accounts Receivable (Alpha Ltd)</span>
-                  <span className="ml-auto">₹1,18,000</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#57534E] pl-6 text-[10px]">
-                  <span className="px-1 py-0.5 rounded bg-[#141413]/10 text-[#57534E] text-[8px] font-bold">Cr</span>
-                  <span>Consulting Revenue ₹1,00,000 · Cr Output GST ₹18,000</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
+    <div className={`document-row ${className}`}>
+      <span>{label}</span>
+      <span className="font-mono">{value}</span>
     </div>
   );
 }
-
-function AnimatedRow2() {
-  const [typedText, setTypedText] = useState("");
-  const [riverResponded, setRiverResponded] = useState(false);
-  const [isHighlighted, setIsHighlighted] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
-  const rowRef = useRef<HTMLDivElement | null>(null);
-  const isRunning = useRef(false);
-  const activeTimers = useRef<NodeJS.Timeout[]>([]);
-
-  const fullText = "Record the TechMart bill for the new laptop";
-
-  const clearAllTimers = () => {
-    activeTimers.current.forEach((t) => clearInterval(t));
-    activeTimers.current = [];
-  };
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    function runSequence() {
-      clearAllTimers();
-      setTypedText("");
-      setRiverResponded(false);
-      setIsHighlighted(false);
-      setIsLogged(false);
-      let index = 0;
-
-      const typeInterval = setInterval(() => {
-        if (index <= fullText.length) {
-          setTypedText(fullText.slice(0, index));
-          index++;
-        } else {
-          clearInterval(typeInterval);
-          
-          const t1 = setTimeout(() => {
-            setRiverResponded(true);
-
-            const t2 = setTimeout(() => {
-              setIsHighlighted(true);
-
-              const t3 = setTimeout(() => {
-                setIsLogged(true);
-                isRunning.current = false;
-              }, 600);
-              activeTimers.current.push(t3);
-            }, 500);
-            activeTimers.current.push(t2);
-          }, 400);
-          activeTimers.current.push(t1);
-        }
-      }, 35);
-      activeTimers.current.push(typeInterval);
-    }
-
-    const trigger = ScrollTrigger.create({
-      trigger: rowRef.current,
-      start: "top 75%",
-      onEnter: () => {
-        if (!isRunning.current) {
-          isRunning.current = true;
-          runSequence();
-        }
-      },
-      onLeave: () => {
-        clearAllTimers();
-        isRunning.current = false;
-      },
-      onLeaveBack: () => {
-        clearAllTimers();
-        isRunning.current = false;
-      },
-    });
-
-    gsap.fromTo(
-      rowRef.current,
-      { opacity: 0.7, y: 50, scale: 0.98 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: rowRef.current,
-          start: "top 80%",
-        },
-      }
-    );
-
-    return () => {
-      clearAllTimers();
-      trigger.kill();
-    };
-  }, []);
-
+function Journal({ rows }: { rows: [string, string, string][] }) {
   return (
-    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
-      {/* Left: PDF Bill Card with Light Frosted River Floating Capsule */}
-      <div className="lg:col-span-7 order-2 lg:order-1 relative pt-4 sm:pt-5">
-        
-        {/* Light Frosted Apple Glass Kaomoji Capsule (Top-Center) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#141413] shadow-[0_4px_14px_rgba(20,20,19,0.06)] border border-[#141413]/10 text-[11px] font-mono tracking-tight transition-all duration-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EAB308] animate-pulse"></span>
-            <span className="font-semibold text-[#141413]">River</span>
-            <span className="text-[#8C8885]">·</span>
-            <span className="font-bold text-[#172554]">
-              {isLogged ? "(⌐■_■)" : "{ ^-^ }"}
-            </span>
-          </div>
-        </div>
-
-        {/* Outer Wispr Ambient Frame */}
-        <div className="relative rounded-[28px] p-2 sm:p-2.5 bg-gradient-to-b from-white/90 via-[#F9F7F1]/80 to-[#F2EFE8]/70 border border-[#141413]/10 shadow-[0_1px_3px_rgba(20,20,19,0.02),0_24px_60px_-12px_rgba(20,20,19,0.09)] backdrop-blur-xl">
-          
-          {/* Main Card Container */}
-          <div className="bg-white rounded-[22px] border border-[#141413]/08 overflow-hidden shadow-sm">
-            
-            {/* Top Titlebar */}
-            <div className="px-4 sm:px-6 py-3 bg-[#FAF8F5] border-b border-[#141413]/06 flex items-center justify-between">
-              <div className="flex items-center gap-2.5 font-mono text-[11px] text-[#686461]">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/90 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/90 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/90 inline-block"></span>
-                </div>
-                <span className="text-[#141413]/20">|</span>
-                <span className="font-semibold text-[#141413]">Preview.app</span>
-                <span className="text-[#8C8885] hidden sm:inline">— TechMart_Bill_9921.pdf</span>
-              </div>
-              <span className="font-mono text-[10px] text-[#8C8885]">TechMart_Bill.pdf</span>
-            </div>
-
-            {/* Stage Body */}
-            <div className="p-5 sm:p-7 space-y-4 font-mono text-xs">
-              
-              {/* Vendor Row */}
-              <div className="flex justify-between items-center pb-3 border-b border-[#141413]/06">
-                <div>
-                  <span className="text-[10px] uppercase font-semibold tracking-wider text-[#8C8885] block">VENDOR</span>
-                  <span className="font-bold text-sm text-[#141413] block mt-0.5">TechMart Electronics</span>
-                </div>
-                <span className={`text-[10px] font-mono px-3 py-1 rounded-full font-semibold transition-all duration-500 flex items-center gap-1.5 ${
-                  isLogged
-                    ? "text-[#172554] bg-[#172554]/10 border border-[#172554]/25 shadow-sm scale-105"
-                    : "text-[#8C8885] bg-[#141413]/05 border border-[#141413]/06"
-                }`}>
-                  {isLogged ? "ITC CAPTURED ✓" : "Ingesting PDF..."}
-                </span>
-              </div>
-
-              {/* Line Items & Yellow Highlighter Pen Sweep */}
-              <div className="space-y-2 py-1">
-                <div className="flex justify-between font-sans items-center py-1">
-                  <span className="text-[#141413] font-medium">Workstation Laptop (Fixed Asset)</span>
-                  <span className="font-mono font-bold text-[#141413]">₹85,000.00</span>
-                </div>
-
-                <div className={`flex justify-between items-center px-3 py-2 rounded-xl transition-all duration-700 ${
-                  isHighlighted
-                    ? "bg-[#FEF08A] text-[#141413] font-semibold scale-100 shadow-sm border border-[#EAB308]/30"
-                    : "bg-transparent text-[#8C8885] scale-95"
-                }`}>
-                  <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#EAB308] inline-block animate-pulse"></span>
-                    Input Tax Credit (18% GST Claimable)
-                  </span>
-                  <span className="font-mono font-bold text-[#141413]">₹15,300.00</span>
-                </div>
-
-                <div className="flex justify-between pt-2.5 border-t border-[#141413]/06 text-sm font-bold text-[#141413] items-center">
-                  <span className="tracking-tight">ACCOUNTS PAYABLE</span>
-                  <span className="font-mono text-base text-[#141413]">₹1,00,300.00</span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Slotted Physical Journal Paper Ticket (Bottom Dock) */}
-            <div className={`mx-3 sm:mx-4 mb-3 sm:mb-4 p-3.5 sm:p-4 rounded-xl bg-[#F6F4EE] border transition-all duration-500 ${
-              isLogged ? "border-[#172554]/30 bg-[#EFF6FF]/60 shadow-sm" : "border-[#141413]/07 opacity-70"
-            }`}>
-              <div className="flex items-center justify-between text-[9px] uppercase tracking-wider text-[#8C8885] font-semibold border-b border-[#141413]/06 pb-1.5 mb-2">
-                <span>General Ledger Journal Entry</span>
-                <span className="font-mono text-[9px] text-[#172554] font-bold">ITC CAPITALIZED ✓</span>
-              </div>
-              <div className="space-y-1.5 font-mono text-[11px]">
-                <div className="flex items-center gap-2 text-[#141413] font-semibold">
-                  <span className="px-1.5 py-0.5 rounded bg-[#172554] text-white text-[9px] font-bold">Dr</span>
-                  <span>Computer Equipment ₹85,000 · Input GST ₹15,300</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#57534E] pl-6 text-[10px]">
-                  <span className="px-1 py-0.5 rounded bg-[#141413]/10 text-[#57534E] text-[8px] font-bold">Cr</span>
-                  <span>Accounts Payable (TechMart) ₹1,00,300</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+    <div className="journal-table">
+      <div className="journal-heading tiny-label">
+        <span>Account</span>
+        <span>Debit ₹</span>
+        <span>Credit ₹</span>
       </div>
-
-      {/* Right: Soundwave & Typing Speech Bubble (Zero-Layout-Shift Fixed Box) */}
-      <div className="lg:col-span-5 space-y-4 order-1 lg:order-2 flex flex-col justify-start">
-        <div className="flex items-center gap-2">
-          <span className="sound-bars">
-            <i></i><i></i><i></i><i></i><i></i>
-          </span>
-          <span className="text-xs font-mono text-[#8C8885]">text / voice command</span>
+      {rows.map(([a, d, c]) => (
+        <div className="journal-row" key={a}>
+          <span>{a}</span>
+          <span className="font-mono">{d || "·"}</span>
+          <span className="font-mono">{c || "·"}</span>
         </div>
-
-        {/* User Speech Bubble with Invisible Height Anchor (0px Layout Shift) */}
-        <div className="relative p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md flex items-center min-h-[76px] sm:min-h-[84px]">
-          {/* Invisible placeholder preserving 100% stable wrapped height */}
-          <span className="invisible opacity-0 select-none pointer-events-none" aria-hidden="true">
-            &ldquo;{fullText}&rdquo;
-          </span>
-          {/* Real-time typing overlay */}
-          <span className="absolute inset-x-4 sm:inset-x-5 flex items-center">
-            <span>&ldquo;{typedText || (isRunning.current ? "" : fullText)}&rdquo;</span>
-            {typedText.length > 0 && typedText.length < fullText.length && (
-              <span className="inline-block w-0.5 h-4 bg-[#172554] ml-0.5 animate-pulse" />
-            )}
-          </span>
-        </div>
-
-        {/* River Response Bubble Slot (Fixed Height to Prevent Layout Shift) */}
-        <div className="h-9 flex items-center">
-          <div className={`transition-all duration-500 transform ${
-            riverResponded || isLogged
-              ? "opacity-100 translate-y-0 scale-100"
-              : "opacity-0 translate-y-1 scale-95 pointer-events-none"
-          }`}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-[#172554] text-white text-xs font-mono font-medium shadow-sm">
-              <span>recorded!</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
-
-function AnimatedRow3() {
-  const [typedText, setTypedText] = useState("");
-  const [riverResponded, setRiverResponded] = useState(false);
-  const [isDepositLanded, setIsDepositLanded] = useState(false);
-  const [invoiceCleared, setInvoiceCleared] = useState(false);
-  const rowRef = useRef<HTMLDivElement | null>(null);
-  const isRunning = useRef(false);
-  const activeTimers = useRef<NodeJS.Timeout[]>([]);
-
-  const fullText = "Alpha paid the invoice with 10% TDS";
-
-  const clearAllTimers = () => {
-    activeTimers.current.forEach((t) => clearInterval(t));
-    activeTimers.current = [];
-  };
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    function runSequence() {
-      clearAllTimers();
-      setTypedText("");
-      setRiverResponded(false);
-      setIsDepositLanded(false);
-      setInvoiceCleared(false);
-      let index = 0;
-
-      const typeInterval = setInterval(() => {
-        if (index <= fullText.length) {
-          setTypedText(fullText.slice(0, index));
-          index++;
-        } else {
-          clearInterval(typeInterval);
-          
-          const t1 = setTimeout(() => {
-            setRiverResponded(true);
-
-            const t2 = setTimeout(() => {
-              setIsDepositLanded(true);
-
-              const t3 = setTimeout(() => {
-                setInvoiceCleared(true);
-                isRunning.current = false;
-              }, 600);
-              activeTimers.current.push(t3);
-            }, 500);
-            activeTimers.current.push(t2);
-          }, 400);
-          activeTimers.current.push(t1);
-        }
-      }, 35);
-      activeTimers.current.push(typeInterval);
-    }
-
-    const trigger = ScrollTrigger.create({
-      trigger: rowRef.current,
-      start: "top 75%",
-      onEnter: () => {
-        if (!isRunning.current) {
-          isRunning.current = true;
-          runSequence();
-        }
-      },
-      onLeave: () => {
-        clearAllTimers();
-        isRunning.current = false;
-      },
-      onLeaveBack: () => {
-        clearAllTimers();
-        isRunning.current = false;
-      },
-    });
-
-    gsap.fromTo(
-      rowRef.current,
-      { opacity: 0.7, y: 50, scale: 0.98 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: rowRef.current,
-          start: "top 80%",
-        },
-      }
-    );
-
-    return () => {
-      clearAllTimers();
-      trigger.kill();
-    };
-  }, []);
-
-  return (
-    <div ref={rowRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
-      {/* Left: Soundwave & Typing Speech Bubble (Zero-Layout-Shift Fixed Box) */}
-      <div className="lg:col-span-5 space-y-4 flex flex-col justify-start">
-        <div className="flex items-center gap-2">
-          <span className="sound-bars">
-            <i></i><i></i><i></i><i></i><i></i>
-          </span>
-          <span className="text-xs font-mono text-[#8C8885]">text / voice command</span>
-        </div>
-
-        {/* User Speech Bubble with Invisible Height Anchor (0px Layout Shift) */}
-        <div className="relative p-4 sm:p-5 rounded-3xl bg-white border border-[#141413]/10 shadow-[0_4px_20px_rgba(20,20,19,0.04)] text-base sm:text-lg font-sans text-[#141413] max-w-md flex items-center min-h-[76px] sm:min-h-[84px]">
-          {/* Invisible placeholder preserving 100% stable wrapped height */}
-          <span className="invisible opacity-0 select-none pointer-events-none" aria-hidden="true">
-            &ldquo;{fullText}&rdquo;
-          </span>
-          {/* Real-time typing overlay */}
-          <span className="absolute inset-x-4 sm:inset-x-5 flex items-center">
-            <span>&ldquo;{typedText || (isRunning.current ? "" : fullText)}&rdquo;</span>
-            {typedText.length > 0 && typedText.length < fullText.length && (
-              <span className="inline-block w-0.5 h-4 bg-[#172554] ml-0.5 animate-pulse" />
-            )}
-          </span>
-        </div>
-
-        {/* River Response Bubble Slot (Fixed Height to Prevent Layout Shift) */}
-        <div className="h-9 flex items-center">
-          <div className={`transition-all duration-500 transform ${
-            riverResponded || invoiceCleared
-              ? "opacity-100 translate-y-0 scale-100"
-              : "opacity-0 translate-y-1 scale-95 pointer-events-none"
-          }`}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-2xl bg-[#172554] text-white text-xs font-mono font-medium shadow-sm">
-              <span>reconciled!</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Right: Bank Reconciler Card with Light Frosted River Floating Capsule */}
-      <div className="lg:col-span-7 relative pt-4 sm:pt-5">
-        
-        {/* Light Frosted Apple Glass Kaomoji Capsule (Top-Center) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-[#141413] shadow-[0_4px_14px_rgba(20,20,19,0.06)] border border-[#141413]/10 text-[11px] font-mono tracking-tight transition-all duration-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#15803D] animate-pulse"></span>
-            <span className="font-semibold text-[#141413]">River</span>
-            <span className="text-[#8C8885]">·</span>
-            <span className="font-bold text-[#15803D]">
-              {invoiceCleared ? "{ ^-^ }" : "{ ^o^ }"}
-            </span>
-          </div>
-        </div>
-
-        {/* Outer Wispr Ambient Frame */}
-        <div className="relative rounded-[28px] p-2 sm:p-2.5 bg-gradient-to-b from-white/90 via-[#F9F7F1]/80 to-[#F2EFE8]/70 border border-[#141413]/10 shadow-[0_1px_3px_rgba(20,20,19,0.02),0_24px_60px_-12px_rgba(20,20,19,0.09)] backdrop-blur-xl">
-          
-          {/* Main Card Container */}
-          <div className="bg-white rounded-[22px] border border-[#141413]/08 overflow-hidden shadow-sm">
-            
-            {/* Top Titlebar */}
-            <div className="px-4 sm:px-6 py-3 bg-[#FAF8F5] border-b border-[#141413]/06 flex items-center justify-between">
-              <div className="flex items-center gap-2.5 font-mono text-[11px] text-[#686461]">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/90 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/90 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/90 inline-block"></span>
-                </div>
-                <span className="text-[#141413]/20">|</span>
-                <span className="font-semibold text-[#141413]">Bank.app</span>
-                <span className="text-[#8C8885] hidden sm:inline">— HDFC Statement Reconciliation</span>
-              </div>
-              <span className="font-mono text-[10px] text-[#8C8885]">HDFC_Stmt.csv</span>
-            </div>
-
-            {/* Stage Body */}
-            <div className="p-5 sm:p-7 space-y-4 font-mono text-xs">
-              
-              {/* Account Row */}
-              <div className="flex justify-between items-center pb-3 border-b border-[#141413]/06">
-                <div>
-                  <span className="text-[10px] uppercase font-semibold tracking-wider text-[#8C8885] block">ACCOUNT</span>
-                  <span className="font-bold text-sm text-[#141413] block mt-0.5">HDFC Bank Current A/c</span>
-                </div>
-                <span className={`text-[10px] font-mono px-3 py-1 rounded-full font-semibold transition-all duration-500 flex items-center gap-1.5 ${
-                  invoiceCleared
-                    ? "text-[#15803D] bg-[#15803D]/10 border border-[#15803D]/25 shadow-sm scale-105"
-                    : "text-[#8C8885] bg-[#141413]/05 border border-[#141413]/06"
-                }`}>
-                  {invoiceCleared ? "FORM 26AS MATCHED ✓" : "Matching..."}
-                </span>
-              </div>
-
-              {/* Line Items: Bank Deposit & TDS Receivable Split */}
-              <div className="space-y-2 py-1">
-                <div className={`flex justify-between font-sans items-center py-1 transition-all duration-500 ${
-                  isDepositLanded ? "text-[#141413]" : "text-[#8C8885]"
-                }`}>
-                  <span className="flex items-center gap-2 font-medium">
-                    <span className="w-2 h-2 rounded-full bg-[#15803D] inline-block animate-pulse"></span>
-                    Cash Received in HDFC Account
-                  </span>
-                  <span className="font-mono font-bold text-[#15803D]">
-                    {isDepositLanded ? "+₹1,08,000.00" : "—"}
-                  </span>
-                </div>
-
-                <div className={`flex justify-between text-[#172554] py-0.5 transition-all duration-500 ${
-                  isDepositLanded ? "opacity-100 translate-x-0" : "opacity-20 -translate-x-2"
-                }`}>
-                  <span className="flex items-center gap-1.5 font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#172554]/40"></span>
-                    TDS Receivable (Sec 194J · Form 26AS)
-                  </span>
-                  <span className="font-mono font-bold">₹10,000.00</span>
-                </div>
-
-                <div className="flex justify-between pt-2.5 border-t border-[#141413]/06 text-sm font-bold text-[#141413] items-center">
-                  <span className="tracking-tight">INVOICE #INV-084 BALANCE</span>
-                  <span className={`font-mono transition-all duration-500 ${
-                    invoiceCleared ? "text-[#15803D] font-bold text-base" : "text-[#8C8885]"
-                  }`}>
-                    {invoiceCleared ? "Nil (100% Cleared)" : "₹1,18,000.00"}
-                  </span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Slotted Physical Journal Paper Ticket (Bottom Dock) */}
-            <div className={`mx-3 sm:mx-4 mb-3 sm:mb-4 p-3.5 sm:p-4 rounded-xl bg-[#F6F4EE] border transition-all duration-500 ${
-              invoiceCleared ? "border-[#15803D]/30 bg-[#F0FDF4]/60 shadow-sm" : "border-[#141413]/07 opacity-70"
-            }`}>
-              <div className="flex items-center justify-between text-[9px] uppercase tracking-wider text-[#8C8885] font-semibold border-b border-[#141413]/06 pb-1.5 mb-2">
-                <span>General Ledger Journal Entry</span>
-                <span className="font-mono text-[9px] text-[#15803D] font-bold">SETTLEMENT POSTED ✓</span>
-              </div>
-              <div className="space-y-1.5 font-mono text-[11px]">
-                <div className="flex items-center gap-2 text-[#141413] font-semibold">
-                  <span className="px-1.5 py-0.5 rounded bg-[#172554] text-white text-[9px] font-bold">Dr</span>
-                  <span>HDFC Bank ₹1,08,000 · Dr TDS Receivable ₹10,000</span>
-                </div>
-                <div className="flex items-center gap-2 text-[#57534E] pl-6 text-[10px]">
-                  <span className="px-1 py-0.5 rounded bg-[#141413]/10 text-[#57534E] text-[8px] font-bold">Cr</span>
-                  <span>Accounts Receivable (Alpha Ltd) ₹1,18,000</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function HowItWorks() {
+  const root = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+      mm.add(
+        "(min-width: 800px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          const panels = gsap.utils.toArray<HTMLElement>(".story-panel");
+          const captions = gsap.utils.toArray<HTMLElement>(".story-caption");
+          gsap.set(panels.slice(1), { autoAlpha: 0, y: 30 });
+          gsap.set(captions.slice(1), { autoAlpha: 0, y: 20 });
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: ".story-stage",
+              start: "top top",
+              end: "+=4200",
+              pin: true,
+              scrub: 0.65,
+              anticipatePin: 1,
+              onUpdate: (self) =>
+                setActive(Math.min(5, Math.floor(self.progress * 6))),
+            },
+          });
+          tl.to({}, { duration: 0.7 });
+          for (let i = 1; i < panels.length; i++) {
+            tl.to(
+              [panels[i - 1], captions[i - 1]],
+              { autoAlpha: 0, y: -20, duration: 0.2 },
+              i,
+            ).fromTo(
+              [panels[i], captions[i]],
+              { autoAlpha: 0, y: 30 },
+              { autoAlpha: 1, y: 0, duration: 0.35 },
+              i + 0.12,
+            );
+          }
+          tl.to({}, { duration: 0.8 });
+          return () => setActive(0);
+        },
+      );
+    }, root);
+    return () => ctx.revert();
+  }, []);
   return (
-    <section id="how-it-works" className="py-28 md:py-36 lg:py-44 relative">
-      <div className="max-w-[1240px] mx-auto px-4 md:px-6 relative">
-        
-        {/* Section Headline */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 className="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.03em] text-[#141413] leading-[1.12]">
-            Talk to it like a person, in River or on WhatsApp
-          </h2>
+    <section id="how-it-works" ref={root} className="river-story">
+      <div className="story-intro section-pad">
+        <div className="section-kicker">
+          <span>02 / The accounting, as it happens</span>
+          <span>Scroll to follow the work ↓</span>
         </div>
-
-        {/* Timeline Center Beam */}
-        <div className="hidden lg:block absolute left-1/2 top-48 bottom-48 w-0.5 -translate-x-1/2 z-0">
-          <div className="w-full h-full bg-[#141413]/06"></div>
-          <div className="vertical-flow-line absolute inset-0 w-full bg-[#172554] origin-top"></div>
+        <h2 className="font-display">
+          Talk to it
+          <br />
+          like a person.
+        </h2>
+        <p>In River or on WhatsApp.</p>
+      </div>
+      <div className="story-stage section-pad">
+        <div className="story-topline tiny-label">
+          <span>One business. One continuous story.</span>
+          <span>Illustrative sample data</span>
         </div>
-
-        {/* 3 Living Interactive Rows */}
-        <div className="space-y-20 md:space-y-28">
-          <AnimatedRow1 />
-          <AnimatedRow2 />
-          <AnimatedRow3 />
+        <div className="story-layout">
+          <div className="story-narration">
+            <div className="stage-count font-mono">
+              0{active + 1}
+              <span> / 06</span>
+            </div>
+            <div className="caption-stack">
+              {stages.map((s, i) => (
+                <div className="story-caption" key={i}>
+                  <span className="tiny-label">{s.label}</span>
+                  <h3 className="font-display">{s.title}</h3>
+                  <p>{s.detail}</p>
+                </div>
+              ))}
+            </div>
+            <div className="story-progress" aria-hidden="true">
+              {stages.map((s, i) => (
+                <span key={i} className={i <= active ? "filled" : ""} />
+              ))}
+            </div>
+            <span className="tiny-label story-scroll-hint">
+              Keep scrolling. River is on it. ↓
+            </span>
+          </div>
+          <div className="document-shell">
+            <div className="document-topline tiny-label">
+              <span>River / Working record</span>
+              <span className="live-dot">Sample data</span>
+            </div>
+            <div className="panel-stack">
+              <article className="story-panel command-panel">
+                <span className="tiny-label">01 / A new instruction</span>
+                <div className="command-avatar font-mono">You</div>
+                <p className="font-display command-text">
+                  Invoice Alpha Ltd <span>₹1,00,000</span> for this month’s
+                  consulting
+                </p>
+                <div className="command-response">
+                  <span className="river-star">✳</span>
+                  <span>
+                    <strong>River records:</strong>
+                    <br />
+                    Invoice Alpha Ltd.
+                  </span>
+                </div>
+              </article>
+              <article className="story-panel">
+                <div className="doc-heading">
+                  <div>
+                    <span className="tiny-label">02 / Sales invoice</span>
+                    <h4 className="font-display">Alpha Ltd</h4>
+                  </div>
+                  <span className="document-tag">INV-001</span>
+                </div>
+                <p className="document-subtitle">This month’s consulting</p>
+                <Row label="Consulting services" value="1,00,000.00" />
+                <Row label="CGST · 9%" value="9,000.00" />
+                <Row label="SGST · 9%" value="9,000.00" />
+                <div className="document-total">
+                  <span>Total receivable</span>
+                  <strong className="font-mono">₹1,18,000</strong>
+                </div>
+                <div className="document-note">
+                  <span>↳</span> Source instruction and invoice linked.
+                </div>
+              </article>
+              <article className="story-panel">
+                <div className="doc-heading">
+                  <div>
+                    <span className="tiny-label">03 / Journal entry</span>
+                    <h4 className="font-display">Accounting entry.</h4>
+                  </div>
+                </div>
+                <p className="document-subtitle">
+                  From invoice INV-001 · Alpha Ltd
+                </p>
+                <Journal
+                  rows={[
+                    ["Accounts receivable", "1,18,000", ""],
+                    ["Consulting revenue", "", "1,00,000"],
+                    ["Output CGST", "", "9,000"],
+                    ["Output SGST", "", "9,000"],
+                  ]}
+                />
+                <div className="document-total small">
+                  <span>Debits = Credits</span>
+                  <strong className="font-mono">₹1,18,000</strong>
+                </div>
+                <div className="document-note">
+                  ↳ The business event becomes the accounting.
+                </div>
+              </article>
+              <article className="story-panel">
+                <div className="doc-heading">
+                  <div>
+                    <span className="tiny-label">04 / Purchase bill</span>
+                    <h4 className="font-display">TechMart Electronics</h4>
+                  </div>
+                </div>
+                <p className="document-subtitle">
+                  “Record the TechMart bill for the new laptop.”
+                </p>
+                <Journal
+                  rows={[
+                    ["Computer equipment", "85,000", ""],
+                    ["Input GST", "15,300", ""],
+                    ["Accounts payable", "", "1,00,300"],
+                  ]}
+                />
+                <div className="document-total small">
+                  <span>Total payable</span>
+                  <strong className="font-mono">₹1,00,300</strong>
+                </div>
+                <div className="document-note">
+                  ↳ Bill, asset and tax stay together.
+                </div>
+              </article>
+              <article className="story-panel">
+                <div className="doc-heading">
+                  <div>
+                    <span className="tiny-label">05 / Payment received</span>
+                    <h4 className="font-display">Alpha paid.</h4>
+                  </div>
+                  <span className="document-tag">MATCHED</span>
+                </div>
+                <p className="document-subtitle">
+                  “Alpha paid the invoice with 10% TDS.”
+                </p>
+                <Row label="Bank deposit" value="₹1,08,000" />
+                <Row label="TDS receivable · 10% of fee" value="₹10,000" />
+                <Row label="Invoice settled" value="₹1,18,000" />
+                <div className="document-total">
+                  <span>Alpha’s outstanding balance</span>
+                  <strong className="font-mono">₹0</strong>
+                </div>
+                <div className="document-note">
+                  ↳ Cash received. TDS accounted for. Invoice cleared.
+                </div>
+              </article>
+              <article className="story-panel books-panel">
+                <span className="tiny-label">06 / The resulting books</span>
+                <h4 className="font-display">
+                  River takes care
+                  <br />
+                  of the accounting.
+                </h4>
+                <Row label="Consulting revenue" value="₹1,00,000" />
+                <Row label="Alpha · outstanding" value="₹0" />
+                <Row label="TechMart · payable" value="₹1,00,300" />
+                <div className="books-seal">
+                  <span>✓</span>
+                  <div>
+                    <strong>Debits equal credits.</strong>
+                    <p>Every record traces back to what happened.</p>
+                  </div>
+                </div>
+                <span className="tiny-label">
+                  Instruction → Record → Entry → Books
+                </span>
+              </article>
+            </div>
+            <div className="document-bottom tiny-label">
+              <span>Words to records. Records to books.</span>
+              <span>↗ River</span>
+            </div>
+          </div>
         </div>
-
-        {/* Footer Editorial Callout */}
-        <div className="max-w-4xl mx-auto mt-16 md:mt-24 p-8 md:p-14 rounded-3xl bg-white border border-[#141413]/08 shadow-sm text-center relative z-10">
-          <p className="font-display font-medium text-2xl sm:text-3xl md:text-4xl text-[#141413] leading-relaxed tracking-tight">
-            River takes care of the accounting behind each command. It creates the invoice, records the bill, keeps track of what you&apos;re owed, and updates the books when money comes in.
-          </p>
-        </div>
-
       </div>
     </section>
   );
