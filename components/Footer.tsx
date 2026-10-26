@@ -309,7 +309,7 @@ export default function Footer() {
       {/* Crawlable Semantic About Section for Search Engine Spiders (Always present in initial HTML payload) */}
       <section aria-label="About Asynarch" className="sr-only">
         <h2>About Asynarch</h2>
-        <p>Asynarch started in Madurai, in April 2026.</p>
+        <p>Asynarch started in Madurai, in June 2026.</p>
         <p>The idea didn&apos;t start with accounting. It started with a simpler thought: make people&apos;s lives easier. So I built things. Then I used them, and hated using them too. Easier still meant work.</p>
         <p>Software should do the job itself. Not wait for someone to run it.</p>
         <p>For accounting, that&apos;s the whole idea: you say what happened, it takes care of the rest. For GST-registered businesses, to start.</p>

@@ -37,7 +37,7 @@ export default function AboutPage() {
               <div className="pt-8 sm:pt-10 space-y-6 sm:space-y-7 font-sans text-base sm:text-lg text-[#141413] leading-[1.8] text-left">
                 
                 <p className="font-medium text-lg sm:text-xl text-[#141413] leading-snug">
-                  Asynarch started in Madurai, in April 2026.
+                  Asynarch started in Madurai, in June 2026.
                 </p>
 
                 <p>

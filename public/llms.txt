@@ -23,7 +23,7 @@ Instead of forcing founders and teams to manually categorize bank statements, na
 
 ## About Asynarch
 
-Asynarch started in Madurai, in April 2026.
+Asynarch started in Madurai, in June 2026.
 
 The idea didn't start with accounting. It started with a simpler thought: make people's lives easier. So I built things. Then I used them, and hated using them too. Easier still meant work.
 

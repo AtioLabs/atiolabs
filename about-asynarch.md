@@ -4,7 +4,7 @@ The idea didn't start with accounting. It started with a simpler thought: make p
 
 I stopped building and started watching. What people were doing with their time, everywhere, in businesses with nothing in common. One thought stuck: software should do the job itself. Not wait for someone to run it.
 
-My name's Asrul. From Madurai. This started in April 2026.
+My name's Asrul. From Madurai. This started in June 2026.
 
 For accounting, that's the whole idea: you say what happened, it takes care of the rest. For GST-registered businesses, to start.
 
