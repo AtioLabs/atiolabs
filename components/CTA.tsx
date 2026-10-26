@@ -22,8 +22,8 @@ export default function CTA() {
       </h2>
       <div className="cta-bottom">
         <p>
-          Schedule a 30-minute private walkthrough. See how River handles your
-          GST, TDS, and accrual books with zero manual data entry.
+          Schedule a 30-minute private walkthrough. See how River turns what you
+          tell it into GST, TDS, and accrual entries.
         </p>
         <a
           href="https://calendly.com/asynarch-team/30min"
