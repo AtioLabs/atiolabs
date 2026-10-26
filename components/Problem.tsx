@@ -35,7 +35,7 @@ export default function Problem() {
       <div className="problem-scene-grid">
         <h2 className="problem-head font-display">
           <span className="problem-line">This used to</span>
-          <span className="problem-line">be a job.</span>
+          <span className="problem-line">be a job</span>
         </h2>
         <div
           className="manual-scene"

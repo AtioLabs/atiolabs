@@ -6,7 +6,7 @@ const checks = [
   {
     name: "Pre-post verification",
     state: "HELD",
-    title: "Every entry is checked before it is posted.",
+    title: "Every entry is checked before it is posted",
     detail: "The attempted entry is ₹10,000 short. It stays out of the books.",
     debit: "1,08,000",
     credit: "1,18,000",
@@ -17,7 +17,7 @@ const checks = [
   {
     name: "GST + TDS treatment",
     state: "VERIFIED",
-    title: "GST and TDS are recorded correctly.",
+    title: "GST and TDS are recorded correctly",
     detail:
       "₹1,08,000 in the bank. ₹10,000 in TDS receivable. The full invoice is settled.",
     debit: "1,18,000",
@@ -29,7 +29,7 @@ const checks = [
   {
     name: "Locked-period protection",
     state: "REJECTED",
-    title: "Locked periods reject new entries.",
+    title: "Locked periods reject new entries",
     detail:
       "Try to move the entry into a locked period. River rejects the attempt. The posted books do not change.",
     debit: "1,18,000",
@@ -41,7 +41,7 @@ const checks = [
   {
     name: "Correction history",
     state: "PRESERVED",
-    title: "Corrections keep their history.",
+    title: "Corrections keep their history",
     detail: "Corrections keep their history.",
     debit: "1,18,000",
     credit: "1,18,000",
@@ -91,7 +91,7 @@ export default function Assurance() {
               <em>
                 unless they
                 <br />
-                balance.
+                balance
               </em>
             </h2>
             <p>Every report comes from the transactions in the books.</p>

@@ -33,7 +33,7 @@ export default function Vision() {
           <span className="vision-line">You don’t need</span>
           <span className="vision-line">to know</span>
           <span className="vision-line">
-            <em>accounting.</em>
+            <em>accounting</em>
           </span>
         </h2>
         <div className="freedom-scene">

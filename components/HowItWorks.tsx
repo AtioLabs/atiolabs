@@ -6,32 +6,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const stages = [
   {
     label: "You tell River",
-    title: <>Invoice Alpha Ltd.</>,
+    title: <>Invoice Alpha Ltd</>,
     detail: "Invoice Alpha Ltd ₹1,00,000 for this month's consulting",
   },
   {
     label: "River creates the invoice",
-    title: <>This month’s consulting.</>,
+    title: <>This month’s consulting</>,
     detail: "Consulting services · CGST @ 9% · SGST @ 9%",
   },
   {
     label: "The accounting entry",
-    title: <>Accounts receivable.</>,
+    title: <>Accounts receivable</>,
     detail: "Dr Accounts Receivable · Cr Consulting Revenue · Cr Output GST",
   },
   {
     label: "You tell River",
-    title: <>Record the TechMart bill.</>,
+    title: <>Record the TechMart bill</>,
     detail: "Record the TechMart bill for the new laptop",
   },
   {
     label: "You tell River",
-    title: <>Alpha paid the invoice.</>,
+    title: <>Alpha paid the invoice</>,
     detail: "Alpha paid the invoice with 10% TDS",
   },
   {
     label: "River records",
-    title: <>The accounting behind each command.</>,
+    title: <>The accounting behind each command</>,
     detail:
       "It creates the invoice, records the bill, keeps track of what you’re owed, and updates the books when money comes in.",
   },
@@ -126,7 +126,7 @@ export default function HowItWorks() {
         <h2 className="font-display">
           Talk to it
           <br />
-          like a person.
+          like a person
         </h2>
         <p>In River or on WhatsApp.</p>
       </div>
@@ -205,7 +205,7 @@ export default function HowItWorks() {
                 <div className="doc-heading">
                   <div>
                     <span className="tiny-label">03 / Journal entry</span>
-                    <h4 className="font-display">Accounting entry.</h4>
+                    <h4 className="font-display">Accounting entry</h4>
                   </div>
                 </div>
                 <p className="document-subtitle">
@@ -256,7 +256,7 @@ export default function HowItWorks() {
                 <div className="doc-heading">
                   <div>
                     <span className="tiny-label">05 / Payment received</span>
-                    <h4 className="font-display">Alpha paid.</h4>
+                    <h4 className="font-display">Alpha paid</h4>
                   </div>
                   <span className="document-tag">MATCHED</span>
                 </div>
@@ -279,7 +279,7 @@ export default function HowItWorks() {
                 <h4 className="font-display">
                   River takes care
                   <br />
-                  of the accounting.
+                  of the accounting
                 </h4>
                 <Row label="Consulting revenue" value="₹1,00,000" />
                 <Row label="Alpha · outstanding" value="₹0" />

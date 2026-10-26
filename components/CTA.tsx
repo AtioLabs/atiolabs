@@ -18,7 +18,7 @@ export default function CTA() {
       <h2 className="font-display">
         Leave the accounting
         <br />
-        to River.
+        to River
       </h2>
       <div className="cta-bottom">
         <p>

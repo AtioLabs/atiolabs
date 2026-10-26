@@ -35,7 +35,7 @@ export default function FAQ() {
         <h2 className="font-display">
           Frequently asked
           <br />
-          questions.
+          questions
         </h2>
       </div>
       <div className="faq-list">
