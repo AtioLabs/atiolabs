@@ -3,11 +3,14 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [visible, setVisible] = useState(true);
   const [timeString, setTimeString] = useState("");
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     // Live local clock updating every second
@@ -47,6 +50,9 @@ export default function Navbar() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Off the homepage (e.g. /writing): go to the section on the homepage
+      router.push(`/#${id}`);
     }
   };
 
@@ -61,7 +67,11 @@ export default function Navbar() {
         {/* Brand Lockup & Direct Navigation (Left) */}
         <nav className="pointer-events-auto flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#FBFAF6]/90 backdrop-blur-xl border border-[#141413]/10 shadow-[0_8px_30px_rgba(20,20,19,0.06)] select-none shrink-0">
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() =>
+              pathname === "/"
+                ? window.scrollTo({ top: 0, behavior: "smooth" })
+                : router.push("/")
+            }
             className="flex items-center gap-1.5 sm:gap-2 group cursor-pointer bg-transparent border-0 p-0 outline-none select-none"
             aria-label="Asynarch River Home"
           >
@@ -77,11 +87,11 @@ export default function Navbar() {
               />
             </div>
 
-            <span className="text-[11px] sm:text-xs md:text-sm font-mono text-[#8C8885] font-semibold tracking-tight">
+            <span className="hidden sm:inline text-[11px] sm:text-xs md:text-sm font-mono text-[#8C8885] font-semibold tracking-tight">
               Asynarch
             </span>
 
-            <span className="text-[#8C8885]/30 font-mono text-xs px-0.5">/</span>
+            <span className="hidden sm:inline text-[#8C8885]/30 font-mono text-xs px-0.5">/</span>
 
             {/* River Computer Mascot */}
             <div className="flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -102,10 +112,16 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile Action Buttons (< 768px) */}
-        <div className="pointer-events-auto flex md:hidden items-center gap-2">
+        <div className="pointer-events-auto flex md:hidden items-center gap-1.5">
+          <Link
+            href="/writing"
+            className="px-2.5 py-1.5 rounded-full bg-[#FBFAF6]/90 backdrop-blur-md border border-[#141413]/10 text-xs font-mono text-[#57534E] hover:text-[#141413] shadow-xs transition-colors"
+          >
+            Writing
+          </Link>
           <Link
             href="/about"
-            className="px-3 py-1.5 rounded-full bg-[#FBFAF6]/90 backdrop-blur-md border border-[#141413]/10 text-xs font-mono text-[#57534E] hover:text-[#141413] shadow-xs transition-colors"
+            className="px-2.5 py-1.5 rounded-full bg-[#FBFAF6]/90 backdrop-blur-md border border-[#141413]/10 text-xs font-mono text-[#57534E] hover:text-[#141413] shadow-xs transition-colors"
           >
             About
           </Link>
@@ -113,7 +129,7 @@ export default function Navbar() {
             href="https://calendly.com/asynarch-team/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-indigo px-3.5 py-2 text-xs font-sans font-medium rounded-full cursor-pointer shadow-sm"
+            className="btn-indigo px-3 py-2 text-xs font-sans font-medium rounded-full cursor-pointer shadow-sm whitespace-nowrap"
           >
             Book a demo
           </a>
@@ -154,6 +170,12 @@ export default function Navbar() {
             >
               FAQ
             </button>
+            <Link
+              href="/writing"
+              className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"
+            >
+              Writing
+            </Link>
             <Link
               href="/about"
               className="text-xs font-sans text-[#57534E] hover:text-[#141413] transition-colors cursor-pointer"

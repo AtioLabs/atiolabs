@@ -39,13 +39,19 @@ The human mind wasn't built to spend thirty years operating tools. Let people do
  
 — Asrul
 
-## Privacy & Waitlist Data
-River is operated by Asynarch Autonomiccomputing Private Limited ("Asynarch"). We only collect email addresses solely for waitlist access, demo bookings, and product notifications. We do not sell, share, or monitor user data. Contact: contact@asynarch.com.
+## Writing
+Essays by Asrul Ishath on agents, software and what humans can do with them. Each essay has a plain Markdown version at the same URL with `.md` added.
+
+- [what humans can do](https://www.asynarch.com/writing/what-humans-can-do.md) (2026-11-01): a useful agent should bring expertise beyond the brief.
+
+## Privacy
+River is operated by Asynarch Autonomiccomputing Private Limited ("Asynarch"). We only collect the details people share when booking a demo, and use them solely for that demo. We do not sell, share, or monitor user data. Contact: contact@asynarch.com.
 
 ## Endpoints
 - **Home:** https://asynarch.com
 - **About:** https://asynarch.com/about
-- **Waitlist API:** POST /api/waitlist
+- **Writing:** https://asynarch.com/writing
+- **Book a demo:** https://calendly.com/asynarch-team/30min
 
 ## Company Metadata
 - Company: Asynarch

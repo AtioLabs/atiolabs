@@ -146,6 +146,14 @@ export default function Footer() {
               </Link>
             </div>
             <div>
+              <Link
+                href="/writing"
+                className="hover:text-[#141413] transition-colors cursor-pointer text-xs font-mono text-[#686461] inline-block"
+              >
+                writing ↗
+              </Link>
+            </div>
+            <div>
               <a href="https://asynarch.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#141413] transition-colors">
                 asynarch.com ↗
               </a>
@@ -276,7 +284,7 @@ export default function Footer() {
                     River is operated by Asynarch Autonomiccomputing Private Limited (&ldquo;Asynarch&rdquo;).
                   </p>
                   <p>
-                    We only collect your email address exclusively for the purpose of managing early access waitlist notifications and demo requests.
+                    We only collect the details you share when you book a demo, and use them solely to arrange and follow up on that demo.
                   </p>
                   <p>
                     We do not sell, share, or use your information for third-party marketing, tracking, or telemetry.

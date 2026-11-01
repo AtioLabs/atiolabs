@@ -1,17 +1,13 @@
 User-agent: *
 Allow: /
 
-# Explicit AI crawler and search bot permissions
-User-agent: GPTBot
-Allow: /
-
+# AI search and answer tools may read the site when someone asks about it.
+# AI training crawlers (GPTBot, ClaudeBot and others) are blocked by
+# Cloudflare's managed rules, which Cloudflare adds above this file when served.
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ClaudeBot
 Allow: /
 
 User-agent: Googlebot
@@ -22,9 +18,5 @@ Allow: /
 
 User-agent: Applebot
 Allow: /
-
-# Disallow API and test routes only
-Disallow: /api/
-Disallow: /font-test
 
 Sitemap: https://www.asynarch.com/sitemap.xml

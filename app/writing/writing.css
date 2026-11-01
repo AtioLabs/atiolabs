@@ -1,0 +1,296 @@
+/* /writing pages - approved blog design v2 (2026-10-31).
+   Scoped under .wr so nothing leaks into the rest of the site.
+   Uses the site's font variables from app/layout.tsx. */
+
+.wr {
+  background: #fbfaf6;
+  color: #141413;
+  font-family: var(--font-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+.wr * { box-sizing: border-box; }
+.wr a { color: inherit; text-decoration: none; }
+.wr a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.wr button { font: inherit; }
+
+.wr .wr-header {
+  height: 100px;
+  margin: 0 4.4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e3e1da;
+}
+.wr .brand { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; letter-spacing: -0.04em; }
+.wr .brand img { width: 25px; height: 25px; object-fit: contain; }
+.wr .nav { display: flex; gap: 28px; font-size: 12px; }
+.wr .nav .active { color: #172554; }
+.wr .meta {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  color: #6e6a62;
+}
+
+/* Article masthead */
+.wr .mast { max-width: 960px; margin: 88px auto 50px; padding: 0 25px; text-align: center; }
+.wr .mast h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(52px, 6.2vw, 82px);
+  line-height: 1.06;
+  letter-spacing: -0.05em;
+  margin: 24px auto 28px;
+  max-width: 860px;
+  text-wrap: balance;
+}
+.wr .byline { font-size: 12px; line-height: 1.7; color: #5f5b54; }
+
+.wr .hero { max-width: 1120px; margin: 0 auto; padding: 0; }
+.wr .hero img { display: block; width: 100%; height: auto; }
+
+/* Essay body */
+.wr .essay {
+  max-width: 616px;
+  margin: 0 auto;
+  padding-bottom: 72px;
+  font-size: 17px;
+  line-height: 1.85;
+  letter-spacing: -0.012em;
+}
+.wr .essay p { margin: 0 0 26px; }
+.wr .essay h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  margin: 61px 0 24px;
+}
+.wr .essay a {
+  text-decoration: underline;
+  text-decoration-color: #a6aaa8;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.wr .essay p:last-child { margin-bottom: 0; }
+
+/* Notes */
+.wr .notes { margin-top: 56px; border-top: 1px solid #dcd9d1; padding-top: 22px; }
+.wr .notes .meta { margin-bottom: 14px; }
+.wr .notes ol { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.7; color: #5f5b54; letter-spacing: 0; list-style: decimal; }
+.wr .notes li { margin-bottom: 10px; }
+.wr .notes a { text-decoration: underline; text-decoration-color: #a6aaa8; text-underline-offset: 3px; }
+
+.wr .endmark { display: block; margin-top: 35px; width: 9px; height: 9px; background: #172554; }
+
+.wr .closing {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 42px 0 64px;
+  border-top: 1px solid #dcd9d1;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+}
+.wr .closing h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+  margin: 8px 0 0;
+}
+.wr .back { font-size: 12px; }
+
+.wr .wr-footer {
+  margin: 0 4.4%;
+  padding: 24px 0 34px;
+  border-top: 1px solid #e3e1da;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #817b71;
+}
+
+/* Index */
+.wr .index-head { max-width: 1120px; margin: 88px auto 60px; }
+.wr .index-head h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 1.06;
+  letter-spacing: -0.05em;
+  margin: 20px 0;
+}
+.wr .index-head p { font-size: 16px; line-height: 1.7; color: #706b62; max-width: 440px; }
+.wr .feature { max-width: 1120px; margin: 0 auto 100px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 55px; align-items: center; }
+.wr .feature img { width: 100%; display: block; }
+.wr .feature h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  margin: 22px 0;
+}
+.wr .feature .byline { margin-top: 24px; }
+.wr .read { font-size: 12px; display: inline-block; margin-top: 30px; }
+
+@media (max-width: 750px) {
+  .wr .wr-header { height: 78px; margin: 0 22px; }
+  .wr .brand { font-size: 14px; }
+  .wr .brand img { width: 22px; height: 22px; }
+  .wr .nav { gap: 19px; font-size: 11px; }
+  .wr .nav .river { display: none; }
+  .wr .mast { margin: 56px auto 35px; padding: 0 23px; }
+  .wr .mast h1 { font-size: 51px; line-height: 1.07; margin: 20px 0 25px; letter-spacing: -0.048em; }
+  .wr .meta { font-size: 9px; letter-spacing: 0.07em; }
+  .wr .byline { font-size: 11px; }
+  .wr .agent-link { margin-top: 14px; font-size: 13px; }
+  .wr .hero { margin: 0 16px; }
+  .wr .essay { margin: 0 24px; font-size: 16px; line-height: 1.85; padding-bottom: 56px; }
+  .wr .essay p { margin-bottom: 25px; }
+  .wr .essay h2 { font-size: 29px; margin: 47px 0 22px; }
+  .wr .notes { margin-top: 44px; }
+  .wr .closing { margin: 0 24px; padding: 30px 0 44px; display: block; }
+  .wr .closing h3 { font-size: 27px; }
+  .wr .back { display: inline-block; margin-top: 24px; }
+  .wr .wr-footer { margin: 0 24px; line-height: 1.6; gap: 18px; font-size: 9px; }
+  .wr .index-head { margin: 57px 24px 40px; }
+  .wr .index-head h1 { font-size: 56px; margin: 18px 0; }
+  .wr .index-head p { font-size: 14px; }
+  .wr .feature { display: flex; flex-direction: column; margin: 0 24px 65px; gap: 27px; align-items: stretch; }
+  .wr .feature h2 { font-size: 40px; margin: 17px 0; }
+  .wr .feature .byline { margin-top: 17px; }
+  .wr .read { margin-top: 21px; }
+}
+@media (max-width: 350px) {
+  .wr .mast h1 { font-size: 43px; }
+  .wr .nav { gap: 13px; }
+  .wr .meta { font-size: 8px; }
+  .wr .essay { font-size: 15.5px; }
+  .wr .index-head h1 { font-size: 49px; }
+  .wr .feature h2 { font-size: 36px; }
+}
+
+.wr .essay .note-ref {
+  font-size: 11px;
+  line-height: 0;
+  margin-left: 1px;
+}
+.wr .essay .note-ref a {
+  color: #172554;
+  text-decoration: none;
+  border-bottom: none;
+}
+.wr .essay .note-ref a:hover {
+  text-decoration: underline;
+}
+.wr .notes .note-general {
+  font: 13px/1.7 "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #475569;
+  margin-top: 10px;
+}
+
+/* Quiet "read with your agent" action under the byline */
+.wr .agent-link {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 15px;
+  color: #141413;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: #141413;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.wr .agent-link:hover { color: #172554; text-decoration-color: #172554; }
+.wr .agent-link:focus-visible { outline: 2px solid #172554; outline-offset: 3px; }
+
+/* Try-this-with-your-agent box */
+.wr .agent-box {
+  max-width: 616px;
+  margin: 56px auto 0;
+  padding: 20px 22px 16px;
+  border: 1px solid #dcd9d1;
+}
+.wr .agent-box .meta { margin-bottom: 12px; }
+.wr .agent-q {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+.wr .agent-copy {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid #141413;
+  background: transparent;
+  color: #141413;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+.wr .agent-copy:hover { color: #172554; border-color: #172554; }
+.wr .agent-copy:focus-visible { outline: 2px solid #172554; outline-offset: 2px; }
+.wr .agent-copy-alt { margin-top: 8px; border-color: #c9c5bc; color: #57534e; }
+.wr .agent-hint { font-size: 12px; line-height: 1.6; color: #8a847a; margin: 12px 0 0; }
+.wr .agent-payload-label { margin-top: 14px; }
+.wr .agent-fail { font-size: 11px; color: #8a847a; margin: 10px 0 0; }
+.wr .agent-payload { margin-top: 12px; }
+.wr .agent-payload summary {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a847a;
+  cursor: pointer;
+}
+.wr .agent-payload pre {
+  max-height: 200px;
+  overflow: auto;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #e7e4dd;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #57534e;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+@media (max-width: 700px) {
+  .wr .agent-box { margin: 44px auto 0; padding: 16px 16px 14px; }
+  .wr .agent-q { font-size: 16px; }
+}
+
+.wr .wr-nav-spacer { height: 88px; }
+@media (max-width: 750px) {
+  .wr .wr-nav-spacer { height: 64px; }
+}
+/* Keep the main Navbar's CTA text white over `.wr a { color: inherit }` */
+.wr .btn-indigo { color: #fff; }
+
+/* Space between the opening artwork and the first paragraph */
+.wr .essay-body { margin-top: 64px; padding-bottom: 0; }
+
+/* Closing artwork: same wide treatment as the hero, with generous space
+   above and below; the agent box follows as an optional next step. */
+.wr .hero-closing { margin-top: 96px; }
+.wr .hero-closing + .essay-after .agent-box { margin-top: 88px; }
+
+@media (max-width: 750px) {
+  .wr .essay-body { margin-top: 44px; }
+  .wr .hero-closing { margin-top: 64px; }
+  .wr .hero-closing + .essay-after .agent-box { margin-top: 60px; }
+}

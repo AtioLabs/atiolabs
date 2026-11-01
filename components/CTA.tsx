@@ -3,7 +3,6 @@ import PixelSpriteSheet from "./PixelSpriteSheet";
 export default function CTA() {
   return (
     <section id="demo" className="cta-editorial section-pad">
-      <div id="waitlist" className="sr-only" />
       <div className="cta-top">
         <span className="tiny-label">See River at work</span>
         <PixelSpriteSheet
